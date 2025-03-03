@@ -5,13 +5,19 @@ NAME = cub3d
 LIBFT = ../libft/libft.a
 
 MLX_NAME = libmlx.a
-MLX_PATH = minilibx-linux/
+MLX_PATH = mlx/
 MLX = $(MLX_PATH)$(MLX_NAME)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = 
+SRC = main.c \
+	parsing/parsing.c \
+	utils/free_error.c \
+	utils/utils.c \
+	get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c \
+
 
 OBJ = $(SRC: .c=.o)
 
@@ -22,14 +28,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo "Compilation..."
 	@make -sC ../libft
-	@make -sC minilibx-linux
+	@make -sC mlx
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT) $(MLX) -lXext -lX11 -lm -lz
 	@echo " is ready !"
 
 clean:
 	@echo "Clean..."
 	@make clean -sC ../libft
-	@make clean -sC minilibx-linux
+	@make clean -sC mlx
 	@$(RM) *.o
 	@echo "Done !"
 
@@ -44,5 +50,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean fclean
+bonus:
+
+.PHONY: all re clean fclean bonus
 
