@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/03 17:48:24 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/04 11:48:38 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	destroy_texture(t_cub *cub)
 {
-	if (cub->texture.wall)
-		mlx_destroy_image(cub->mlx_ptr, cub->texture.wall);
-	if (cub->texture.floor)
-		mlx_destroy_image(cub->mlx_ptr, cub->texture.floor);
+	if (cub->texture.wall.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.wall.img);
+	if (cub->texture.floor.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.floor.img);
 }
 
 void	ft_error(t_cub *cub, char *str)

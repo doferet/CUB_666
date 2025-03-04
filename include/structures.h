@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/03 14:58:10 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/04 11:43:03 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,22 @@ typedef struct s_map
 	int			player;
 }				t_map;
 
+typedef struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
 typedef struct s_texture
 {
-	void		*wall;
-	void		*floor;
-	void		*player;
+	t_img		wall;
+	t_img		floor;
+	//void		*wall;
 }				t_texture;
 
 typedef struct s_cub
@@ -43,6 +54,7 @@ typedef struct s_cub
 	t_maths		player_pos;
 	t_map		map;
 	t_texture	texture;
+	t_img		image;
 }				t_cub;
 
 #endif

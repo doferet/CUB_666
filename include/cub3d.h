@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/03 17:24:46 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:45:56 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@
 ////////////////////////////PROTOTYPES//////////////////////////////
 
 // INIT
+void	init_mlx(t_cub *cub);
+//void	init_texture_image(t_cub *cub, char *path);
+void	put_img(t_img dst, t_img src, int x, int y);
 
 // PARSING
-int	parsing(t_cub *cub, int ac, char **av);
+int		parsing(t_cub *cub, int ac, char **av);
 // MATHS
 
 // ERROR & FREE

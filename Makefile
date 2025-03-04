@@ -9,7 +9,7 @@ MLX_PATH = mlx/
 MLX = $(MLX_PATH)$(MLX_NAME)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC = main.c \
 	parsing/parsing.c \
@@ -17,7 +17,8 @@ SRC = main.c \
 	utils/utils.c \
 	get_next_line/get_next_line.c \
 	get_next_line/get_next_line_utils.c \
-
+	image/image.c \
+	initialization/initialization.c \
 
 OBJ = $(SRC: .c=.o)
 
