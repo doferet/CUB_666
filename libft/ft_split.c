@@ -6,12 +6,11 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:16:51 by doferet           #+#    #+#             */
-/*   Updated: 2023/11/30 11:37:17 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/06 10:42:20 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
 static size_t	count_words(char const *str, char c)
 {
@@ -89,12 +88,10 @@ static char	**ft_boucle(char **split, char const *s, char c, size_t i)
 char	**ft_split(char const *s, char c)
 {
 	size_t		i;
-	size_t		j;
 	size_t		len;
 	char		**split;
 
 	i = 0;
-	j = 0;
 	if (!s)
 		return (NULL);
 	len = count_words(s, c);

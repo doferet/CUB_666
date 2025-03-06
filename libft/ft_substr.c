@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:08:32 by doferet           #+#    #+#             */
-/*   Updated: 2023/11/23 15:49:40 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/06 10:41:48 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ static char	*ft_boucle(char const *s, unsigned int start,
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*news;
-	size_t	i;
-	size_t	j;
 
-	i = 0;
-	j = 0;
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))

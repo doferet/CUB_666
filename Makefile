@@ -2,7 +2,7 @@
 
 NAME = cub3d
 
-LIBFT = ../libft/libft.a
+LIBFT = libft/libft.a
 
 MLX_NAME = libmlx.a
 MLX_PATH = mlx/
@@ -28,21 +28,21 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compilation..."
-	@make -sC ../libft
+	@make -sC libft
 	@make -sC mlx
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT) $(MLX) -lXext -lX11 -lm -lz
-	@echo " is ready !"
+	@echo "Cub3D is ready !"
 
 clean:
 	@echo "Clean..."
-	@make clean -sC ../libft
+	@make clean -sC libft
 	@make clean -sC mlx
 	@$(RM) *.o
 	@echo "Done !"
 
 fclean: clean
 	@echo "Remove..."
-	@make fclean -sC ../libft
+	@make fclean -sC libft
 	@$(RM) $(NAME)
 	@echo "Done !"
 
@@ -51,7 +51,5 @@ fclean: clean
 
 re: fclean all
 
-bonus:
-
-.PHONY: all re clean fclean bonus
+.PHONY: all re clean fclean
 
