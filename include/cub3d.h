@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/04 14:45:56 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/06 12:56:07 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
 # define SQUARE_SIZE 60
+# define WIDTH 1280
+# define HEIGHT 720
 
 // KEYS
 # define W 119

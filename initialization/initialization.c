@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/04 15:20:27 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/06 12:53:07 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ void	init_mlx(t_cub *cub)
 	cub->mlx_ptr = mlx_init();
 	if (!cub->mlx_ptr)
 		ft_error(cub, "MLX Init Error");
-	cub->win_ptr = mlx_new_window(cub->mlx_ptr, cub->map.columns
-			* SQUARE_SIZE, cub->map.rows * SQUARE_SIZE, "CUB_666");
+	cub->win_ptr = mlx_new_window(cub->mlx_ptr, WIDTH, HEIGHT, "CUB_666");
 	if (!cub->win_ptr)
 		ft_error(cub, "MLX Window Error");
-	cub->image.width = cub->map.columns * SQUARE_SIZE;
-	cub->image.height = cub->map.rows * SQUARE_SIZE;
+	cub->image.width = WIDTH;
+	cub->image.height = HEIGHT;
 	cub->image.img = mlx_new_image(cub->mlx_ptr, cub->image.width, cub->image.height);
 	if (!cub->image.img)
 		ft_error(cub, "New Image Error");
@@ -77,6 +76,7 @@ void	init_mlx(t_cub *cub)
 	//open_xpm(cub);
 	init_texture_image(cub, &cub->texture.floor, FLOOR);
 	init_texture_image(cub, &cub->texture.wall, WALL);
+	printf("x : %d, y : %d\n", cub->player_pos.x, cub->player_pos.y);
 	put_textures(cub);
 }
 

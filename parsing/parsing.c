@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/03 17:49:17 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/06 12:42:54 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	count_elements(t_cub *cub)
 		j = -1;
 		while (++j < cub->map.columns)
 		{
-			if (cub->map.map[i][j] == 'P')
+			if (cub->map.map[i][j] == 'N')
 			{
 				cub->player_pos.x = j;
 				cub->player_pos.y = i;
