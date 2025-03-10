@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/10 16:30:24 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:33:26 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	init_mlx(t_cub *cub)
 		ft_error(cub, "Address Error");
 	init_texture_image(cub, &cub->texture.floor, FLOOR);
 	init_texture_image(cub, &cub->texture.wall, WALL);
-	printf("x : %d, y : %d\n", cub->player_pos.x, cub->player_pos.y);
 	put_textures(cub);
 }
 

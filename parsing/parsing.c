@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/10 16:31:15 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:32:41 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	get_rows(char *map_file, t_cub *cub)
 		ft_error(cub, "Empty map");
 	cub->map.rows = count;
 	close(map_fd);
-
+	map_fd = open(map_file, O_RDONLY);
 	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
 	if (!cub->map.map)
 		ft_error(cub, "Memory allocation error");
