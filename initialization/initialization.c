@@ -6,24 +6,11 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/06 12:53:07 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:30:24 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-// static void	open_xpm(t_cub *cub)
-// {
-// 	int	img_size;
-
-// 	img_size = SQUARE_SIZE;
-// 	cub->texture.wall.img = mlx_xpm_file_to_image(cub->mlx_ptr, WALL,
-// 			&img_size, &img_size);
-// 	cub->texture.floor.img = mlx_xpm_file_to_image(cub->mlx_ptr, FLOOR,
-// 			&img_size, &img_size);
-// 	if (!cub->texture.wall.img || !cub->texture.floor.img)
-// 		ft_error(cub, "XPM Error");
-// }
 
 static void	put_textures(t_cub *cub)
 {
@@ -73,7 +60,6 @@ void	init_mlx(t_cub *cub)
 	cub->image.addr = mlx_get_data_addr(cub->image.img, &(cub->image.bpp), &(cub->image.line_len), &(cub->image.endian));
 	if (!cub->image.addr)
 		ft_error(cub, "Address Error");
-	//open_xpm(cub);
 	init_texture_image(cub, &cub->texture.floor, FLOOR);
 	init_texture_image(cub, &cub->texture.wall, WALL);
 	printf("x : %d, y : %d\n", cub->player_pos.x, cub->player_pos.y);
