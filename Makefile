@@ -29,7 +29,7 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(OBJ_DIR)/%o: %.c
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
