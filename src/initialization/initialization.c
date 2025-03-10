@@ -6,11 +6,11 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/10 16:33:26 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:24:15 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	put_textures(t_cub *cub)
 {

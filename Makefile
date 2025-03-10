@@ -11,33 +11,40 @@ MLX = $(MLX_PATH)$(MLX_NAME)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
-SRC = main.c \
-	parsing/parsing.c \
-	utils/free_error.c \
-	utils/utils.c \
+INC = -Iinclude -Ilibft
+
+SRC = src/main.c \
+	src/parsing/parsing.c \
+	src/utils/free_error.c \
+	src/utils/utils.c \
 	get_next_line/get_next_line.c \
 	get_next_line/get_next_line_utils.c \
-	image/image.c \
-	initialization/initialization.c \
+	src/image/image.c \
+	src/initialization/initialization.c \
 
-OBJ = $(SRC: .c=.o)
+OBJ_DIR = build
+OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 RM = rm -rf
 
 all: $(NAME)
 
+$(OBJ_DIR)/%o: %.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
 $(NAME): $(OBJ)
 	@echo "Compilation..."
 	@make -sC libft
 	@make -sC mlx
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT) $(MLX) -lXext -lX11 -lm -lz
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(INC) -lXext -lX11 -lm -lz
 	@echo "Cub3D is ready !"
 
 clean:
 	@echo "Clean..."
 	@make clean -sC libft
 	@make clean -sC mlx
-	@$(RM) *.o
+	@$(RM) $(OBJ_DIR)
 	@echo "Done !"
 
 fclean: clean
@@ -45,9 +52,6 @@ fclean: clean
 	@make fclean -sC libft
 	@$(RM) $(NAME)
 	@echo "Done !"
-
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $^
 
 re: fclean all
 
