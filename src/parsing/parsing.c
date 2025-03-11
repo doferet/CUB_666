@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/10 17:24:28 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/11 10:54:36 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,66 +63,82 @@ static void	search_player(t_cub *cub)
 		ft_error(cub, "Incorrect number of players");
 }
 
-static void	get_rows(char *map_file, t_cub *cub)
+static void read_data(char *map_file, t_cub *cub)
+{
+	char	*temp;
+
+	cub->fd = open(map_file, O_RDONLY);
+	if (cub->fd == -1)
+		ft_error(cub, "Map file not found");
+	temp = get_next_line(cub->fd);
+	while(temp)
+	{
+		printf("%s", temp);
+		free(temp);
+		temp = get_next_line(cub->fd);
+		if (!temp || temp[0] == '1')
+			break;
+	}
+	
+}
+static void count_rows(char *map_file, t_cub *cub)
 {
 	int		count;
-	int		map_fd;
+	char	*temp;
+
+	count = 0;
+	cub->fd = open(map_file, O_RDONLY);
+	if (cub->fd == -1)
+		ft_error(cub, "Map file not found");
+	temp = get_next_line(cub->fd);
+	while (temp)
+	{
+		printf ("%s\n", temp);
+		if (temp[0] == '1')
+			count++;
+		free(temp);
+		temp = get_next_line(cub->fd);
+		if (!temp)
+			break ;
+	}
+	close(cub->fd);
+}
+
+static void	create_map(char *map_file, t_cub *cub)
+{
+	int		count;
 	char	*temp;
 	int i;
 
 	count = 0;
-	map_fd = open(map_file, O_RDONLY);
-	if (map_fd == -1)
+	cub->fd = open(map_file, O_RDONLY);
+	if (cub->fd == -1)
 		ft_error(cub, "Map file not found");
-	temp = get_next_line(map_fd);
+	temp = get_next_line(cub->fd);
 	while (temp)
 	{
-		count++;
+		printf ("%s\n", temp);
+		if (temp[0] == '1')
+			count++;
 		free(temp);
-		temp = get_next_line(map_fd);
+		temp = get_next_line(cub->fd);
 		if (!temp)
 			break ;
 	}
 	if (count == 0)
 		ft_error(cub, "Empty map");
 	cub->map.rows = count;
-	close(map_fd);
-	map_fd = open(map_file, O_RDONLY);
+	close(cub->fd);
+	read_data(map_file, cub);
+	cub->fd = open(map_file, O_RDONLY);
 	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
 	if (!cub->map.map)
 		ft_error(cub, "Memory allocation error");
 	i = -1;
 	while (++i < cub->map.rows)
-		cub->map.map[i] = get_next_line(map_fd);
+		cub->map.map[i] = get_next_line(cub->fd);
 	cub->map.map[i] = NULL;
-	close(map_fd);
-	i = 0;
-	while (i < (cub->map.rows - 1))
-	{
-		if (cub->map.map[i] == NULL)
-			ft_error(cub, "Map Error");
-		cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
-		i++;
-	}
-	cub->map.columns = ft_strlen(cub->map.map[0]);
-}
-
-static void	get_columns(char *map_file, t_cub *cub)
-{
-	int	map_fd;
-	int	i;
-
-	map_fd = open(map_file, O_RDONLY);
-	if (map_fd == -1)
-		ft_error(cub, "Map file not found");
-	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
-	if (!cub->map.map)
-		ft_error(cub, "Memory allocation error");
-	i = -1;
-	while (++i < cub->map.rows)
-		cub->map.map[i] = get_next_line(map_fd);
-	cub->map.map[i] = NULL;
-	close(map_fd);
+	close(cub->fd);
 	i = 0;
 	while (i < (cub->map.rows - 1))
 	{
@@ -143,10 +159,10 @@ int	parsing(t_cub *cub, int ac, char **av)
 	len = ft_strlen(av[1]);
 	if (len < 4 || ft_strncmp(&av[1][len - 4], ".cub", 4))
 		ft_error(cub, "Invalid file extension");
-	get_rows(av[1], cub);
+	count_map_rows(av[1], cub);
+	create_map(av[1], cub);
 	if (cub->map.rows <= 2)
 		ft_error(cub, "Map is too small");
-	get_columns(av[1], cub);
 	check_wall(cub);
 	search_player(cub);
 	return (EXIT_SUCCESS);

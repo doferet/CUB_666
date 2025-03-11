@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/07 12:41:19 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/11 09:44:59 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_cub
 	t_map		map;
 	t_texture	texture;
 	t_img		image;
+	int 		fd;
 }				t_cub;
 
 #endif
