@@ -1,1 +1,4 @@
+/build
 *.o
+cub3d
+libft/libft.a
