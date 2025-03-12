@@ -79,9 +79,8 @@ static void read_data(char *map_file, t_cub *cub)
 		if (!temp || temp[0] == '1')
 			break;
 	}
-	
 }
-static void count_rows(char *map_file, t_cub *cub)
+static void count_map_rows(char *map_file, t_cub *cub)
 {
 	int		count;
 	char	*temp;
@@ -101,35 +100,13 @@ static void count_rows(char *map_file, t_cub *cub)
 		if (!temp)
 			break ;
 	}
+	printf("%d\n", count);
 	close(cub->fd);
 }
 
 static void	create_map(char *map_file, t_cub *cub)
 {
-	int		count;
-	char	*temp;
 	int i;
-
-	count = 0;
-	cub->fd = open(map_file, O_RDONLY);
-	if (cub->fd == -1)
-		ft_error(cub, "Map file not found");
-	temp = get_next_line(cub->fd);
-	while (temp)
-	{
-		printf ("%s\n", temp);
-		if (temp[0] == '1')
-			count++;
-		free(temp);
-		temp = get_next_line(cub->fd);
-		if (!temp)
-			break ;
-	}
-	if (count == 0)
-		ft_error(cub, "Empty map");
-	cub->map.rows = count;
-	close(cub->fd);
-	read_data(map_file, cub);
 	cub->fd = open(map_file, O_RDONLY);
 	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
 	if (!cub->map.map)
@@ -160,6 +137,7 @@ int	parsing(t_cub *cub, int ac, char **av)
 	if (len < 4 || ft_strncmp(&av[1][len - 4], ".cub", 4))
 		ft_error(cub, "Invalid file extension");
 	count_map_rows(av[1], cub);
+	read_data(av[1], cub);
 	create_map(av[1], cub);
 	if (cub->map.rows <= 2)
 		ft_error(cub, "Map is too small");
