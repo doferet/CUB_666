@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/11 09:44:59 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:39:54 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTURES_H
 
 # include "cub3d.h"
+# include <stdbool.h>
 
 typedef struct s_maths
 {
@@ -30,6 +31,23 @@ typedef struct s_map
 	int			player;
 }				t_map;
 
+typedef struct s_datafile
+{
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char 		*floor;
+	char 		*ceiling;
+	bool b_no;
+	bool b_so;
+	bool b_we;
+	bool b_ea;
+	bool b_floor;
+	bool b_ceiling;
+	bool all_values;
+}				t_datafile;
+
 typedef struct s_img
 {
 	void		*img;
@@ -45,7 +63,6 @@ typedef struct s_texture
 {
 	t_img		wall;
 	t_img		floor;
-	//void		*wall;
 }				t_texture;
 
 typedef struct s_cub
@@ -53,6 +70,7 @@ typedef struct s_cub
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_maths		player_pos;
+	t_datafile	datafile;
 	t_map		map;
 	t_texture	texture;
 	t_img		image;

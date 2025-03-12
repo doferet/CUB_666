@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/10 16:29:50 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:33:29 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@
 # include <math.h>
 
 ////////////////////////////PROTOTYPES//////////////////////////////
-
 // INIT
 void	init_mlx(t_cub *cub);
 //void	init_texture_image(t_cub *cub, char *path);
