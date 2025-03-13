@@ -15,6 +15,8 @@ INC = -Iinclude -Ilibft
 
 SRC = src/main.c \
 	src/parsing/parsing.c \
+	src/parsing/p_utils.c \
+	src/parsing/check_datafile.c \
 	src/utils/free_error.c \
 	src/utils/utils.c \
 	get_next_line/get_next_line.c \

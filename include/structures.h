@@ -37,15 +37,22 @@ typedef struct s_datafile
 	char		*so;
 	char		*we;
 	char		*ea;
-	char 		*floor;
-	char 		*ceiling;
-	bool b_no;
-	bool b_so;
-	bool b_we;
-	bool b_ea;
-	bool b_floor;
-	bool b_ceiling;
-	bool all_values;
+
+	int			floor_red;
+	int			floor_green;
+	int			floor_blue;
+
+	int			ceiling_red;
+	int			ceiling_green;
+	int			ceiling_blue;
+
+	bool		b_no;
+	bool		b_so;
+	bool		b_we;
+	bool		b_ea;
+	bool		b_floor;
+	bool		b_ceiling;
+	bool		all_values;
 }				t_datafile;
 
 typedef struct s_img
@@ -63,6 +70,10 @@ typedef struct s_texture
 {
 	t_img		wall;
 	t_img		floor;
+	t_img 		wall_no;
+	t_img 		wall_so;
+	t_img 		wall_we;
+	t_img 		wall_ea;
 }				t_texture;
 
 typedef struct s_cub
@@ -74,7 +85,7 @@ typedef struct s_cub
 	t_map		map;
 	t_texture	texture;
 	t_img		image;
-	int 		fd;
+	int			fd;
 }				t_cub;
 
 #endif

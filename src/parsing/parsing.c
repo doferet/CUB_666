@@ -21,8 +21,7 @@ static void	check_wall(t_cub *cub)
 	j = 0;
 	while (cub->map.map[i])
 	{
-		if (cub->map.map[i][0] != '1' || cub->map.map[i][cub->map.columns
-			- 1] != '1')
+		if (cub->map.map[i][0] != '1' || cub->map.map[i][cub->map.columns - 1] != '1')
 			ft_error(cub, "Walls are not valid");
 		j = 0;
 		if (i == 0 || i == cub->map.rows - 1)
@@ -44,9 +43,6 @@ static void	search_player(t_cub *cub)
 	int	y;
 
 	y = -1;
-	printf("Map rows: %d\n", cub->map.rows);
-	printf("Map columns: %d\n", cub->map.columns);
-	print_tab(cub->map.map);
 	while (++y < cub->map.rows)
 	{
 		x = -1;
@@ -62,9 +58,6 @@ static void	search_player(t_cub *cub)
 			}
 		}
 	}
-	printf ("Player position: %d %d\n", cub->player_pos.x, cub->player_pos.y);
-	printf ("Player orientation: %c\n", cub->player_pos.start_orientation);
-	printf ("Player count: %d\n", cub->map.player);
 	if (cub->map.player != 1)
 		ft_error(cub, "Incorrect number of players");
 }
@@ -104,6 +97,7 @@ static void read_data(char *map_file, t_cub *cub)
 	{
 		free(temp);
 		temp = get_next_line(cub->fd);
+		check_data(temp, cub);
 		if (!temp || temp[0] == 'C')
 			break;
 	}
@@ -115,23 +109,19 @@ static void	create_map(t_cub *cub)
 	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
 	if (!cub->map.map)
 		ft_error(cub, "Memory allocation error");
-	i = -2;
-	printf("cub->map.rows: %d\n", cub->map.rows);
+	i = -1;
 	while (++i <= cub->map.rows)
 		cub->map.map[i] = get_next_line(cub->fd);
 	cub->map.map[i] = NULL;
 	close(cub->fd);
-	printf("PRINT FINAL\n");
-	print_tab(cub->map.map);
 	i = 0;
-	// while (i < (cub->map.rows - 1))
-	// {
-	// 	if (cub->map.map[i] == NULL)
-	// 		ft_error(cub, "Map Error");
-	// 	cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
-	// 	i++;
-	// }
-	printf("oui : %s\n", cub->map.map[0]);
+	while (i < (cub->map.rows - 1))
+	{
+		if (cub->map.map[i] == NULL)
+			ft_error(cub, "Map Error");
+		cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
+		i++;
+	}
 	cub->map.columns = ft_strlen(cub->map.map[0]);
 }
 
@@ -151,5 +141,21 @@ int	parsing(t_cub *cub, int ac, char **av)
 		ft_error(cub, "Map is too small");
 	check_wall(cub);
 	search_player(cub);
+
+	printf("NO: %s\n", cub->datafile.no);
+	printf("SO: %s\n", cub->datafile.so);
+	printf("WE: %s\n", cub->datafile.we);
+	printf("EA: %s\n", cub->datafile.ea);
+
+	printf("Floor Red: %d\n", cub->datafile.floor_red);
+	printf("Floor Green: %d\n", cub->datafile.floor_green);
+	printf("Floor Blue: %d\n", cub->datafile.floor_blue);
+	printf("Ceiling Red: %d\n", cub->datafile.ceiling_red);
+	printf("Ceiling Green: %d\n", cub->datafile.ceiling_green);
+	printf("Ceiling Blue: %d\n", cub->datafile.ceiling_blue);
+	//init_texture_image(cub, &cub->texture.wall_ea, cub->datafile.ea);
+	//init_texture_image(cub, &cub->texture.wall_no, cub->datafile.no);
+	//init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
+	//init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
 	return (EXIT_SUCCESS);
 }

@@ -32,10 +32,10 @@ static void	put_textures(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
 }
 
-static void	init_texture_image(t_cub *cub, t_img *image, char *path)
+void	init_texture_image(t_cub *cub, t_img *image, char *path)
 {
-	image->width = 60;
-	image->height = 60;
+	image->width = SQUARE_SIZE;
+	image->height = SQUARE_SIZE;
 	image->img = mlx_xpm_file_to_image(cub->mlx_ptr, path, &image->width, &image->height);
 	if (!image->img)
 		ft_error(cub, "Load Image Error");

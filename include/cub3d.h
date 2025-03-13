@@ -53,11 +53,17 @@
 ////////////////////////////PROTOTYPES//////////////////////////////
 // INIT
 void	init_mlx(t_cub *cub);
-//void	init_texture_image(t_cub *cub, char *path);
+void	init_texture_image(t_cub *cub, t_img *image, char *path);
 void	put_img(t_img dst, t_img src, int x, int y);
 
 // PARSING
+char 	*ft_charjoin(char *str, char c, t_cub *cub);
 int		parsing(t_cub *cub, int ac, char **av);
+void	check_data(char *str, t_cub *cub);
+void	check_color_floor(char *str, t_cub *cub);
+void	check_color_ceiling(char *str, t_cub *cub);
+void	check_color(t_cub *cub);
+
 // MATHS
 
 // ERROR & FREE
