@@ -81,6 +81,8 @@ static void count_map_rows(char *map_file, t_cub *cub)
 		if (!temp)
 			break ;
 	}
+	if (count == 0)
+		ft_error(cub, "Map is empty");
 	cub->map.rows = count;
 	close(cub->fd);
 }
@@ -112,7 +114,7 @@ static void	create_map(t_cub *cub)
 	i = -1;
 	while (++i <= cub->map.rows)
 		cub->map.map[i] = get_next_line(cub->fd);
-	cub->map.map[i] = NULL;
+	//cub->map.map[i] = NULL;
 	close(cub->fd);
 	i = 0;
 	while (i < (cub->map.rows - 1))
@@ -142,10 +144,10 @@ int	parsing(t_cub *cub, int ac, char **av)
 	check_wall(cub);
 	search_player(cub);
 
-	printf("NO: %s\n", cub->datafile.no);
-	printf("SO: %s\n", cub->datafile.so);
-	printf("WE: %s\n", cub->datafile.we);
-	printf("EA: %s\n", cub->datafile.ea);
+	printf("NO: %s", cub->datafile.no);
+	printf("SO: %s", cub->datafile.so);
+	printf("WE: %s", cub->datafile.we);
+	printf("EA:%sTest", cub->datafile.ea);
 
 	printf("Floor Red: %d\n", cub->datafile.floor_red);
 	printf("Floor Green: %d\n", cub->datafile.floor_green);
@@ -153,7 +155,7 @@ int	parsing(t_cub *cub, int ac, char **av)
 	printf("Ceiling Red: %d\n", cub->datafile.ceiling_red);
 	printf("Ceiling Green: %d\n", cub->datafile.ceiling_green);
 	printf("Ceiling Blue: %d\n", cub->datafile.ceiling_blue);
-	//init_texture_image(cub, &cub->texture.wall_ea, cub->datafile.ea);
+	//init_texture_image(cub, &cub->texture.wall_ea, WALL);
 	//init_texture_image(cub, &cub->texture.wall_no, cub->datafile.no);
 	//init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	//init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);

@@ -23,6 +23,8 @@ void	check_color_floor(char *str, t_cub *cub)
 
 	i = 0;
 	number = malloc(sizeof(char) * 1);
+	if (!number)
+		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
 	if (str[0] == 'F')
 	{
@@ -41,6 +43,8 @@ void	check_color_floor(char *str, t_cub *cub)
 		cub->datafile.floor_red = ft_atoi(number);
 		free(number);
 		number = malloc(sizeof(char) * 1);
+		if (!number)
+			ft_error(cub, "Malloc Error");
 		number[0] = '\0';
 		// DEUXIEME NOMBRE POUR VERT
 		while (str[i] == ' ' || str[i] == ',')
@@ -53,6 +57,8 @@ void	check_color_floor(char *str, t_cub *cub)
 		cub->datafile.floor_green = ft_atoi(number);
 		free(number);
 		number = malloc(sizeof(char) * 1);
+		if (!number)
+			ft_error(cub, "Malloc Error");
 		number[0] = '\0';
 		// TROISIEME NOMBRE POUR BLEU
 		while (str[i] == ' ' || str[i] == ',')
@@ -74,6 +80,8 @@ void	check_color_ceiling(char *str, t_cub *cub)
 
 	i = 0;
 	number = malloc(sizeof(char) * 1);
+	if (!number)
+		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
 	if (str[0] == 'C')
 	{
@@ -92,6 +100,8 @@ void	check_color_ceiling(char *str, t_cub *cub)
 		cub->datafile.ceiling_red = ft_atoi(number);
 		free(number);
 		number = malloc(sizeof(char) * 1);
+		if (!number)
+			ft_error(cub, "Malloc Error");
 		number[0] = '\0';
 		// DEUXIEME NOMBRE POUR VERT
 		while (str[i] == ' ' || str[i] == ',')
@@ -104,6 +114,8 @@ void	check_color_ceiling(char *str, t_cub *cub)
 		cub->datafile.ceiling_green = ft_atoi(number);
 		free(number);
 		number = malloc(sizeof(char) * 1);
+		if (!number)
+			ft_error(cub, "Malloc Error");
 		number[0] = '\0';
 		// TROISIEME NOMBRE POUR BLEU
 		while (str[i] == ' ' || str[i] == ',')
