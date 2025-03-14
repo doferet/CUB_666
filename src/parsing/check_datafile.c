@@ -22,6 +22,7 @@ void	check_color_floor(char *str, t_cub *cub)
 	int		i;
 
 	i = 0;
+	check_wrong_char_color(str, cub);
 	number = malloc(sizeof(char) * 1);
 	if (!number)
 		ft_error(cub, "Malloc Error");
@@ -79,6 +80,7 @@ void	check_color_ceiling(char *str, t_cub *cub)
 	int		i;
 
 	i = 0;
+	check_wrong_char_color(str, cub);
 	number = malloc(sizeof(char) * 1);
 	if (!number)
 		ft_error(cub, "Malloc Error");

@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/12 19:33:29 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/14 16:55:25 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	check_data(char *str, t_cub *cub);
 void	check_color_floor(char *str, t_cub *cub);
 void	check_color_ceiling(char *str, t_cub *cub);
 void	check_color(t_cub *cub);
+void    check_wrong_char_color(char *str, t_cub *cub);
 
 // MATHS
 
