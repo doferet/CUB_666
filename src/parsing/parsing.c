@@ -20,6 +20,12 @@ static void	check_wall(t_cub *cub)
 
 	start = false;
 	y = -1;
+	x = -1;
+	while (x++ < (int)ft_strlen(cub->map.map[cub->map.rows - 1]))
+	{
+		if (cub->map.map[cub->map.rows - 1][x] == '0')
+			ft_error(cub, "Walls are not valid");
+	}
 	while (++y < cub->map.rows)
 	{
 		x = -1;
@@ -32,17 +38,17 @@ static void	check_wall(t_cub *cub)
 				ft_error(cub, "Walls are not valid");
 			if (cub->map.map[0][x] == '0')
 				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[cub->map.rows - 1][x] == '0')
-				ft_error(cub, "Walls are not valid");
 			if (cub->map.map[y][(int)ft_strlen(cub->map.map[y]) - 1] == '0')
 				ft_error(cub, "Walls are not valid");
 			if (cub->map.map[y][x] == '0' && cub->map.map[y][x - 1] == ' ')
 				ft_error(cub, "Walls are not valid");
 			if (cub->map.map[y][x] == '0' && cub->map.map[y][x + 1] == ' ')
 				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] == '0' && cub->map.map[y + 1][x] == ' ')
+			if (cub->map.map[y][x] == '0' && (cub->map.map[y + 1][x] == ' ' ||
+					cub->map.map[y + 1][x] == '\0' || cub->map.map[y + 1][x] == 0))
 				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] == '0' && cub->map.map[y - 1][x] == ' ')
+			if (cub->map.map[y][x] == '0' && (cub->map.map[y - 1][x] == ' ' ||
+					cub->map.map[y - 1][x] == '\0' || cub->map.map[y - 1][x] == 0))
 				ft_error(cub, "Walls are not valid");
 			if (cub->map.map[y][x] != 'N' && cub->map.map[y][x] != 'S'
 				&& cub->map.map[y][x] != 'E' && cub->map.map[y][x] != 'W'
@@ -129,16 +135,18 @@ static void	read_data(char *map_file, t_cub *cub)
 	check_data(cub->temp, cub);
 	while (cub->temp)
 	{
-		ft_free((void **)&cub->temp);
+		free(cub->temp);
+		//ft_error(cub, "Map is not at the end of the file");
 		cub->temp = get_next_line(cub->fd);
-		check_data(cub->temp, cub);
 		if (!cub->temp)
 			break ;
+		check_data(cub->temp, cub);
 		if (cub->datafile.b_ceiling == true && cub->datafile.b_floor == true
 			&& cub->datafile.b_no == true && cub->datafile.b_so == true
 			&& cub->datafile.b_we == true && cub->datafile.b_ea == true)
 		{
 			cub->datafile.all_values = true;
+			ft_free((void **)&cub->temp);
 			break ;
 		}
 	}
@@ -196,11 +204,5 @@ int	parsing(t_cub *cub, int ac, char **av)
 		ft_error(cub, "Map is too small");
 	check_wall(cub);
 	search_player(cub);
-	printf("Floor Red: %d\n", cub->datafile.floor_red);
-	printf("Floor Green: %d\n", cub->datafile.floor_green);
-	printf("Floor Blue: %d\n", cub->datafile.floor_blue);
-	printf("Ceiling Red: %d\n", cub->datafile.ceiling_red);
-	printf("Ceiling Green: %d\n", cub->datafile.ceiling_green);
-	printf("Ceiling Blue: %d\n", cub->datafile.ceiling_blue);
 	return (EXIT_SUCCESS);
 }

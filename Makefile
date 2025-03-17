@@ -18,12 +18,12 @@ SRC = src/main.c \
 	src/parsing/p_utils.c \
 	src/parsing/check_datafile.c \
 	src/parsing/read_textures.c \
+	src/parsing/initialization.c \
 	src/utils/free_error.c \
 	src/utils/utils.c \
-	get_next_line/get_next_line.c \
-	get_next_line/get_next_line_utils.c \
+	libft/get_next_line/get_next_line.c \
+	libft/get_next_line/get_next_line_utils.c \
 	src/image/image.c \
-	src/initialization/initialization.c \
 
 OBJ_DIR = build
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

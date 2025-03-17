@@ -74,6 +74,7 @@ void	ft_free_all(t_cub *cub)
 {
 	if (!cub)
 		return ;
+	destroy_texture(cub);
 	if (cub->win_ptr != NULL)
 		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
 	if (cub->mlx_ptr != NULL)
@@ -81,13 +82,15 @@ void	ft_free_all(t_cub *cub)
 		mlx_destroy_display(cub->mlx_ptr);
 		free(cub->mlx_ptr);
 	}
-	destroy_texture(cub);
 	if (cub->map.map != NULL)
 	{
 		free_matrix(cub->map.map);
 		cub->map.map = NULL;
 	}
 	if (cub->temp != NULL)
+	{
+		printf("free temp\n");
 		ft_free((void **)&cub->temp);
+	}
 	free_datafile(cub);
 }
