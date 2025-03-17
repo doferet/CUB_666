@@ -47,7 +47,7 @@ static size_t	count_letters(char const *str, char c, int i)
 	return (len);
 }
 
-static char	**ft_free(char **split)
+static char	**ft_free1(char **split)
 {
 	int	i;
 
@@ -76,7 +76,7 @@ static char	**ft_boucle(char **split, char const *s, char c, size_t i)
 			nb_letter = count_letters(s, c, i);
 			split[j] = ft_substr(s, i, nb_letter);
 			if (!split[j])
-				return (ft_free(split));
+				return (ft_free1(split));
 			i += nb_letter;
 			j++;
 		}
@@ -113,6 +113,6 @@ int main(void)
 		printf("%s\n", split[i]);
 		i++;
 	}
-	ft_free(split);
+	ft_free1(split);
 	return (0);
 }*/

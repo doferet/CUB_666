@@ -22,55 +22,54 @@ void	check_color_floor(char *str, t_cub *cub)
 	int		i;
 
 	i = 0;
-	check_wrong_char_color(str, cub);
 	number = malloc(sizeof(char) * 1);
 	if (!number)
 		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
-	if (str[0] == 'F')
-	{
-		if (cub->datafile.b_floor == true)
-			ft_error(cub, "Floor color already set");
-		cub->datafile.b_floor = true;
+	cub->datafile.b_floor = true;
+	i++;
+	while (str[i] == ' ')
 		i++;
-		while (str[i] == ' ')
-			i++;
-		// PREMIER NOMBRE POUR ROUGE
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = ft_charjoin(number, str[i], cub);
-			i++;
-		}
-		cub->datafile.floor_red = ft_atoi(number);
-		free(number);
-		number = malloc(sizeof(char) * 1);
-		if (!number)
-			ft_error(cub, "Malloc Error");
-		number[0] = '\0';
-		// DEUXIEME NOMBRE POUR VERT
-		while (str[i] == ' ' || str[i] == ',')
-			i++;
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = ft_charjoin(number, str[i], cub);
-			i++;
-		}
-		cub->datafile.floor_green = ft_atoi(number);
-		free(number);
-		number = malloc(sizeof(char) * 1);
-		if (!number)
-			ft_error(cub, "Malloc Error");
-		number[0] = '\0';
-		// TROISIEME NOMBRE POUR BLEU
-		while (str[i] == ' ' || str[i] == ',')
-			i++;
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = ft_charjoin(number, str[i], cub);
-			i++;
-		}
-		cub->datafile.floor_blue = ft_atoi(number);
+	// PREMIER NOMBRE POUR ROUGE
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = ft_charjoin(number, str[i], cub);
+		i++;
 	}
+	cub->datafile.floor_red = ft_atoi(number);
+	free(number);
+	number = malloc(sizeof(char) * 1);
+	if (!number)
+		ft_error(cub, "Malloc Error");
+	number[0] = '\0';
+	// DEUXIEME NOMBRE POUR VERT
+	while (str[i] == ' ' || str[i] == ',')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = ft_charjoin(number, str[i], cub);
+		i++;
+	}
+	cub->datafile.floor_green = ft_atoi(number);
+	free(number);
+	number = malloc(sizeof(char) * 1);
+	if (!number)
+		ft_error(cub, "Malloc Error");
+	number[0] = '\0';
+	// TROISIEME NOMBRE POUR BLEU
+	while (str[i] == ' ' || str[i] == ',')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = ft_charjoin(number, str[i], cub);
+		i++;
+	}
+	if (number[0] == '\0')
+	{
+		free(number);
+		ft_error(cub, "Missing value after coma");
+	}
+	cub->datafile.floor_blue = ft_atoi(number);
 	free(number);
 }
 
@@ -80,129 +79,82 @@ void	check_color_ceiling(char *str, t_cub *cub)
 	int		i;
 
 	i = 0;
-	check_wrong_char_color(str, cub);
 	number = malloc(sizeof(char) * 1);
 	if (!number)
 		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
-	if (str[0] == 'C')
-	{
-		if (cub->datafile.b_ceiling == true)
-			ft_error(cub, "Ceiling color already defined");
-		cub->datafile.b_ceiling = true;
+	cub->datafile.b_ceiling = true;
+	i++;
+	while (str[i] == ' ')
 		i++;
-		while (str[i] == ' ')
-			i++;
-		// PREMIER NOMBRE POUR ROUGE
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = ft_charjoin(number, str[i], cub);
-			i++;
-		}
-		cub->datafile.ceiling_red = ft_atoi(number);
-		free(number);
-		number = malloc(sizeof(char) * 1);
-		if (!number)
-			ft_error(cub, "Malloc Error");
-		number[0] = '\0';
-		// DEUXIEME NOMBRE POUR VERT
-		while (str[i] == ' ' || str[i] == ',')
-			i++;
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = ft_charjoin(number, str[i], cub);
-			i++;
-		}
-		cub->datafile.ceiling_green = ft_atoi(number);
-		free(number);
-		number = malloc(sizeof(char) * 1);
-		if (!number)
-			ft_error(cub, "Malloc Error");
-		number[0] = '\0';
-		// TROISIEME NOMBRE POUR BLEU
-		while (str[i] == ' ' || str[i] == ',')
-			i++;
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = ft_charjoin(number, str[i], cub);
-			i++;
-		}
-		cub->datafile.ceiling_blue = ft_atoi(number);
+	// PREMIER NOMBRE POUR ROUGE
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = ft_charjoin(number, str[i], cub);
+		i++;
 	}
+	cub->datafile.ceiling_red = ft_atoi(number);
+	free(number);
+	number = malloc(sizeof(char) * 1);
+	if (!number)
+		ft_error(cub, "Malloc Error");
+	number[0] = '\0';
+	// DEUXIEME NOMBRE POUR VERT
+	while (str[i] == ' ' || str[i] == ',')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = ft_charjoin(number, str[i], cub);
+		i++;
+	}
+	cub->datafile.ceiling_green = ft_atoi(number);
+	free(number);
+	number = malloc(sizeof(char) * 1);
+	if (!number)
+		ft_error(cub, "Malloc Error");
+	number[0] = '\0';
+	// TROISIEME NOMBRE POUR BLEU
+	while (str[i] == ' ' || str[i] == ',')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number = ft_charjoin(number, str[i], cub);
+		i++;
+	}
+	if (number[0] == '\0')
+	{
+		free(number);
+		ft_error(cub, "Missing value after coma");
+	}
+	cub->datafile.ceiling_blue = ft_atoi(number);
 	free(number);
 }
 
-void	check_texture_no(char *str, t_cub *cub)
-{
-	int	i;
 
-	i = 0;
-	
-	if (cub->datafile.b_no == true)
-		ft_error(cub, "Texture NO already defined");
-	cub->datafile.b_no = true;
-	i = 2;
-	while (str[i] == ' ')
-		i++;
-	cub->datafile.no = ft_strdup(&str[i]);
-}
-
-void  check_texture_so(char *str, t_cub *cub)
-{
-	int i;
-
-	i = 0;
-	if (cub->datafile.b_so == true)
-		ft_error(cub, "Texture SO already defined");
-	cub->datafile.b_so = true;
-	i = 2;
-	while (str[i] == ' ')
-		i++;
-	cub->datafile.so = ft_strdup(&str[i]);
-}
-
-void  check_texture_we(char *str, t_cub *cub)
-{
-	int i;
-
-	i = 0;
-	if (cub->datafile.b_we == true)
-		ft_error(cub, "Texture WE already defined");
-	cub->datafile.b_we = true;
-	i = 2;
-	while (str[i] == ' ')
-		i++;
-	cub->datafile.we = ft_strdup(&str[i]);
-}
-
-void  check_texture_ea(char *str, t_cub *cub)
-{
-	int i;
-
-	i = 0;
-	if (cub->datafile.b_ea == true)
-		ft_error(cub, "Texture EA already defined");
-	cub->datafile.b_ea = true;
-	i = 2;
-	while (str[i] == ' ')
-		i++;
-	cub->datafile.ea = ft_strdup(&str[i]);
-	if (!cub->datafile.ea)
-		ft_error(cub, "EA texture not found");
-	
-}
 
 void	check_data(char *str, t_cub *cub)
 {
 	if (str[0] == 'N' && str[1] == 'O')
 		check_texture_no(str, cub);
-	if (str[0] == 'S' && str[1] == 'O')
+	else if (str[0] == 'S' && str[1] == 'O')
 		check_texture_so(str, cub);
-	if (str[0] == 'W' && str[1] == 'E')
+	else if (str[0] == 'W' && str[1] == 'E')
 		check_texture_we(str, cub);
-	if (str[0] == 'E' && str[1] == 'A')
+	else if (str[0] == 'E' && str[1] == 'A')
 		check_texture_ea(str, cub);
-	check_color_floor(str, cub);
-	check_color_ceiling(str, cub);
+	else if (str[0] == 'F')
+	{
+		if (cub->datafile.b_floor == true)
+			ft_error(cub, "Floor color already set");
+		check_wrong_char_color(str, cub);
+		check_color_floor(str, cub);
+	}
+	else if (str[0] == 'C')
+	{
+		if (cub->datafile.b_ceiling == true)
+			ft_error(cub, "Ceiling color already set");
+		check_wrong_char_color(str, cub);
+		check_color_ceiling(str, cub);
+	}
 	check_color(cub);
 }

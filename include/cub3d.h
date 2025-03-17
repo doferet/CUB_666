@@ -19,8 +19,8 @@
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
 # define SQUARE_SIZE 60
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1980
+# define HEIGHT 1120
 
 // KEYS
 # define W 119
@@ -64,6 +64,10 @@ void	check_color_floor(char *str, t_cub *cub);
 void	check_color_ceiling(char *str, t_cub *cub);
 void	check_color(t_cub *cub);
 void    check_wrong_char_color(char *str, t_cub *cub);
+void	check_texture_no(char *str, t_cub *cub);
+void	check_texture_so(char *str, t_cub *cub);
+void	check_texture_we(char *str, t_cub *cub);
+void	check_texture_ea(char *str, t_cub *cub);
 
 // MATHS
 

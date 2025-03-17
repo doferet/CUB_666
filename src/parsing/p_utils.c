@@ -22,23 +22,30 @@ char	*ft_charjoin(char *str, char c, t_cub *cub)
 	}
 	res[i++] = c;
 	res[i] = '\0';
+	free(str);
 	return (res);
 }
 
 void check_wrong_char_color(char *str, t_cub *cub)
 {
 	int i;
+	int count;
 
 	i = 1;
+	count = 0;
 	while(str[i])
 	{
-		printf("%s", str[i]);
 		if (str[i] == '-')
 			ft_error(cub, "Negative number for color");
-		if (str[i] == '-')
-			ft_error(cub, "Negative number for color");
-		// else if (ft_isalpha(str[i]) == true)
-		// 	ft_error(cub, "Forbidden character in color");
+		else if (ft_isdigit(str[i]) == false && str[i] != ' ' && str[i] != ',' && str[i] != '\0' && str[i] != '\n')
+			ft_error(cub, "Caracter forbidden in color");
+		if (str[i] == ',')
+			count++;
+		if (count > 2)
+			ft_error(cub, "Too many values in color");
 		i++;
 	}
+	if (count < 2)
+		ft_error(cub, "Not enough values in color");
 }
+

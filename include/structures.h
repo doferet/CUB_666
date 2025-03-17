@@ -68,7 +68,6 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	t_img		wall;
 	t_img		floor;
 	t_img 		wall_no;
 	t_img 		wall_so;
@@ -86,6 +85,7 @@ typedef struct s_cub
 	t_texture	texture;
 	t_img		image;
 	int			fd;
+	char 		*temp;
 }				t_cub;
 
 #endif
