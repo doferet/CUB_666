@@ -3,38 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/14 14:58:29 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:00:41 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-// static void	check_wall(t_cub *cub)
-// {
-// 	int	i;
-// 	int	j;
+static void	check_wall(t_cub *cub)
+{
+	bool	start;
+	int		x;
+	int		y;
 
-// 	i = 0;
-// 	while (i < cub->map.rows)
-// 	{
-// 		if (cub->map.map[i][0] != '1' || cub->map.map[i][cub->map.columns - 1] != '1')
-// 			ft_error(cub, "Walls are not valid");
-// 		if (i == 0 || i == cub->map.rows - 1)
-// 		{
-// 			j = 0;
-// 			while (cub->map.map[i][j])
-// 			{
-// 				if (cub->map.map[i][j] != '1')
-// 					ft_error(cub, "Walls are not valid");
-// 				j++;
-// 			}
-// 		}
-// 		i++;
-// 	}
-// }
+	start = false;
+	y = -1;
+	while (++y < cub->map.rows)
+	{
+		x = -1;
+		start = false;
+		while (++x < (int)ft_strlen(cub->map.map[y]))
+		{
+			if (cub->map.map[y][x] == '1')
+				start = true;
+			if (cub->map.map[y][x] == '0' && start == false)
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[0][x] == '0')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[cub->map.rows - 1][x] == '0')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[y][(int)ft_strlen(cub->map.map[y]) - 1] == '0')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[y][x] == '0' && cub->map.map[y][x - 1] == ' ')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[y][x] == '0' && cub->map.map[y][x + 1] == ' ')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[y][x] == '0' && cub->map.map[y + 1][x] == ' ')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[y][x] == '0' && cub->map.map[y - 1][x] == ' ')
+				ft_error(cub, "Walls are not valid");
+			if (cub->map.map[y][x] != 'N' && cub->map.map[y][x] != 'S'
+				&& cub->map.map[y][x] != 'E' && cub->map.map[y][x] != 'W'
+				&& cub->map.map[y][x] != '1' && cub->map.map[y][x] != '0'
+				&& cub->map.map[y][x] != ' ' && cub->map.map[y][x] != '\n'
+				&& cub->map.map[y][x] != '\0')
+				ft_error(cub, "Invalid character in map");
+		}
+	}
+}
 
 static void	search_player(t_cub *cub)
 {
@@ -113,9 +131,9 @@ static void	read_data(char *map_file, t_cub *cub)
 	{
 		ft_free((void **)&cub->temp);
 		cub->temp = get_next_line(cub->fd);
+		check_data(cub->temp, cub);
 		if (!cub->temp)
 			break ;
-		check_data(cub->temp, cub);
 		if (cub->datafile.b_ceiling == true && cub->datafile.b_floor == true
 			&& cub->datafile.b_no == true && cub->datafile.b_so == true
 			&& cub->datafile.b_we == true && cub->datafile.b_ea == true)
@@ -176,7 +194,7 @@ int	parsing(t_cub *cub, int ac, char **av)
 	create_map(cub);
 	if (cub->map.rows <= 2)
 		ft_error(cub, "Map is too small");
-	// check_wall(cub);
+	check_wall(cub);
 	search_player(cub);
 	printf("Floor Red: %d\n", cub->datafile.floor_red);
 	printf("Floor Green: %d\n", cub->datafile.floor_green);

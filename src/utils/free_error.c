@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/10 17:24:34 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/17 16:29:49 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_free_all(t_cub *cub)
 {
 	if (!cub)
 		return ;
-	destroy_texture(cub);
 	if (cub->win_ptr != NULL)
 		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
 	if (cub->mlx_ptr != NULL)
@@ -82,6 +81,7 @@ void	ft_free_all(t_cub *cub)
 		mlx_destroy_display(cub->mlx_ptr);
 		free(cub->mlx_ptr);
 	}
+	destroy_texture(cub);
 	if (cub->map.map != NULL)
 	{
 		free_matrix(cub->map.map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/14 16:55:25 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/17 15:38:41 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
 # define SQUARE_SIZE 60
-# define WIDTH 1980
-# define HEIGHT 1120
+# define WIDTH 2900
+# define HEIGHT 1500
 
 // KEYS
 # define W 119

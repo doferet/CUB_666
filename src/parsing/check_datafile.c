@@ -67,7 +67,7 @@ void	check_color_floor(char *str, t_cub *cub)
 	if (number[0] == '\0')
 	{
 		free(number);
-		ft_error(cub, "Missing value after coma");
+		ft_error(cub, "Missing value after comma");
 	}
 	cub->datafile.floor_blue = ft_atoi(number);
 	free(number);
@@ -124,7 +124,7 @@ void	check_color_ceiling(char *str, t_cub *cub)
 	if (number[0] == '\0')
 	{
 		free(number);
-		ft_error(cub, "Missing value after coma");
+		ft_error(cub, "Missing value after comma");
 	}
 	cub->datafile.ceiling_blue = ft_atoi(number);
 	free(number);
