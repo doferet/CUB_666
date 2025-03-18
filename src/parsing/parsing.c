@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/17 18:00:41 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/18 10:44:56 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static void	check_wall(t_cub *cub)
 			if (cub->map.map[y][x] != 'N' && cub->map.map[y][x] != 'S'
 				&& cub->map.map[y][x] != 'E' && cub->map.map[y][x] != 'W'
 				&& cub->map.map[y][x] != '1' && cub->map.map[y][x] != '0'
-				&& cub->map.map[y][x] != ' ' && cub->map.map[y][x] != '\n'
-				&& cub->map.map[y][x] != '\0')
+				&& cub->map.map[y][x] != ' ')
 				ft_error(cub, "Invalid character in map");
 		}
 	}

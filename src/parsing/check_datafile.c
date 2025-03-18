@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_datafile.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 10:07:55 by rbalazs           #+#    #+#             */
+/*   Updated: 2025/03/18 10:08:17 by rbalazs          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 void	check_color(t_cub *cub)
@@ -129,8 +141,6 @@ void	check_color_ceiling(char *str, t_cub *cub)
 	cub->datafile.ceiling_blue = ft_atoi(number);
 	free(number);
 }
-
-
 
 void	check_data(char *str, t_cub *cub)
 {
