@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:55 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/18 10:08:17 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/20 15:00:56 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,10 @@ void	check_data(char *str, t_cub *cub)
 		check_texture_ea(str, cub);
 	else if (str[0] == 'F')
 	{
+		// printf("%d\n", cub->datafile.b_floor);
 		if (cub->datafile.b_floor == true)
 			ft_error(cub, "Floor color already set");
+		cub->datafile.b_floor = true;
 		check_wrong_char_color(str, cub);
 		check_color_floor(str, cub);
 	}
@@ -163,6 +165,7 @@ void	check_data(char *str, t_cub *cub)
 	{
 		if (cub->datafile.b_ceiling == true)
 			ft_error(cub, "Ceiling color already set");
+		cub->datafile.b_ceiling = true;
 		check_wrong_char_color(str, cub);
 		check_color_ceiling(str, cub);
 	}

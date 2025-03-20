@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/12 19:39:54 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/20 17:37:32 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_cub
 	t_img		image;
 	int			fd;
 	char 		*temp;
+	char		**file;
 }				t_cub;
 
 #endif

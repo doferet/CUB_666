@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/18 10:44:56 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/20 18:49:35 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,46 @@ static void	create_map(t_cub *cub)
 	}
 }
 
+char	*ft_double_strjoin(char const *s1, char const *s2)
+{
+	int		i;
+	int		j;
+	size_t	len;
+	char	*s3;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
+	s3 = malloc(sizeof(char) * len + 1);
+	if (!s3)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		s3[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+		s3[i++] = s2[j++];
+	s3[i] = '\0';
+	return (s3);
+}
+
+void stock_file_in_array(char *map_file, t_cub *cub)
+{
+	char *temp;
+	cub->fd = open(map_file, O_RDONLY);
+
+	temp = get_next_line(cub->fd);
+	cub->file = malloc(sizeof(char *) * ft_strlen(temp) + 1);
+	while(temp)
+	{
+		free(temp);
+		temp = get_next_line(cub->fd);
+	}
+}
+
 int	parsing(t_cub *cub, int ac, char **av)
 {
 	int	len;
@@ -196,6 +236,7 @@ int	parsing(t_cub *cub, int ac, char **av)
 	len = ft_strlen(av[1]);
 	if (len < 4 || ft_strncmp(&av[1][len - 4], ".cub", 4))
 		ft_error(cub, "Invalid file extension");
+	stock_file_in_array(av[1], cub);
 	count_map_rows(av[1], cub);
 	read_data(av[1], cub);
 	create_map(cub);
