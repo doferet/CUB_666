@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/10 16:29:50 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:30:32 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 // TEXTURES
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
-# define SQUARE_SIZE 60
-# define WIDTH 1280
-# define HEIGHT 720
+# define WALL_SIZE 64
+# define PLAYER_SIZE 32
+# define WIDTH 1920
+# define HEIGHT 1080
+
+// MATHS
+# define PI 3.14159265359
+# define FOV 60
 
 // KEYS
 # define W 119
@@ -32,7 +37,6 @@
 # define DOWN 65364
 # define RIGHT 65363
 # define ESC 65307
-
 # define KEYPRESS 2
 # define DST_N 17
 
@@ -59,8 +63,11 @@ void	put_img(t_img dst, t_img src, int x, int y);
 
 // PARSING
 int		parsing(t_cub *cub, int ac, char **av);
+
 // MATHS
 
+//KEY
+int	key_event(int button, t_cub *cub);
 // ERROR & FREE
 void	ft_error(t_cub *cub, char *str);
 void	free_matrix(char **matrix);

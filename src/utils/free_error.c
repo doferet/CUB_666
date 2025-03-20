@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/10 17:24:34 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:46:44 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_free_all(t_cub *cub)
 		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
 	if (cub->mlx_ptr != NULL)
 	{
+		mlx_loop_end(cub->mlx_ptr);
 		mlx_destroy_display(cub->mlx_ptr);
 		free(cub->mlx_ptr);
 	}
