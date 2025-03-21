@@ -87,10 +87,7 @@ void	ft_free_all(t_cub *cub)
 		free_matrix(cub->map.map);
 		cub->map.map = NULL;
 	}
-	if (cub->temp != NULL)
-	{
-		printf("free temp\n");
-		ft_free((void **)&cub->temp);
-	}
+	if (cub->file != NULL)
+		free_matrix(cub->file);
 	free_datafile(cub);
 }

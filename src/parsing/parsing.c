@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-static void	check_wall(t_cub *cub)
+void	check_wall(t_cub *cub)
 {
 	bool	start;
 	int		x;
@@ -53,13 +53,13 @@ static void	check_wall(t_cub *cub)
 			if (cub->map.map[y][x] != 'N' && cub->map.map[y][x] != 'S'
 				&& cub->map.map[y][x] != 'E' && cub->map.map[y][x] != 'W'
 				&& cub->map.map[y][x] != '1' && cub->map.map[y][x] != '0'
-				&& cub->map.map[y][x] != ' ')
+				&& cub->map.map[y][x] != ' ' && cub->map.map[y][x] != '\n')
 				ft_error(cub, "Invalid character in map");
 		}
 	}
 }
 
-static void	search_player(t_cub *cub)
+void	search_player(t_cub *cub)
 {
 	int	x;
 	int	y;
@@ -84,7 +84,7 @@ static void	search_player(t_cub *cub)
 		ft_error(cub, "Incorrect number of players");
 }
 
-bool	is_line_map(char *line)
+bool is_line_map(char *line)
 {
 	int	i;
 
@@ -101,130 +101,93 @@ bool	is_line_map(char *line)
 	return (false);
 }
 
-static void	count_map_rows(char *map_file, t_cub *cub)
-{
-	int	count;
 
-	count = 0;
-	cub->fd = open(map_file, O_RDONLY);
-	if (cub->fd == -1)
-		ft_error(cub, "Map file not found");
-	cub->temp = get_next_line(cub->fd);
-	while (cub->temp)
-	{
-		if (is_line_map(cub->temp) == true)
-			count++;
-		free(cub->temp);
-		cub->temp = get_next_line(cub->fd);
-		if (!cub->temp)
-			break ;
-	}
-	if (count == 0)
-		ft_error(cub, "Map is empty");
-	cub->map.rows = count;
-	close(cub->fd);
-}
-
-static void	read_data(char *map_file, t_cub *cub)
+void	read_data(t_cub *cub)
 {
-	cub->fd = open(map_file, O_RDONLY);
-	if (cub->fd == -1)
-		ft_error(cub, "Map file not found");
-	cub->temp = get_next_line(cub->fd);
-	check_data(cub->temp, cub);
-	while (cub->temp)
+	int i;
+	bool start;
+
+
+	i = 0;
+	start = false;
+	while (cub->file[i])
 	{
-		free(cub->temp);
-		//ft_error(cub, "Map is not at the end of the file");
-		cub->temp = get_next_line(cub->fd);
-		if (!cub->temp)
-			break ;
-		check_data(cub->temp, cub);
-		if (cub->datafile.b_ceiling == true && cub->datafile.b_floor == true
-			&& cub->datafile.b_no == true && cub->datafile.b_so == true
-			&& cub->datafile.b_we == true && cub->datafile.b_ea == true)
+		if (is_line_map(cub->file[i]) == true && start == false)
 		{
-			cub->datafile.all_values = true;
-			ft_free((void **)&cub->temp);
-			break ;
+			start = true;
+			cub->start_map = i;
 		}
+		if (is_line_map(cub->file[i]) == true && start == true)
+			cub->end_map = i;
+		i++;
 	}
+	i = 0;
+	while(i < cub->start_map)
+	{
+		check_data(cub->file[i], cub);
+		i++;
+	}
+	if (cub->datafile.all_values == false)
+		ft_error(cub, "Missing values");
 }
 
-static void	create_map(t_cub *cub)
+void	create_map(t_cub *cub)
 {
 	int		i;
-	char	*temp;
+	int		j;	
 
 	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
 	if (!cub->map.map)
 		ft_error(cub, "Memory allocation error");
 	i = 0;
-	while (i <= cub->map.rows)
+	j = 0;
+	while (cub->file[i])
 	{
-		temp = get_next_line(cub->fd);
-		if (!temp)
-			break ;
-		if (is_line_map(temp) == true && cub->datafile.all_values == true)
-		{
-			cub->map.map[i] = temp;
-			i++;
-		}
-		else
-			free(temp);
+		if (is_line_map(cub->file[i]) == true)
+			cub->map.map[j++] = ft_strdup(cub->file[i]);
+		i++;
 	}
-	cub->map.map[i] = NULL;
-	close(cub->fd);
-	i = 0;
-	while (i < (cub->map.rows - 1))
+	cub->map.map[j] = NULL;
+	i = -1;
+	while (++i < (cub->map.rows - 1))
 	{
 		if (cub->map.map[i] == NULL)
 			ft_error(cub, "Map Error");
 		cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
 		if (cub->map.columns < (int)ft_strlen(cub->map.map[i]))
 			cub->map.columns = (int)ft_strlen(cub->map.map[i]);
-		i++;
 	}
-}
-
-char	*ft_double_strjoin(char const *s1, char const *s2)
-{
-	int		i;
-	int		j;
-	size_t	len;
-	char	*s3;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	s3 = malloc(sizeof(char) * len + 1);
-	if (!s3)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
+	i = -1;
+	while (cub->file[++i])
 	{
-		s3[i] = s1[i];
-		i++;
+		if (is_line_map(cub->file[i]) == false && cub->start_map <= i
+			&& cub->end_map >= i)
+			ft_error(cub, "Empty or wrong line in map");
 	}
-	while (s2[j])
-		s3[i++] = s2[j++];
-	s3[i] = '\0';
-	return (s3);
 }
 
 void stock_file_in_array(char *map_file, t_cub *cub)
 {
+	int		fd;
 	char *temp;
-	cub->fd = open(map_file, O_RDONLY);
-
-	temp = get_next_line(cub->fd);
-	cub->file = malloc(sizeof(char *) * ft_strlen(temp) + 1);
+	fd = open(map_file, O_RDONLY);
+	cub->file = malloc(sizeof(char *));
+	if (!cub->file)
+		ft_error(cub, "Memory allocation error");
+	cub->file[0] = NULL;
+	temp = get_next_line(fd);
 	while(temp)
 	{
+		if (is_line_map(temp) == true)
+			cub->map.rows++;
+		cub->file = ft_double_strjoin(cub->file, temp);
 		free(temp);
-		temp = get_next_line(cub->fd);
+		temp = get_next_line(fd);
 	}
+	if (cub->map.rows == 0)
+		ft_error(cub, "Map is empty");
+	if (cub->map.rows <= 2)
+		ft_error(cub, "Map is too small");
 }
 
 int	parsing(t_cub *cub, int ac, char **av)
@@ -237,11 +200,8 @@ int	parsing(t_cub *cub, int ac, char **av)
 	if (len < 4 || ft_strncmp(&av[1][len - 4], ".cub", 4))
 		ft_error(cub, "Invalid file extension");
 	stock_file_in_array(av[1], cub);
-	count_map_rows(av[1], cub);
-	read_data(av[1], cub);
+	read_data(cub);
 	create_map(cub);
-	if (cub->map.rows <= 2)
-		ft_error(cub, "Map is too small");
 	check_wall(cub);
 	search_player(cub);
 	return (EXIT_SUCCESS);

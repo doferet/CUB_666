@@ -12,6 +12,34 @@
 
 #include "../../include/cub3d.h"
 
+char	**ft_double_strjoin(char **file, char *line)
+{
+	int		i;
+	size_t	len;
+	char	**new_file;
+
+	if (!file || !line) 
+		return (NULL);
+	len = 0;
+	i = 0;
+	while (file[len])
+		len++;
+	len++;
+	new_file = malloc(sizeof(char *) * (len + 1));
+	if (!new_file)
+		return (NULL);
+	i = 0;
+	while (file[i])
+	{
+		new_file[i] = ft_strdup(file[i]);
+		i++;
+	}
+	new_file[i] = ft_strdup(line);
+	new_file[i + 1] = NULL;
+	free_matrix(file);
+	return (new_file);
+}
+
 char	*ft_charjoin(char *str, char c, t_cub *cub)
 {
 	int		len;

@@ -154,7 +154,6 @@ void	check_data(char *str, t_cub *cub)
 		check_texture_ea(str, cub);
 	else if (str[0] == 'F')
 	{
-		// printf("%d\n", cub->datafile.b_floor);
 		if (cub->datafile.b_floor == true)
 			ft_error(cub, "Floor color already set");
 		cub->datafile.b_floor = true;
@@ -170,4 +169,8 @@ void	check_data(char *str, t_cub *cub)
 		check_color_ceiling(str, cub);
 	}
 	check_color(cub);
+	if (cub->datafile.b_no == true && cub->datafile.b_so == true
+		&& cub->datafile.b_we == true && cub->datafile.b_ea == true
+		&& cub->datafile.b_floor == true && cub->datafile.b_ceiling == true)
+		cub->datafile.all_values = true;
 }

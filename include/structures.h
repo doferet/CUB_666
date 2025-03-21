@@ -84,9 +84,9 @@ typedef struct s_cub
 	t_map		map;
 	t_texture	texture;
 	t_img		image;
-	int			fd;
-	char 		*temp;
 	char		**file;
+	int			start_map;
+	int			end_map;
 }				t_cub;
 
 #endif
