@@ -15,9 +15,11 @@ INC = -Iinclude -Ilibft
 
 SRC = src/main.c \
 	src/parsing/parsing.c \
+	src/parsing/check_wall.c \
+	src/parsing/check_color.c \
 	src/parsing/p_utils.c \
 	src/parsing/check_datafile.c \
-	src/parsing/read_textures.c \
+	src/parsing/check_textures.c \
 	src/parsing/initialization.c \
 	src/utils/free_error.c \
 	src/utils/utils.c \

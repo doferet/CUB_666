@@ -6,58 +6,11 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/20 18:49:35 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/23 22:26:10 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	check_wall(t_cub *cub)
-{
-	bool	start;
-	int		x;
-	int		y;
-
-	start = false;
-	y = -1;
-	x = -1;
-	while (x++ < (int)ft_strlen(cub->map.map[cub->map.rows - 1]))
-	{
-		if (cub->map.map[cub->map.rows - 1][x] == '0')
-			ft_error(cub, "Walls are not valid");
-	}
-	while (++y < cub->map.rows)
-	{
-		x = -1;
-		start = false;
-		while (++x < (int)ft_strlen(cub->map.map[y]))
-		{
-			if (cub->map.map[y][x] == '1')
-				start = true;
-			if (cub->map.map[y][x] == '0' && start == false)
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[0][x] == '0')
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][(int)ft_strlen(cub->map.map[y]) - 1] == '0')
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] == '0' && cub->map.map[y][x - 1] == ' ')
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] == '0' && cub->map.map[y][x + 1] == ' ')
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] == '0' && (cub->map.map[y + 1][x] == ' ' ||
-					cub->map.map[y + 1][x] == '\0' || cub->map.map[y + 1][x] == 0))
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] == '0' && (cub->map.map[y - 1][x] == ' ' ||
-					cub->map.map[y - 1][x] == '\0' || cub->map.map[y - 1][x] == 0))
-				ft_error(cub, "Walls are not valid");
-			if (cub->map.map[y][x] != 'N' && cub->map.map[y][x] != 'S'
-				&& cub->map.map[y][x] != 'E' && cub->map.map[y][x] != 'W'
-				&& cub->map.map[y][x] != '1' && cub->map.map[y][x] != '0'
-				&& cub->map.map[y][x] != ' ' && cub->map.map[y][x] != '\n')
-				ft_error(cub, "Invalid character in map");
-		}
-	}
-}
 
 void	search_player(t_cub *cub)
 {
@@ -84,29 +37,10 @@ void	search_player(t_cub *cub)
 		ft_error(cub, "Incorrect number of players");
 }
 
-bool is_line_map(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (line[0] == '\0' || line[0] == '\n' || line[0] == 'N' || line[0] == 'S'
-		|| line[0] == 'E' || line[0] == 'W' || line[0] == 'F' || line[0] == 'C')
-		return (false);
-	while (line[i])
-	{
-		if (line[i] == '1' || line[i] == '0')
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
-
 void	read_data(t_cub *cub)
 {
-	int i;
-	bool start;
-
+	int		i;
+	bool	start;
 
 	i = 0;
 	start = false;
@@ -122,7 +56,7 @@ void	read_data(t_cub *cub)
 		i++;
 	}
 	i = 0;
-	while(i < cub->start_map)
+	while (i < cub->start_map)
 	{
 		check_data(cub->file[i], cub);
 		i++;
@@ -133,19 +67,15 @@ void	read_data(t_cub *cub)
 
 void	create_map(t_cub *cub)
 {
-	int		i;
-	int		j;	
+	int	i;
+	int	j;
 
-	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
-	if (!cub->map.map)
-		ft_error(cub, "Memory allocation error");
-	i = 0;
+	i = -1;
 	j = 0;
-	while (cub->file[i])
+	while (cub->file[++i])
 	{
 		if (is_line_map(cub->file[i]) == true)
 			cub->map.map[j++] = ft_strdup(cub->file[i]);
-		i++;
 	}
 	cub->map.map[j] = NULL;
 	i = -1;
@@ -157,26 +87,21 @@ void	create_map(t_cub *cub)
 		if (cub->map.columns < (int)ft_strlen(cub->map.map[i]))
 			cub->map.columns = (int)ft_strlen(cub->map.map[i]);
 	}
-	i = -1;
-	while (cub->file[++i])
-	{
-		if (is_line_map(cub->file[i]) == false && cub->start_map <= i
-			&& cub->end_map >= i)
-			ft_error(cub, "Empty or wrong line in map");
-	}
+	check_empty_line(cub);
 }
 
-void stock_file_in_array(char *map_file, t_cub *cub)
+void	stock_file_in_array(char *map_file, t_cub *cub)
 {
 	int		fd;
-	char *temp;
+	char	*temp;
+
 	fd = open(map_file, O_RDONLY);
 	cub->file = malloc(sizeof(char *));
 	if (!cub->file)
 		ft_error(cub, "Memory allocation error");
 	cub->file[0] = NULL;
 	temp = get_next_line(fd);
-	while(temp)
+	while (temp)
 	{
 		if (is_line_map(temp) == true)
 			cub->map.rows++;
@@ -201,8 +126,12 @@ int	parsing(t_cub *cub, int ac, char **av)
 		ft_error(cub, "Invalid file extension");
 	stock_file_in_array(av[1], cub);
 	read_data(cub);
+	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
+	if (!cub->map.map)
+		ft_error(cub, "Memory allocation error");
 	create_map(cub);
 	check_wall(cub);
 	search_player(cub);
+	init_mlx(cub);
 	return (EXIT_SUCCESS);
 }

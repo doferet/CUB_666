@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/20 17:37:32 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/23 22:23:45 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ typedef struct s_img
 typedef struct s_texture
 {
 	t_img		floor;
-	t_img 		wall_no;
-	t_img 		wall_so;
-	t_img 		wall_we;
-	t_img 		wall_ea;
+	t_img		wall_no;
+	t_img		wall_so;
+	t_img		wall_we;
+	t_img		wall_ea;
 }				t_texture;
 
 typedef struct s_cub

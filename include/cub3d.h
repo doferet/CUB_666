@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/20 14:51:39 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/23 22:20:56 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
 # define SQUARE_SIZE 60
-# define WIDTH 2900 / 2
-# define HEIGHT 1500 / 2
+# define WIDTH 1780
+# define HEIGHT 1080
 
 // KEYS
 # define W 119
@@ -38,17 +38,17 @@
 
 ////////////////////////////INCLUDES//////////////////////////////
 
-# include "../mlx/mlx.h"
 # include "../libft/get_next_line/get_next_line.h"
 # include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include "./structures.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
-# include <math.h>
 
 ////////////////////////////PROTOTYPES//////////////////////////////
 // INIT
@@ -58,13 +58,17 @@ void	put_img(t_img dst, t_img src, int x, int y);
 
 // PARSING
 char	**ft_double_strjoin(char **file, char *line);
-char 	*ft_charjoin(char *str, char c, t_cub *cub);
+char	*ft_charjoin(char *str, char c, t_cub *cub);
+bool	is_line_map(char *str);
+void	search_player(t_cub *cub);
 int		parsing(t_cub *cub, int ac, char **av);
 void	check_data(char *str, t_cub *cub);
+void	check_wall(t_cub *cub);
+void	check_empty_line(t_cub *cub);
 void	check_color_floor(char *str, t_cub *cub);
 void	check_color_ceiling(char *str, t_cub *cub);
 void	check_color(t_cub *cub);
-void    check_wrong_char_color(char *str, t_cub *cub);
+void	check_wrong_char_color(char *str, t_cub *cub);
 void	check_texture_no(char *str, t_cub *cub);
 void	check_texture_so(char *str, t_cub *cub);
 void	check_texture_we(char *str, t_cub *cub);
