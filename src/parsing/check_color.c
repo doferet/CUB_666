@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 21:27:35 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 22:00:16 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/24 11:31:54 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,11 @@ char	*construct_number(char *str, int *i, t_cub *cub, bool start)
 	if (!number)
 		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
-	if (start == true)
+	while (str[*i] == ' ' || str[*i] == ',')
 	{
-		while (str[*i] == ' ')
-			(*i)++;
-	}
-	if (start == false)
-	{
-		while (str[*i] == ' ' || str[*i] == ',')
-			(*i)++;
+		if (str[*i] == ',' && start == true)
+			ft_error(cub, "Missing value at the beginning");
+		(*i)++;
 	}
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{

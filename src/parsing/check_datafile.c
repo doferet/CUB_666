@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_datafile.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:55 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 22:08:00 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/24 12:02:50 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static void	read_color(char *str, t_cub *cub)
 
 void	check_data(char *str, t_cub *cub)
 {
+	if (str[0] != '\n' && str[0] != 'N' && str[0] != 'S'
+		&& str[0] != 'E' && str[0] != 'W' && str[0] != 'F' && str[0] != 'C')
+		ft_error(cub, "Invalid data");
 	read_textures(str, cub);
 	read_color(str, cub);
 	check_color(cub);

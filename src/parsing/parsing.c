@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/23 22:26:10 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/24 11:37:04 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	create_map(t_cub *cub)
 
 	i = -1;
 	j = 0;
+	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
+	if (!cub->map.map)
+		ft_error(cub, "Memory allocation error");
 	while (cub->file[++i])
 	{
 		if (is_line_map(cub->file[i]) == true)
@@ -113,6 +116,7 @@ void	stock_file_in_array(char *map_file, t_cub *cub)
 		ft_error(cub, "Map is empty");
 	if (cub->map.rows <= 2)
 		ft_error(cub, "Map is too small");
+	close(fd);
 }
 
 int	parsing(t_cub *cub, int ac, char **av)
@@ -126,9 +130,6 @@ int	parsing(t_cub *cub, int ac, char **av)
 		ft_error(cub, "Invalid file extension");
 	stock_file_in_array(av[1], cub);
 	read_data(cub);
-	cub->map.map = malloc(sizeof(char *) * (cub->map.rows + 1));
-	if (!cub->map.map)
-		ft_error(cub, "Memory allocation error");
 	create_map(cub);
 	check_wall(cub);
 	search_player(cub);

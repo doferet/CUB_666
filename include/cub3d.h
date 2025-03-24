@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/24 10:30:48 by doferet          ###   ########.fr       */
+/*   Updated: 2025/03/24 12:53:15 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
 # define WALL_SIZE 64
+# define SQUARE_SIZE 60
 # define PLAYER_SIZE 32
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -82,7 +83,7 @@ void	check_texture_ea(char *str, t_cub *cub);
 // MATHS
 
 //KEY
-int	key_event(int button, t_cub *cub);
+int		key_event(int button, t_cub *cub);
 // ERROR & FREE
 void	ft_error(t_cub *cub, char *str);
 void	free_matrix(char **matrix);

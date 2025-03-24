@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:48 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 22:18:01 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/24 11:54:23 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void	check_empty_line(t_cub *cub)
 	{
 		if (!is_line_map(cub->file[i]) && cub->start_map <= i
 			&& cub->end_map >= i)
+			ft_error(cub, "Empty or wrong line in map");
+		if (cub->end_map < i && cub->file[i][0] != '\n')
 			ft_error(cub, "Empty or wrong line in map");
 	}
 }
