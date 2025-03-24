@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 22:20:56 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/24 10:30:48 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 // TEXTURES
 # define WALL "./textures/wall.xpm"
 # define FLOOR "./textures/floor.xpm"
-# define SQUARE_SIZE 60
-# define WIDTH 1780
+# define WALL_SIZE 64
+# define PLAYER_SIZE 32
+# define WIDTH 1920
 # define HEIGHT 1080
+
+// MATHS
+# define PI 3.14159265359
+# define FOV 60
 
 // KEYS
 # define W 119
@@ -32,7 +37,6 @@
 # define DOWN 65364
 # define RIGHT 65363
 # define ESC 65307
-
 # define KEYPRESS 2
 # define DST_N 17
 
@@ -62,6 +66,7 @@ char	*ft_charjoin(char *str, char c, t_cub *cub);
 bool	is_line_map(char *str);
 void	search_player(t_cub *cub);
 int		parsing(t_cub *cub, int ac, char **av);
+
 void	check_data(char *str, t_cub *cub);
 void	check_wall(t_cub *cub);
 void	check_empty_line(t_cub *cub);
@@ -76,6 +81,8 @@ void	check_texture_ea(char *str, t_cub *cub);
 
 // MATHS
 
+//KEY
+int	key_event(int button, t_cub *cub);
 // ERROR & FREE
 void	ft_error(t_cub *cub, char *str);
 void	free_matrix(char **matrix);

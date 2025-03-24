@@ -2,3 +2,4 @@
 *.o
 cub3d
 libft/libft.a
+.vscode

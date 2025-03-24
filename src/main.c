@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:55:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/23 22:26:17 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/24 10:32:33 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 	if (parsing(&cub, ac, av) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	mlx_hook(cub.win_ptr, DST_N, StructureNotifyMask, close_window, &cub);
+	mlx_hook(cub.win_ptr, 2, KeyPressMask, key_event, &cub);
 	mlx_loop(cub.mlx_ptr);
 	ft_free_all(&cub);
 	return (EXIT_SUCCESS);
