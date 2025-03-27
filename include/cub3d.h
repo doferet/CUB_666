@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 22:20:56 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/27 10:14:25 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ void	init_texture_image(t_cub *cub, t_img *image, char *path);
 void	put_img(t_img dst, t_img src, int x, int y);
 
 // PARSING
+void	check_player(t_cub *cub);
 char	**ft_double_strjoin(char **file, char *line);
 char	*ft_charjoin(char *str, char c, t_cub *cub);
 bool	is_line_map(char *str);
-void	search_player(t_cub *cub);
+void	check_player(t_cub *cub);
 int		parsing(t_cub *cub, int ac, char **av);
 void	check_data(char *str, t_cub *cub);
 void	check_wall(t_cub *cub);

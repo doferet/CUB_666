@@ -6,36 +6,11 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/23 22:26:10 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:58:09 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	search_player(t_cub *cub)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < cub->map.rows)
-	{
-		x = -1;
-		while (++x < (int)ft_strlen(cub->map.map[y]))
-		{
-			if (cub->map.map[y][x] == 'N' || cub->map.map[y][x] == 'S'
-				|| cub->map.map[y][x] == 'E' || cub->map.map[y][x] == 'W')
-			{
-				cub->player_pos.x = x;
-				cub->player_pos.y = y;
-				cub->player_pos.start_orientation = cub->map.map[y][x];
-				cub->map.player++;
-			}
-		}
-	}
-	if (cub->map.player != 1)
-		ft_error(cub, "Incorrect number of players");
-}
 
 void	read_data(t_cub *cub)
 {
@@ -131,7 +106,7 @@ int	parsing(t_cub *cub, int ac, char **av)
 		ft_error(cub, "Memory allocation error");
 	create_map(cub);
 	check_wall(cub);
-	search_player(cub);
+	//check_player(cub);
 	init_mlx(cub);
 	return (EXIT_SUCCESS);
 }
