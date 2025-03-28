@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/27 10:14:25 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:30:08 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ int		parsing(t_cub *cub, int ac, char **av);
 void	check_data(char *str, t_cub *cub);
 void	check_wall(t_cub *cub);
 void	check_empty_line(t_cub *cub);
-void	check_color_floor(char *str, t_cub *cub);
-void	check_color_ceiling(char *str, t_cub *cub);
+void	check_color_floor(char *str, int i, t_cub *cub);
+void	check_color_ceiling(char *str, int i, t_cub *cub);
 void	check_color(t_cub *cub);
-void	check_wrong_char_color(char *str, t_cub *cub);
-void	check_texture_no(char *str, t_cub *cub);
-void	check_texture_so(char *str, t_cub *cub);
-void	check_texture_we(char *str, t_cub *cub);
-void	check_texture_ea(char *str, t_cub *cub);
+void	check_wrong_char_color(char *str, int i, t_cub *cub);
+void	check_texture_no(char *str, int i, t_cub *cub);
+void	check_texture_so(char *str, int i, t_cub *cub);
+void	check_texture_we(char *str, int i, t_cub *cub);
+void	check_texture_ea(char *str, int i, t_cub *cub);
 
 // MATHS
 

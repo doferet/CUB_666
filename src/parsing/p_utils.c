@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:48 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/28 15:30:40 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:05:01 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,11 @@ char	*ft_charjoin(char *str, char c, t_cub *cub)
 	return (res);
 }
 
-void	check_wrong_char_color(char *str, t_cub *cub)
+void	check_wrong_char_color(char *str, int i, t_cub *cub)
 {
-	int	i;
 	int	count;
 
-	i = 1;
+	i++;
 	count = 0;
 	while (str[i])
 	{
@@ -95,8 +94,12 @@ bool	is_line_map(char *line)
 	int	i;
 
 	i = 0;
-	if (line[0] == '\0' || line[0] == '\n' || line[0] == 'N' || line[0] == 'S'
-		|| line[0] == 'E' || line[0] == 'W' || line[0] == 'F' || line[0] == 'C')
+	if (line[0] == '\0' || line[0] == '\n')
+		return (false);
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == 'N' || line[i] == 'S'
+		|| line[i] == 'E' || line[i] == 'W' || line[i] == 'F' || line[i] == 'C')
 		return (false);
 	while (line[i])
 	{

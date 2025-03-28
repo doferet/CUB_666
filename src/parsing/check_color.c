@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 21:27:35 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 22:00:16 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/28 22:03:19 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,13 @@ char	*construct_number(char *str, int *i, t_cub *cub, bool start)
 	if (!number)
 		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
-	if (start == true)
+	while (str[*i] == ' ' || str[*i] == ',' || str[*i] == '\t'
+		|| str[*i] == '\r' || str[*i] == '\v' || str[*i] == '\f')
+		(*i)++;
 	{
-		while (str[*i] == ' ')
-			(*i)++;
-	}
-	if (start == false)
-	{
-		while (str[*i] == ' ' || str[*i] == ',')
-			(*i)++;
+		if (str[*i] == ',' && start == true)
+			ft_error(cub, "No number before comma");
+		(*i)++;
 	}
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
@@ -54,12 +52,10 @@ char	*construct_number(char *str, int *i, t_cub *cub, bool start)
 	return (number);
 }
 
-void	check_color_floor(char *str, t_cub *cub)
+void	check_color_floor(char *str, int i, t_cub *cub)
 {
 	char	*number;
-	int		i;
 
-	i = 1;
 	cub->datafile.b_floor = true;
 	number = construct_number(str, &i, cub, true);
 	cub->datafile.floor_red = ft_atoi(number);
@@ -71,18 +67,23 @@ void	check_color_floor(char *str, t_cub *cub)
 	if (number[0] == '\0')
 	{
 		free(number);
-		ft_error(cub, "Missing value after comma");
+		ft_error(cub, "Missing value after comma for the floor");
 	}
 	cub->datafile.floor_blue = ft_atoi(number);
 	free(number);
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0'
+			&& str[i] != '\r' && str[i] != '\v' && str[i] != '\f')
+			ft_error(cub, "Invalid character after color");
+		i++;
+	}
 }
 
-void	check_color_ceiling(char *str, t_cub *cub)
+void	check_color_ceiling(char *str, int i, t_cub *cub)
 {
 	char	*number;
-	int		i;
 
-	i = 1;
 	cub->datafile.b_ceiling = true;
 	number = construct_number(str, &i, cub, true);
 	cub->datafile.ceiling_red = ft_atoi(number);
@@ -98,4 +99,11 @@ void	check_color_ceiling(char *str, t_cub *cub)
 	}
 	cub->datafile.ceiling_blue = ft_atoi(number);
 	free(number);
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0'
+			&& str[i] != '\r' && str[i] != '\v' && str[i] != '\f')
+			ft_error(cub, "Invalid character after color");
+		i++;
+	}
 }
