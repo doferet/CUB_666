@@ -1,77 +1,88 @@
-// #include "../../include/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_player.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/28 15:02:05 by rbalazs           #+#    #+#             */
+/*   Updated: 2025/03/28 15:02:10 by rbalazs          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// static void	check_around_floor(t_cub *cub, int x, int y)
-// {
-// 	if (cub->map.map[y][x] == '0' && cub->map.map[y][x - 1] == ' ')
-// 		ft_error(cub, "Walls are not valid");
-// 	if (cub->map.map[y][x] == '0' && cub->map.map[y][x + 1] == ' ')
-// 		ft_error(cub, "Walls are not valid");
-// 	if (cub->map.map[y][x] == '0' && (cub->map.map[y + 1][x] == ' '
-// 			|| cub->map.map[y + 1][x] == '\0' || cub->map.map[y + 1][x] == 0))
-// 		ft_error(cub, "Walls are not valid");
-// 	if (cub->map.map[y][x] == '0' && (cub->map.map[y - 1][x] == ' '
-// 			|| cub->map.map[y - 1][x] == '\0' || cub->map.map[y - 1][x] == 0))
-// 		ft_error(cub, "Walls are not valid");
-// }
+#include "../../include/cub3d.h"
 
-// static bool	check_begin_end(t_cub *cub, int x, int y, bool start)
-// {
-// 	if (cub->map.map[y][x] == '1')
-// 		start = true;
-// 	if (cub->map.map[y][x] == '0' && start == false)
-// 		ft_error(cub, "Walls are not valid");
-// 	if (cub->map.map[0][x] == '0')
-// 		ft_error(cub, "Walls are not valid");
-// 	if (cub->map.map[y][(int)ft_strlen(cub->map.map[y]) - 1] == '0')
-// 		ft_error(cub, "Walls are not valid");
-// 	return (start);
-// }
+bool	is_player(t_cub *cub, int x, int y)
+{
+	if (cub->map.map[y][x] == 'N' || cub->map.map[y][x] == 'S'
+		|| cub->map.map[y][x] == 'E' || cub->map.map[y][x] == 'W')
+		return (true);
+	return (false);
+}
 
-// static void	check_invalid_character(t_cub *cub, int x, int y)
-// {
-// 	if (cub->map.map[y][x] != 'N' && cub->map.map[y][x] != 'S'
-// 		&& cub->map.map[y][x] != 'E' && cub->map.map[y][x] != 'W'
-// 		&& cub->map.map[y][x] != '1' && cub->map.map[y][x] != '0'
-// 		&& cub->map.map[y][x] != ' ' && cub->map.map[y][x] != '\n')
-// 		ft_error(cub, "Invalid character in map");
-// }
+static void	check_around_player(t_cub *cub, int x, int y)
+{
+	if (is_player(cub, x, y) && cub->map.map[y][x - 1] == ' ')
+		ft_error(cub, "Player is outside the map");
+	if (is_player(cub, x, y) && cub->map.map[y][x + 1] == ' ')
+		ft_error(cub, "Player is outside the map");
+	if (is_player(cub, x, y) && (cub->map.map[y + 1][x] == ' ' || cub->map.map[y
+			+ 1][x] == '\0' || cub->map.map[y + 1][x] == 0))
+		ft_error(cub, "Player is outside the map");
+	if (is_player(cub, x, y) && (cub->map.map[y - 1][x] == ' ' || cub->map.map[y
+			- 1][x] == '\0' || cub->map.map[y - 1][x] == 0))
+		ft_error(cub, "Player is outside the map");
+}
 
+static bool	check_begin_end(t_cub *cub, int x, int y, bool start)
+{
+	if (cub->map.map[y][x] == '1')
+		start = true;
+	if (is_player(cub, x, y) && start == false)
+		ft_error(cub, "Player is outside the map");
+	if (is_player(cub, x, 0))
+		ft_error(cub, "Player is outside the map");
+	if (is_player(cub, (int)ft_strlen(cub->map.map[y]) - 1, y))
+		ft_error(cub, "Player is outside the map");
+	return (start);
+}
 
-// static void	take_info_from_player(t_cub *cub, int x, int y)
-// {
-// 	if (cub->map.map[y][x] == 'N' || cub->map.map[y][x] == 'S'
-// 		|| cub->map.map[y][x] == 'E' || cub->map.map[y][x] == 'W')
-// 	{
-// 		cub->player_pos.x = x;
-// 		cub->player_pos.y = y;
-// 		cub->player_pos.start_orientation = cub->map.map[y][x];
-// 		cub->map.player++;
-// 	}
-// }
+static void	take_info_from_player(t_cub *cub, int x, int y)
+{
+	if (is_player(cub, x, y))
+	{
+		cub->player_pos.x = x;
+		cub->player_pos.y = y;
+		cub->player_pos.start_orientation = cub->map.map[y][x];
+		cub->map.player++;
+	}
+}
 
-// void	check_player(t_cub *cub)
-// {
-//     bool start;
-// 	int	x;
-// 	int	y;
+void	check_player(t_cub *cub)
+{
+	bool	start;
+	int		x;
+	int		y;
 
-// 	y = -1;
-//     x = -1;
-//     start = false;
-//     while (x++ < (int)ft_strlen(cub->map.map[cub->map.rows - 1]))
-// 	{
-// 		if (cub->map.map[y][x] == 'N' || cub->map.map[y][x] == 'S'
-// 		|| cub->map.map[y][x] == 'E' || cub->map.map[y][x] == 'W')
-// 			ft_error(cub, "Walls are not valid");
-// 	}
-// 	while (++y < cub->map.rows)
-// 	{
-// 		x = -1;
-// 		while (++x < (int)ft_strlen(cub->map.map[y]))
-// 		{
-//             take_info_from_player(cub, x, y);
-// 		}
-// 	}
-// 	if (cub->map.player != 1)
-// 		ft_error(cub, "Incorrect number of players");
-// }
+	y = -1;
+	x = -1;
+	start = false;
+	while (x++ < (int)ft_strlen(cub->map.map[cub->map.rows - 1]))
+	{
+		if (is_player(cub, x, cub->map.rows - 1) == true)
+			ft_error(cub, "Player is outside the map");
+	}
+	while (++y < cub->map.rows)
+	{
+		x = -1;
+		start = false;
+		while (++x < (int)ft_strlen(cub->map.map[y]))
+		{
+			start = check_begin_end(cub, x, y, start);
+			take_info_from_player(cub, x, y);
+			check_around_player(cub, x, y);
+		}
+	}
+	if (cub->map.player != 1)
+		ft_error(cub, "Incorrect number of players");
+}

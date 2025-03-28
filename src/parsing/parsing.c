@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/27 17:58:09 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/03/28 14:47:23 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	parsing(t_cub *cub, int ac, char **av)
 		ft_error(cub, "Memory allocation error");
 	create_map(cub);
 	check_wall(cub);
-	//check_player(cub);
+	check_player(cub);
 	init_mlx(cub);
 	return (EXIT_SUCCESS);
 }
