@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/26 17:41:01 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/02 17:33:28 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,62 +108,67 @@
 //horizontalVelocity = speed * Math.cos(Math.toRadians(facingAngle));
 //verticalVelocity = speed * Math.sin(Math.toRadians(facingAngle));
 
-//double cameraX = 2 * x / double(w) - 1; //x-coordinate in camera space
-//double rayDirX = dirX + planeX * cameraX;
-//double rayDirY = dirY + planeY * cameraX
+void  calcul(int x, t_cub *cub)
+{
+  cub->player_pos.cam_orientation = 2 * x / (double)WIDTH - 1;
+  
+  cub->player_pos.dirx = cub->player_pos.dirx + cub->player_pos.planx * cub->player_pos.cam_orientation;
+  cub->player_pos.diry = cub->player_pos.diry + cub->player_pos.plany * cub->player_pos.cam_orientation;
 
-//deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX))
-//deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY))
-//* OU
-//deltaDistX = abs(1 / rayDirX)
-//deltaDistY = abs(1 / rayDirY)
-
-  //calculate step and initial sideDist
-/*  if (rayDirX < 0)
+  cub->player_pos.deltax = fabs(1 / cub->player_pos.raydirx);
+  cub->player_pos.deltay = fabs(1 / cub->player_pos.raydirx);
+}
+ 
+void  calcul_2(t_cub *cub)
+{
+  if (cub->player_pos.dirx < 0)
   {
-    stepX = -1;
-    sideDistX = (posX - mapX) * deltaDistX;
+    cub->player_pos.stepx = -1;
+    cub->player_pos.sidex = (cub->player_pos.posx - cub->player_pos.mapx) * cub->player_pos.deltax;
   }
   else
   {
-    stepX = 1;
-    sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+    cub->player_pos.stepx = 1;
+   cub->player_pos.sidex = (cub->player_pos.mapx + 1.0 - cub->player_pos.posx) * cub->player_pos.deltax;
   }
-  if (rayDirY < 0)
+  if (cub->player_pos.diry < 0)
   {
-    stepY = -1;
-    sideDistY = (posY - mapY) * deltaDistY;
+    cub->player_pos.stepy = -1;
+    cub->player_pos.sidey = (cub->player_pos.posy - cub->player_pos.mapy) * cub->player_pos.deltay;
   }
   else
   {
-    stepY = 1;
-    sideDistY = (mapY + 1.0 - posY) * deltaDistY;
-  }*/
+    cub->player_pos.stepy = 1;
+    cub->player_pos.sidey = (cub->player_pos.mapy + 1.0 - cub->player_pos.posy) * cub->player_pos.deltay;
+  }
+}
 
-  //! MURS
-  /*
-        perform DDA
-      while (hit == 0)
-      {
-        jump to next map square, either in x-direction, or in y-direction
-        if (sideDistX < sideDistY)
-        {
-          sideDistX += deltaDistX;
-          mapX += stepX;
-          side = 0;
-        }
-        else
-        {
-          sideDistY += deltaDistY;
-          mapY += stepY;
-          side = 1;
-        }
-        Check if ray has hit a wall
-        if (worldMap[mapX][mapY] > 0) hit = 1;
-      } 
-  */
+void  dda_algo(t_cub *cub)
+{
+  int hit;
+  int side;
+
+  hit = 0;
+  side = 0;
+  while (hit == 0)
+  {
+    if (cub->player_pos.sidex < cub->player_pos.sidey)
+    {
+      cub->player_pos.sidex += cub->player_pos.deltax;
+      cub->player_pos.mapx += cub->player_pos.stepx;
+      side = 0;
+    }
+    else
+    {
+      cub->player_pos.sidey += cub->player_pos.deltay;
+      cub->player_pos.mapy += cub->player_pos.stepy;
+      side = 1;
+    }
+    if (cub->map.map[cub->player_pos.mapy][cub->player_pos.mapx] > 0)
+      hit = 1;
+    }
+  }
 
 
 //   if(side == 0) perpWallDist = (sideDistX - deltaDistX);
 //       else          perpWallDist = (sideDistY - deltaDistY);
-

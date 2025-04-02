@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/26 17:01:14 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/02 16:54:48 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@ typedef struct s_maths
 	int			x;
 	int			y;
 	int			start_orientation;
+	double		deltax;
+	double		deltay;
+	double		sidex;
+	double		sidey;
+	double		raydirx;
+	double		raydiry;
+	int			stepx;
+	int			stepy;
+	int			mapx;
+	int			mapy;
+	double		dirx;
+	double		diry;
+	double		planx;
+	double		plany;
+	double		cam_orientation;
+	double		posx;
+	double		posy;
 }				t_maths;
 
 typedef struct s_map
