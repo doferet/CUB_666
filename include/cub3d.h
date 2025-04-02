@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/24 12:53:15 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:27:54 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,24 @@ void	init_texture_image(t_cub *cub, t_img *image, char *path);
 void	put_img(t_img dst, t_img src, int x, int y);
 
 // PARSING
+void	check_player(t_cub *cub);
 char	**ft_double_strjoin(char **file, char *line);
 char	*ft_charjoin(char *str, char c, t_cub *cub);
 bool	is_line_map(char *str);
-void	search_player(t_cub *cub);
+void	check_player(t_cub *cub);
 int		parsing(t_cub *cub, int ac, char **av);
 
 void	check_data(char *str, t_cub *cub);
 void	check_wall(t_cub *cub);
 void	check_empty_line(t_cub *cub);
-void	check_color_floor(char *str, t_cub *cub);
-void	check_color_ceiling(char *str, t_cub *cub);
+void	check_color_floor(char *str, int i, t_cub *cub);
+void	check_color_ceiling(char *str, int i, t_cub *cub);
 void	check_color(t_cub *cub);
-void	check_wrong_char_color(char *str, t_cub *cub);
-void	check_texture_no(char *str, t_cub *cub);
-void	check_texture_so(char *str, t_cub *cub);
-void	check_texture_we(char *str, t_cub *cub);
-void	check_texture_ea(char *str, t_cub *cub);
+void	check_wrong_char_color(char *str, int i, t_cub *cub);
+void	check_texture_no(char *str, int i, t_cub *cub);
+void	check_texture_so(char *str, int i, t_cub *cub);
+void	check_texture_we(char *str, int i, t_cub *cub);
+void	check_texture_ea(char *str, int i, t_cub *cub);
 
 // MATHS
 

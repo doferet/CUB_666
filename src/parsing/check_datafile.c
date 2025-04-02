@@ -3,54 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   check_datafile.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:55 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/24 12:02:50 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:28:11 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	read_textures(char *str, t_cub *cub)
+static bool	read_textures(char *str, int i, t_cub *cub)
 {
-	if (str[0] == 'N' && str[1] == 'O')
-		check_texture_no(str, cub);
-	else if (str[0] == 'S' && str[1] == 'O')
-		check_texture_so(str, cub);
-	else if (str[0] == 'W' && str[1] == 'E')
-		check_texture_we(str, cub);
-	else if (str[0] == 'E' && str[1] == 'A')
-		check_texture_ea(str, cub);
+	if (str[i] == 'N' && str[i + 1] == 'O')
+	{
+		check_texture_no(str, i + 2, cub);
+		return (true);
+	}
+	else if (str[i] == 'S' && str[i + 1] == 'O')
+	{
+		check_texture_so(str, i + 2, cub);
+		return (true);
+	}
+	else if (str[i] == 'W' && str[i + 1] == 'E')
+	{
+		check_texture_we(str, i + 2, cub);
+		return (true);
+	}
+	else if (str[i] == 'E' && str[i + 1] == 'A')
+	{
+		check_texture_ea(str, i + 2, cub);
+		return (true);
+	}
+	return (false);
 }
 
-static void	read_color(char *str, t_cub *cub)
+static bool	read_color(char *str, int i, t_cub *cub)
 {
-	if (str[0] == 'F')
+	if (str[i] == 'F')
 	{
 		if (cub->datafile.b_floor == true)
 			ft_error(cub, "Floor color already set");
 		cub->datafile.b_floor = true;
-		check_wrong_char_color(str, cub);
-		check_color_floor(str, cub);
+		check_wrong_char_color(str, i + 1, cub);
+		check_color_floor(str, i + 1, cub);
+		return (true);
 	}
-	else if (str[0] == 'C')
+	else if (str[i] == 'C')
 	{
 		if (cub->datafile.b_ceiling == true)
 			ft_error(cub, "Ceiling color already set");
 		cub->datafile.b_ceiling = true;
-		check_wrong_char_color(str, cub);
-		check_color_ceiling(str, cub);
+		check_wrong_char_color(str, i + 1, cub);
+		check_color_ceiling(str, i + 1, cub);
+		return (true);
 	}
+	return (false);
 }
 
 void	check_data(char *str, t_cub *cub)
 {
-	if (str[0] != '\n' && str[0] != 'N' && str[0] != 'S'
-		&& str[0] != 'E' && str[0] != 'W' && str[0] != 'F' && str[0] != 'C')
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	if (str[0] != '\n' && !read_textures(str, i, cub) && !read_color(str, i,
+			cub))
 		ft_error(cub, "Invalid data");
-	read_textures(str, cub);
-	read_color(str, cub);
 	check_color(cub);
 	if (cub->datafile.b_no == true && cub->datafile.b_so == true
 		&& cub->datafile.b_we == true && cub->datafile.b_ea == true
