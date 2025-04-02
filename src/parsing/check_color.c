@@ -6,11 +6,37 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 21:27:35 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/28 22:03:19 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/02 12:18:33 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static void	verif_doublecomma(t_cub *cub, char *str)
+{
+	int		i;
+	int		j;
+	bool	is_double;
+
+	i = 0;
+	j = 0;
+	is_double = false;
+	while (str[i])
+	{
+		j = i;
+		is_double = false;
+		while (str[j] == ' ' || str[j] == ',' || str[j] == '\t'
+			|| str[j] == '\r' || str[j] == '\v' || str[j] == '\f')
+		{
+			if (str[j] == ',' && is_double == true)
+				ft_error(cub, "Multiple comma detected");
+			if (str[j] == ',')
+				is_double = true;
+			j++;
+		}
+		i++;
+	}
+}
 
 void	check_color(t_cub *cub)
 {
@@ -32,16 +58,19 @@ char	*construct_number(char *str, int *i, t_cub *cub, bool start)
 {
 	char	*number;
 
+	verif_doublecomma(cub, str);
 	number = malloc(sizeof(char) * 1);
 	if (!number)
 		ft_error(cub, "Malloc Error");
 	number[0] = '\0';
 	while (str[*i] == ' ' || str[*i] == ',' || str[*i] == '\t'
 		|| str[*i] == '\r' || str[*i] == '\v' || str[*i] == '\f')
-		(*i)++;
 	{
 		if (str[*i] == ',' && start == true)
+		{
+			free(number);
 			ft_error(cub, "No number before comma");
+		}
 		(*i)++;
 	}
 	while (str[*i] >= '0' && str[*i] <= '9')

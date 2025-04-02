@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:55 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/28 18:46:30 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:14:52 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ void	check_data(char *str, t_cub *cub)
 	if (str[0] != '\n' && !read_textures(str, i, cub) && !read_color(str, i,
 			cub))
 		ft_error(cub, "Invalid data");
-	printf("FLOOR : %d %d %d\n", cub->datafile.floor_red,
-		cub->datafile.floor_green, cub->datafile.floor_blue);
-	printf("CEILING : %d %d %d\n", cub->datafile.ceiling_red,
-		cub->datafile.ceiling_green, cub->datafile.ceiling_blue);
 	check_color(cub);
 	if (cub->datafile.b_no == true && cub->datafile.b_so == true
 		&& cub->datafile.b_we == true && cub->datafile.b_ea == true
