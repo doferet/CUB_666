@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/02 16:54:48 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:24:10 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct s_maths
 	double		cam_orientation;
 	double		posx;
 	double		posy;
+	int			side;
+	double		wall_dist;
+	int			line_height;
+	int			start_line;
+	int			end_line;
 }				t_maths;
 
 typedef struct s_map

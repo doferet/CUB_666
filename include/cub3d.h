@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/26 17:01:29 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:59:52 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	check_texture_we(char *str, t_cub *cub);
 void	check_texture_ea(char *str, t_cub *cub);
 
 // MATHS
+void draw_line(t_cub *cub);
 
 //KEY
 int		key_event(int button, t_cub *cub);
