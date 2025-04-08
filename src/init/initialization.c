@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/20 14:53:08 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:01:09 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	set_image_pixel(t_img *image, int x, int y, int color)
+{
+	int	pixel;
+
+	pixel = y * (image->line_len / 4) + x;
+	((int *)image->addr)[pixel] = color;
+}
 
 static void	put_textures(t_cub *cub)
 {
@@ -18,17 +26,12 @@ static void	put_textures(t_cub *cub)
 	int	j;
 
 	i = -1;
-	while (++i < cub->map.rows)
+	while (++i < 500)
 	{
-		j = -1;
-		while (++j < (int)ft_strlen(cub->map.map[i]))
+		j = 300;
+		while (++j < 500)
 		{
-			if (cub->map.map[i][j] == '1')
-				put_img(cub->image, cub->texture.wall_ea, SQUARE_SIZE * j,
-					SQUARE_SIZE * i);
-			if (cub->map.map[i][j] == '0')
-				put_img(cub->image, cub->texture.floor, SQUARE_SIZE * j,
-					SQUARE_SIZE * i);
+			set_image_pixel(&cub->image, j, i, 0x00FF00);
 		}
 	}
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
@@ -74,4 +77,25 @@ void	init_mlx(t_cub *cub)
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
 	put_textures(cub);
+}
+
+void	init_maths(t_maths *ray)
+{
+	ray->cam_orientation = 0;
+	ray->dirx = 0;
+	ray->diry = 0;
+	ray->mapx = 0;
+	ray->mapy = 0;
+	ray->stepx = 0;
+	ray->stepy = 0;
+	ray->sidex = 0;
+	ray->sidey = 0;
+	ray->deltax = 0;
+	ray->deltay = 0;
+	ray->wall_dist = 0;
+	ray->wall_x = 0;
+	ray->side = 0;
+	ray->line_height = 0;
+	ray->start_line = 0;
+	ray->end_line = 0;
 }

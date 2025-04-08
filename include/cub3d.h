@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/04 15:59:52 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/08 14:47:07 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # define PLAYER_SIZE 32
 # define WIDTH 1920
 # define HEIGHT 1080
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 // MATHS
 # define PI 3.14159265359
@@ -81,7 +85,8 @@ void	check_texture_we(char *str, t_cub *cub);
 void	check_texture_ea(char *str, t_cub *cub);
 
 // MATHS
-void draw_line(t_cub *cub);
+int		raycasting(t_cub *cub);
+void	orientation(t_cub *cub);
 
 //KEY
 int		key_event(int button, t_cub *cub);

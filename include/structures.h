@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/04 15:24:10 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:36:17 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,14 @@ typedef struct s_maths
 	double		posy;
 	int			side;
 	double		wall_dist;
+	double		wall_x;
 	int			line_height;
 	int			start_line;
 	int			end_line;
+	double		step;
+	double		tex_pos;
+	int tex_x;
+	int tex_y;
 }				t_maths;
 
 typedef struct s_map
@@ -95,6 +100,7 @@ typedef struct s_texture
 	t_img		wall_so;
 	t_img		wall_we;
 	t_img		wall_ea;
+	int			type;
 }				t_texture;
 
 typedef struct s_cub

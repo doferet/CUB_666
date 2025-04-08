@@ -20,12 +20,15 @@ SRC = src/main.c \
 	src/parsing/p_utils.c \
 	src/parsing/check_datafile.c \
 	src/parsing/check_textures.c \
-	src/parsing/initialization.c \
+	src/init/initialization.c \
 	src/utils/free_error.c \
 	src/utils/utils.c \
 	libft/get_next_line/get_next_line.c \
 	libft/get_next_line/get_next_line_utils.c \
 	src/image/image.c \
+	src/maths/maths.c \
+	src/maths/textures.c \
+	src/maths/player_move.c \
 
 OBJ_DIR = build
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -42,7 +45,7 @@ $(NAME): $(OBJ)
 	@echo "Compilation..."
 	@make -sC libft
 	@make -sC mlx
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(INC) -lXext -lX11 -lm -lz
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(INC) -lXext -lX11 -lm 
 	@echo "Cub3D is ready !"
 
 clean:

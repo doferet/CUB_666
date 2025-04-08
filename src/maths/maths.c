@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/04 15:59:44 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/08 14:52:33 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ static void  dda_algo(t_cub *cub)
     }
     if (cub->map.map[cub->player_pos.mapy][cub->player_pos.mapx] > 0)
       hit = 1;
-    if (cub->player_pos.side == 0)
-      cub->player_pos.wall_dist = cub->player_pos.sidex - cub->player_pos.deltax;
-    else
-      cub->player_pos.wall_dist = cub->player_pos.sidey - cub->player_pos.deltay;
   }
 }
 
 static void  height_of_line(t_cub *cub)
 {
+  if (cub->player_pos.side == 0)
+    cub->player_pos.wall_dist = cub->player_pos.sidex - cub->player_pos.deltax;
+  else
+    cub->player_pos.wall_dist = cub->player_pos.sidey - cub->player_pos.deltay;
   cub->player_pos.line_height = (int)(HEIGHT / cub->player_pos.wall_dist);
   cub->player_pos.start_line = -(cub->player_pos.line_height) / 2 + HEIGHT / 2;
   if( cub->player_pos.start_line < 0)
@@ -82,9 +82,14 @@ static void  height_of_line(t_cub *cub)
   cub->player_pos.end_line = cub->player_pos.line_height / 2 + HEIGHT / 2;
   if(cub->player_pos.end_line >= HEIGHT)
     cub->player_pos.end_line = HEIGHT - 1;
+  if(cub->player_pos.side == 0)
+    cub->player_pos.wall_x = cub->player_pos.posy + cub->player_pos.wall_dist * cub->player_pos.diry;
+  else
+    cub->player_pos.wall_x = cub->player_pos.posx + cub->player_pos.wall_dist * cub->player_pos.dirx;
+  cub->player_pos.wall_x -= floor(cub->player_pos.wall_x);   
 }
 
-void draw_line(t_cub *cub)
+int raycasting(t_cub *cub)
 {
   int x;
 
@@ -97,4 +102,9 @@ void draw_line(t_cub *cub)
     height_of_line(cub);
     x++;
   }
+  mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
+  mlx_destroy_image(cub->mlx_ptr, cub->image.img);
+  cub->image.img = mlx_new_image(cub->mlx_ptr, WIDTH, HEIGHT);
+  cub->image.addr = mlx_get_data_addr(cub->image.img, &cub->image.bpp, &cub->image.line_len, &cub->image.endian);
+  return(0);
 }
