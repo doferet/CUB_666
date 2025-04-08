@@ -21,7 +21,7 @@ SRC = src/main.c \
 	src/parsing/p_utils.c \
 	src/parsing/check_datafile.c \
 	src/parsing/check_textures.c \
-	src/init/initialization.c \
+	src/init/init.c \
 	src/utils/free_error.c \
 	src/utils/utils.c \
 	libft/get_next_line/get_next_line.c \
