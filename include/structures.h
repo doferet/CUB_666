@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/24 10:31:18 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:36:17 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,33 @@ typedef struct s_maths
 	int			x;
 	int			y;
 	int			start_orientation;
+	double		deltax;
+	double		deltay;
+	double		sidex;
+	double		sidey;
+	double		raydirx;
+	double		raydiry;
+	int			stepx;
+	int			stepy;
+	int			mapx;
+	int			mapy;
+	double		dirx;
+	double		diry;
+	double		planx;
+	double		plany;
+	double		cam_orientation;
+	double		posx;
+	double		posy;
+	int			side;
+	double		wall_dist;
+	double		wall_x;
+	int			line_height;
+	int			start_line;
+	int			end_line;
+	double		step;
+	double		tex_pos;
+	int tex_x;
+	int tex_y;
 }				t_maths;
 
 typedef struct s_map
@@ -73,6 +100,7 @@ typedef struct s_texture
 	t_img		wall_so;
 	t_img		wall_we;
 	t_img		wall_ea;
+	int			type;
 }				t_texture;
 
 typedef struct s_cub

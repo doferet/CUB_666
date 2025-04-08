@@ -6,28 +6,105 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/20 11:48:10 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/08 14:52:33 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-// hauteur des murs = 64
-// hauteur du joueur = 32
+static void  calcul(int x, t_cub *cub)
+{
+  cub->player_pos.cam_orientation = 2 * x / (double)WIDTH - 1;
+  cub->player_pos.dirx = cub->player_pos.dirx + cub->player_pos.planx * cub->player_pos.cam_orientation;
+  cub->player_pos.diry = cub->player_pos.diry + cub->player_pos.plany * cub->player_pos.cam_orientation;
+  cub->player_pos.deltax = fabs(1 / cub->player_pos.raydirx);
+  cub->player_pos.deltay = fabs(1 / cub->player_pos.raydirx);
+}
+ 
+ static void  calcul_2(t_cub *cub)
+{
+  if (cub->player_pos.dirx < 0)
+  {
+    cub->player_pos.stepx = -1;
+    cub->player_pos.sidex = (cub->player_pos.posx - cub->player_pos.mapx) * cub->player_pos.deltax;
+  }
+  else
+  {
+    cub->player_pos.stepx = 1;
+   cub->player_pos.sidex = (cub->player_pos.mapx + 1.0 - cub->player_pos.posx) * cub->player_pos.deltax;
+  }
+  if (cub->player_pos.diry < 0)
+  {
+    cub->player_pos.stepy = -1;
+    cub->player_pos.sidey = (cub->player_pos.posy - cub->player_pos.mapy) * cub->player_pos.deltay;
+  }
+  else
+  {
+    cub->player_pos.stepy = 1;
+    cub->player_pos.sidey = (cub->player_pos.mapy + 1.0 - cub->player_pos.posy) * cub->player_pos.deltay;
+  }
+}
 
-//Fonctions trigonométriques
-// sin = calcule le sinus
-// cos = calcule le cosinus
-// tan = calcule la tangente
-// asin = calcule l'arc sinus
-// acos = calcule l'arc cosinus
-// atan = calcule l'arc tangente
-// => fonction a utiliser pour les calculs
+static void  dda_algo(t_cub *cub)
+{
+  int hit;
 
-// le jouer a un fov de 60
-// il est comme au centre d'un cercle trigonométrique
-// utiliser des doubles
+  hit = 0;
+  while (hit == 0)
+  {
+    if (cub->player_pos.sidex < cub->player_pos.sidey)
+    {
+      cub->player_pos.sidex += cub->player_pos.deltax;
+      cub->player_pos.mapx += cub->player_pos.stepx;
+      cub->player_pos.side = 0;
+    }
+    else
+    {
+      cub->player_pos.sidey += cub->player_pos.deltay;
+      cub->player_pos.mapy += cub->player_pos.stepy;
+      cub->player_pos.side = 1;
+    }
+    if (cub->map.map[cub->player_pos.mapy][cub->player_pos.mapx] > 0)
+      hit = 1;
+  }
+}
 
-// centre Projection plan = 960, 540
-// distance projection plan = 1662
-// Angle between subsequent rays = 60 / 1920
+static void  height_of_line(t_cub *cub)
+{
+  if (cub->player_pos.side == 0)
+    cub->player_pos.wall_dist = cub->player_pos.sidex - cub->player_pos.deltax;
+  else
+    cub->player_pos.wall_dist = cub->player_pos.sidey - cub->player_pos.deltay;
+  cub->player_pos.line_height = (int)(HEIGHT / cub->player_pos.wall_dist);
+  cub->player_pos.start_line = -(cub->player_pos.line_height) / 2 + HEIGHT / 2;
+  if( cub->player_pos.start_line < 0)
+    cub->player_pos.start_line = 0;
+  cub->player_pos.end_line = cub->player_pos.line_height / 2 + HEIGHT / 2;
+  if(cub->player_pos.end_line >= HEIGHT)
+    cub->player_pos.end_line = HEIGHT - 1;
+  if(cub->player_pos.side == 0)
+    cub->player_pos.wall_x = cub->player_pos.posy + cub->player_pos.wall_dist * cub->player_pos.diry;
+  else
+    cub->player_pos.wall_x = cub->player_pos.posx + cub->player_pos.wall_dist * cub->player_pos.dirx;
+  cub->player_pos.wall_x -= floor(cub->player_pos.wall_x);   
+}
+
+int raycasting(t_cub *cub)
+{
+  int x;
+
+  x = 0;
+  while(x < WIDTH)
+  {
+    calcul(x, cub);
+    calcul_2(cub);
+    dda_algo(cub);
+    height_of_line(cub);
+    x++;
+  }
+  mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
+  mlx_destroy_image(cub->mlx_ptr, cub->image.img);
+  cub->image.img = mlx_new_image(cub->mlx_ptr, WIDTH, HEIGHT);
+  cub->image.addr = mlx_get_data_addr(cub->image.img, &cub->image.bpp, &cub->image.line_len, &cub->image.endian);
+  return(0);
+}

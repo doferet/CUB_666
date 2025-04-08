@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/02 12:27:54 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:34:36 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # define PLAYER_SIZE 32
 # define WIDTH 1920
 # define HEIGHT 1080
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 // MATHS
 # define PI 3.14159265359
@@ -82,6 +86,8 @@ void	check_texture_we(char *str, int i, t_cub *cub);
 void	check_texture_ea(char *str, int i, t_cub *cub);
 
 // MATHS
+int		raycasting(t_cub *cub);
+void	orientation(t_cub *cub);
 
 //KEY
 int		key_event(int button, t_cub *cub);

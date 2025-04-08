@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/08 15:43:51 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:53:06 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,4 @@ void	init_mlx(t_cub *cub)
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
 	put_textures(cub);
-}
-
-void	init_maths(t_maths *ray)
-{
-	ray->cam_orientation = 0;
-	ray->dirx = 0;
-	ray->diry = 0;
-	ray->mapx = 0;
-	ray->mapy = 0;
-	ray->stepx = 0;
-	ray->stepy = 0;
-	ray->sidex = 0;
-	ray->sidey = 0;
-	ray->deltax = 0;
-	ray->deltay = 0;
-	ray->wall_dist = 0;
-	ray->wall_x = 0;
-	ray->side = 0;
-	ray->line_height = 0;
-	ray->start_line = 0;
-	ray->end_line = 0;
 }
