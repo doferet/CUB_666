@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/08 15:34:36 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/09 15:00:45 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 void	init_mlx(t_cub *cub);
 void	init_texture_image(t_cub *cub, t_img *image, char *path);
 void	put_img(t_img dst, t_img src, int x, int y);
+void	put_textures(t_cub *cub);
 
 // PARSING
 void	check_player(t_cub *cub);
@@ -88,6 +89,7 @@ void	check_texture_ea(char *str, int i, t_cub *cub);
 // MATHS
 int		raycasting(t_cub *cub);
 void	orientation(t_cub *cub);
+void	put_color_floor_ceiling(t_cub *cub);
 
 //KEY
 int		key_event(int button, t_cub *cub);

@@ -30,6 +30,7 @@ SRC = src/main.c \
 	src/maths/maths.c \
 	src/maths/textures.c \
 	src/maths/player_move.c \
+	src/maths/render.c \
 
 OBJ_DIR = build
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

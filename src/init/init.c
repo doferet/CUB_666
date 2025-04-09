@@ -6,36 +6,11 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/09 01:47:31 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:53:15 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	set_image_pixel(t_img *image, int x, int y, int color)
-{
-	int	pixel;
-
-	pixel = y * (image->line_len / 4) + x;
-	((int *)image->addr)[pixel] = color;
-}
-
-static void	put_textures(t_cub *cub)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < 500)
-	{
-		j = 300;
-		while (++j < 500)
-		{
-			set_image_pixel(&cub->image, j, i, 0x00FF00);
-		}
-	}
-	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
-}
 
 void	init_texture_image(t_cub *cub, t_img *image, char *path)
 {
@@ -76,7 +51,6 @@ void	init_mlx(t_cub *cub)
 	init_texture_image(cub, &cub->texture.wall_no, cub->datafile.no);
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
-	put_textures(cub);
 }
 
 void	init_maths(t_maths *ray)
