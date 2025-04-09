@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/07 15:36:17 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:15:14 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_cub
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_maths		player_pos;
+	t_maths 	ray;
 	t_datafile	datafile;
 	t_map		map;
 	t_texture	texture;

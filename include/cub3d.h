@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/09 15:00:45 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:30:20 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	check_texture_ea(char *str, int i, t_cub *cub);
 int		raycasting(t_cub *cub);
 void	orientation(t_cub *cub);
 void	put_color_floor_ceiling(t_cub *cub);
+void	put_pixel(t_cub *cub, int x, int y, int color);
+int     rgb(int r, int g, int b);
 
 //KEY
 int		key_event(int button, t_cub *cub);
