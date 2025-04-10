@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/09 16:15:14 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 07:44:02 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@
 
 typedef struct s_maths
 {
-	int			x;
-	int			y;
 	int			start_orientation;
 	double		deltax;
 	double		deltay;
 	double		sidex;
 	double		sidey;
-	double		raydirx;
-	double		raydiry;
 	int			stepx;
 	int			stepy;
 	int			mapx;

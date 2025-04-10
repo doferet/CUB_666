@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 15:02:05 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/28 15:02:10 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 05:26:23 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	take_info_from_player(t_cub *cub, int x, int y)
 {
 	if (is_player(cub, x, y))
 	{
-		cub->player_pos.x = x;
-		cub->player_pos.y = y;
+		cub->player_pos.posx = (double)x;
+		cub->player_pos.posy = (double)y;
 		cub->player_pos.start_orientation = cub->map.map[y][x];
 		cub->map.player++;
 	}

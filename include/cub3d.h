@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/09 16:30:20 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 05:27:21 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 // INIT
 void	init_mlx(t_cub *cub);
 void	init_texture_image(t_cub *cub, t_img *image, char *path);
+void	init_player_pos(t_cub *cub);
 void	put_img(t_img dst, t_img src, int x, int y);
 void	put_textures(t_cub *cub);
 

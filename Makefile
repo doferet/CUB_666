@@ -22,11 +22,11 @@ SRC = src/main.c \
 	src/parsing/check_datafile.c \
 	src/parsing/check_textures.c \
 	src/init/init.c \
+	src/init/init_player.c \
 	src/utils/free_error.c \
 	src/utils/utils.c \
 	libft/get_next_line/get_next_line.c \
 	libft/get_next_line/get_next_line_utils.c \
-	src/image/image.c \
 	src/maths/maths.c \
 	src/maths/textures.c \
 	src/maths/player_move.c \
