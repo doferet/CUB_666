@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/10 05:27:21 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:40:51 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 // MATHS
 # define PI 3.14159265359
 # define FOV 60
+# define MOVESPEED 0.150
+# define ROTSPEED 0.125
 
 // KEYS
 # define W 119
@@ -93,9 +95,12 @@ void	orientation(t_cub *cub);
 void	put_color_floor_ceiling(t_cub *cub);
 void	put_pixel(t_cub *cub, int x, int y, int color);
 int     rgb(int r, int g, int b);
+int	move_player(t_cub *cub);
 
 //KEY
 int		key_event(int button, t_cub *cub);
+int		key_release(int button, t_cub *cub);
+
 // ERROR & FREE
 void	ft_error(t_cub *cub, char *str);
 void	free_matrix(char **matrix);

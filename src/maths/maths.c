@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/10 10:08:40 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:46:23 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,10 @@ static void	calcul(int x, t_cub *cub)
 		* cub->ray.cam_orientation;
 	cub->ray.diry = cub->player_pos.diry + cub->player_pos.plany
 		* cub->ray.cam_orientation;
-	cub->ray.deltax = fabs(1 / cub->ray.dirx);
-	cub->ray.deltay = fabs(1 / cub->ray.diry);
-	printf("\033[0;34mray.dirx: %f | ray.diry: %f\033[0m\n", cub->ray.dirx,
-		cub->ray.diry);
-	printf("\033[0;34mcam_orientation: %f\033[0m\n", cub->ray.cam_orientation);
-	printf("\033[0;34mray.deltax: %f | ray.deltay: %f\033[0m\n",
-		cub->ray.deltax, cub->ray.deltay);
 	cub->ray.mapx = (int)cub->player_pos.posx;
 	cub->ray.mapy = (int)cub->player_pos.posy;
+	cub->ray.deltax = fabs(1 / cub->ray.dirx);
+	cub->ray.deltay = fabs(1 / cub->ray.diry);
 }
 
 static void	calcul_2(t_cub *cub)
@@ -65,7 +60,6 @@ static void	dda_algo(t_cub *cub)
 	hit = 0;
 	while (hit == 0)
 	{
-		printf("\033[0;32mmapx: %d | mapy: %d\033[0m\n", cub->ray.mapx, cub->ray.mapy);
 		if (cub->ray.sidex < cub->ray.sidey)
 		{
 			cub->ray.sidex += cub->ray.deltax;
@@ -80,9 +74,6 @@ static void	dda_algo(t_cub *cub)
 		}
 		if (cub->map.map[cub->ray.mapx][cub->ray.mapy] > '0') 
 		{
-			printf("\033[0;33mHit\033[0m\n");
-			printf("\033[0;31mmapx: %d | mapy: %d\033[0m\n", cub->ray.mapx,
-				cub->ray.mapy);
 			hit = 1;
 		}
 	}
@@ -90,8 +81,6 @@ static void	dda_algo(t_cub *cub)
 
 static void	height_of_line(t_cub *cub)
 {
-	printf("\033[0;31msidex: %f | sidey: %f | deltax: %f | deltay: %f\033[0m\n",
-		cub->ray.sidex, cub->ray.sidey, cub->ray.deltax, cub->ray.deltay);
 	if (cub->ray.side == 0)
 		cub->ray.wall_dist = cub->ray.sidex - cub->ray.deltax;
 	else
@@ -104,12 +93,10 @@ static void	height_of_line(t_cub *cub)
 	if (cub->ray.end_line >= HEIGHT)
 		cub->ray.end_line = HEIGHT - 1;
 	if (cub->ray.side == 0)
-		cub->ray.wall_x = cub->ray.posy + cub->ray.wall_dist * cub->ray.diry;
+		cub->ray.wall_x = cub->player_pos.posy + cub->ray.wall_dist * cub->ray.diry;
 	else
-		cub->ray.wall_x = cub->ray.posx + cub->ray.wall_dist * cub->ray.dirx;
+		cub->ray.wall_x = cub->player_pos.posx + cub->ray.wall_dist * cub->ray.dirx;
 	cub->ray.wall_x -= floor(cub->ray.wall_x);
-	printf("\033[0;91mwall_dist: %f | line_height: %d | start: %d | end: %d\033[0m\n", cub->ray.wall_dist, cub->ray.line_height,
-		cub->ray.start_line, cub->ray.end_line);
 }
 
 void	texture_loop(t_cub *cub, int x)
@@ -147,5 +134,6 @@ int	raycasting(t_cub *cub)
 	cub->image.img = mlx_new_image(cub->mlx_ptr, WIDTH, HEIGHT);
 	cub->image.addr = mlx_get_data_addr(cub->image.img, &cub->image.bpp,
 			&cub->image.line_len, &cub->image.endian);
+	cub->player_pos.move = move_player(cub);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/10 07:44:02 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 18:34:42 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_maths
 	int			start_line;
 	int			end_line;
 	double		step;
+	int		move_x;
+	int		move_y;
+	int			rotate;
+	int			move;
 	double		tex_pos;
 	int tex_x;
 	int tex_y;

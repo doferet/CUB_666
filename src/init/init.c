@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/09 14:53:15 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/10 18:33:59 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,7 @@ void	init_maths(t_maths *ray)
 	ray->line_height = 0;
 	ray->start_line = 0;
 	ray->end_line = 0;
+	ray->move = 0;
+	ray->move_x = 0;
+	ray->move_y = 0;
 }
