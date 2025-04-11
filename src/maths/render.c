@@ -24,8 +24,9 @@ void	put_color_floor_ceiling(t_cub *cub)
 		j = -1;
 		while (++j < WIDTH)
 		{
-			put_pixel(cub, j, i, rgb(cub->datafile.floor_red, cub->datafile.floor_green, \
-					cub->datafile.floor_blue));
+			put_pixel(cub, j, i, rgb(cub->datafile.ceiling_red, cub->datafile.ceiling_green, \
+				cub->datafile.ceiling_blue));
+			
 		}
 		i++;
 	}
@@ -34,8 +35,8 @@ void	put_color_floor_ceiling(t_cub *cub)
 		j = -1;
 		while (++j < WIDTH)
 		{
-			put_pixel(cub, j, i, rgb(cub->datafile.ceiling_red, cub->datafile.ceiling_green, \
-                    cub->datafile.ceiling_blue));
+			put_pixel(cub, j, i, rgb(cub->datafile.floor_red, cub->datafile.floor_green, \
+				cub->datafile.floor_blue));
 		}
 		i++;
 	}

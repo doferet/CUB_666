@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/10 19:46:23 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/11 19:11:23 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,57 @@ static void	height_of_line(t_cub *cub)
 	cub->ray.wall_x -= floor(cub->ray.wall_x);
 }
 
+// static void	put_pixel_img(t_img img, int x, int y, int color)
+// {
+// 	char	*dst;
+
+// 	if (color == (int)0xFF000000)
+// 		return ;
+// 	if (x >= 0 && y >= 0 && x < img.width && y < img.height)
+// 	{
+// 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+// 		*(unsigned int *)dst = color;
+// 	}
+// }
+
+// void	texture_loop(t_cub *cub, int x)
+// {
+// 	int				i;
+
+// 	i = cub->ray.start_line;
+// 	while (i < cub->ray.end_line)
+// 	{
+// 		if (cub->ray.side == 1)
+// 			put_pixel_img(dst, x + i, y + j, get_pixel_img(src, i, j));
+// 		else
+// 			put_pixel_img(dst, x + i, y + j, get_pixel_img(src, i, j));
+// 		i++;
+// 	}
+// }
+
+static unsigned int	get_pixel_img(t_img img, int x, int y)
+{
+	return (*(unsigned int *)((img.addr + (y * img.line_len) + (x * img.bpp
+				/ 8))));
+}
+
 void	texture_loop(t_cub *cub, int x)
 {
 	int				i;
+	int				index_img;
+
+	index_img = 0;
 
 	i = cub->ray.start_line;
 	while (i < cub->ray.end_line)
 	{
 		if (cub->ray.side == 1)
-			put_pixel(cub, x, i, 0x00800000);
+			//cub-> = mlx_xpm_file_to_image(cub->mlx_ptr, "./textures/floor.xpm", &x, &i);
+			put_pixel(cub, x, i, get_pixel_img(cub->texture.wall_ea, 0, 0));
 		else
-			put_pixel(cub, x, i, 0x00FF0000);
+			put_pixel(cub, x, i, 0xfc9797);
 		i++;
+		index_img++;
 	}
 }
 
