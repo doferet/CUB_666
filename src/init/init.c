@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/10 18:33:59 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/13 16:40:56 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	init_mlx(t_cub *cub)
 			&(cub->image.line_len), &(cub->image.endian));
 	if (!cub->image.addr)
 		ft_error(cub, "Address Error");
-	init_texture_image(cub, &cub->texture.floor, FLOOR);
 	init_texture_image(cub, &cub->texture.wall_ea, cub->datafile.ea);
 	init_texture_image(cub, &cub->texture.wall_no, cub->datafile.no);
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);

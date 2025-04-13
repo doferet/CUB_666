@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/11 19:11:23 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/14 00:56:25 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,33 +99,6 @@ static void	height_of_line(t_cub *cub)
 	cub->ray.wall_x -= floor(cub->ray.wall_x);
 }
 
-// static void	put_pixel_img(t_img img, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	if (color == (int)0xFF000000)
-// 		return ;
-// 	if (x >= 0 && y >= 0 && x < img.width && y < img.height)
-// 	{
-// 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
-// 		*(unsigned int *)dst = color;
-// 	}
-// }
-
-// void	texture_loop(t_cub *cub, int x)
-// {
-// 	int				i;
-
-// 	i = cub->ray.start_line;
-// 	while (i < cub->ray.end_line)
-// 	{
-// 		if (cub->ray.side == 1)
-// 			put_pixel_img(dst, x + i, y + j, get_pixel_img(src, i, j));
-// 		else
-// 			put_pixel_img(dst, x + i, y + j, get_pixel_img(src, i, j));
-// 		i++;
-// 	}
-// }
 
 static unsigned int	get_pixel_img(t_img img, int x, int y)
 {
@@ -133,24 +106,27 @@ static unsigned int	get_pixel_img(t_img img, int x, int y)
 				/ 8))));
 }
 
-void	texture_loop(t_cub *cub, int x)
+void texture_loop(t_cub *cub, int screen_x, int screen_y)
 {
-	int				i;
-	int				index_img;
+	int     tex_x;
+    double  tex_y;
+    double  tex_step;
 
-	index_img = 0;
+    tex_step = (double)SQUARE_SIZE / cub->ray.line_height;
+	tex_x = cub->ray.wall_x * SQUARE_SIZE;
+    tex_y = (screen_y - HEIGHT / 2 + cub->ray.line_height / 2) * tex_step;
+    while (screen_y < cub->ray.end_line)
+    {
+        tex_y += tex_step;
+        if (cub->ray.side == 1)
+            put_pixel(cub, screen_x, screen_y,
+                get_pixel_img(cub->texture.wall_ea, tex_x, (int)tex_y));
+        else
+            put_pixel(cub, screen_x, screen_y,
+                get_pixel_img(cub->texture.wall_so, tex_x, (int)tex_y));
 
-	i = cub->ray.start_line;
-	while (i < cub->ray.end_line)
-	{
-		if (cub->ray.side == 1)
-			//cub-> = mlx_xpm_file_to_image(cub->mlx_ptr, "./textures/floor.xpm", &x, &i);
-			put_pixel(cub, x, i, get_pixel_img(cub->texture.wall_ea, 0, 0));
-		else
-			put_pixel(cub, x, i, 0xfc9797);
-		i++;
-		index_img++;
-	}
+        screen_y++;
+    }
 }
 
 int	raycasting(t_cub *cub)
@@ -165,7 +141,7 @@ int	raycasting(t_cub *cub)
 		calcul_2(cub);
 		dda_algo(cub);
 		height_of_line(cub);
-		texture_loop(cub, x);
+		texture_loop(cub, x, cub->ray.start_line);
 		x++;
 	}
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
