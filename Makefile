@@ -1,6 +1,6 @@
 #----------MAKEFILE----------#
 
-NAME = cub3d
+NAME = cub3D
 
 LIBFT = libft/libft.a
 

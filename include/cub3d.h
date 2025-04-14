@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/10 19:40:51 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/14 19:40:23 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 // MATHS
 # define PI 3.14159265359
 # define FOV 60
-# define MOVESPEED 0.150
-# define ROTSPEED 0.125
+# define MOVESPEED 0.05
+# define ROTSPEED 0.0125
 
 // KEYS
 # define W 119

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:24 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/11 18:52:37 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/14 18:07:26 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static bool	is_valid_pos_wall_collision(t_cub *cub, double x, double y)
 
 static bool	is_valid_pos_in_map(double x, double y)
 {
-	if (x < 0.25 || x >= WIDTH - 1.25)
+	if (x >= WIDTH)
 		return (false);
-	if (y < 0.25 || y >= HEIGHT -0.25)
+	if (y >= HEIGHT)
 		return (false);
 	return (true);
 }

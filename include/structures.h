@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/10 18:34:42 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/14 18:19:37 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_maths
 	double		tex_pos;
 	int tex_x;
 	int tex_y;
+	char		test;
 }				t_maths;
 
 typedef struct s_map

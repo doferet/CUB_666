@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/14 00:56:25 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/14 19:47:43 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	dda_algo(t_cub *cub)
 			cub->ray.mapy += cub->ray.stepy;
 			cub->ray.side = 1;
 		}
-		if (cub->map.map[cub->ray.mapx][cub->ray.mapy] > '0') 
+      	if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == '1') 
 		{
 			hit = 1;
 		}
@@ -112,8 +112,8 @@ void texture_loop(t_cub *cub, int screen_x, int screen_y)
     double  tex_y;
     double  tex_step;
 
-    tex_step = (double)SQUARE_SIZE / cub->ray.line_height;
-	tex_x = cub->ray.wall_x * SQUARE_SIZE;
+    tex_step = (double)WALL_SIZE / cub->ray.line_height;
+	tex_x = cub->ray.wall_x * WALL_SIZE;
     tex_y = (screen_y - HEIGHT / 2 + cub->ray.line_height / 2) * tex_step;
     while (screen_y < cub->ray.end_line)
     {

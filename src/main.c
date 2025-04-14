@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:55:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/10 18:27:35 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/14 16:51:00 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main(int ac, char **av)
 
 	ft_bzero(&cub, sizeof(t_cub));
 	if (parsing(&cub, ac, av) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	init_mlx(&cub);
+	return (EXIT_FAILURE);
 	init_player_pos(&cub);
+	init_mlx(&cub);
 	mlx_hook(cub.win_ptr, DST_N, StructureNotifyMask, close_window, &cub);
 	mlx_loop_hook(cub.mlx_ptr, raycasting, &cub);
 	mlx_hook(cub.win_ptr, KeyPress, KeyPressMask, key_event, &cub);

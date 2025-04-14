@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 05:14:21 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/10 18:59:57 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/14 18:54:21 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,34 @@
 
 static void	init_pos_north(t_cub *cub)
 {
-	cub->player_pos.dirx = -1.0;
-	cub->player_pos.diry = 0.0;
-	cub->player_pos.planx = 0.0;
-	cub->player_pos.plany = 0.66;
+	cub->player_pos.dirx = 0.0;
+	cub->player_pos.diry = -1.0;
+	cub->player_pos.planx = 0.66;
+	cub->player_pos.plany = 0;
 }
 
 static void	init_pos_south(t_cub *cub)
 {
-	cub->player_pos.dirx = 1.0;
-	cub->player_pos.diry = 0.0;
-	cub->player_pos.planx = 0.0;
-	cub->player_pos.plany = -0.66;
+	cub->player_pos.dirx = 0;
+	cub->player_pos.diry = 1.0;
+	cub->player_pos.planx = -0.66;
+	cub->player_pos.plany = 0.0;
 }
 
 static void	init_pos_east(t_cub *cub)
 {
-	cub->player_pos.dirx = 0.0;
-	cub->player_pos.diry = 1.0;
-	cub->player_pos.planx = 0.66;
-	cub->player_pos.plany = 0.0;
+	cub->player_pos.dirx = 1;
+	cub->player_pos.diry = 0;
+	cub->player_pos.planx = 0;
+	cub->player_pos.plany = 0.66;
 }
 
 static void	init_pos_west(t_cub *cub)
 {
-	cub->player_pos.dirx = 0.0;
-	cub->player_pos.diry = -1.0;
-	cub->player_pos.planx = -0.66;
-	cub->player_pos.plany = 0.0;
+	cub->player_pos.dirx = -1;
+	cub->player_pos.diry = 0;
+	cub->player_pos.planx = 0;
+	cub->player_pos.plany = -0.66;
 }
 void	init_player_pos(t_cub *cub)
 {
