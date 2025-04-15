@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/15 12:29:05 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/15 17:15:26 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,24 @@ void texture_loop(t_cub *cub, int screen_x, int screen_y)
     while (screen_y < cub->ray.end_line)
     {
         tex_y += tex_step;
-        if (cub->player_pos.dirx == 0.0 && cub->player_pos.diry >= -1.0 && cub )
-            put_pixel(cub, screen_x, screen_y,
-                get_pixel_img(cub->texture.wall_ea, tex_x, (int)tex_y));
-        else
-            put_pixel(cub, screen_x, screen_y,
-                get_pixel_img(cub->texture.wall_so, tex_x, (int)tex_y));
-
+        if (cub->ray.side == 0)
+        {
+			if (cub->ray.dirx < 0)
+				put_pixel(cub, screen_x, screen_y,
+                	get_pixel_img(cub->texture.wall_ea, tex_x, (int)tex_y));
+       		else
+            	put_pixel(cub, screen_x, screen_y,
+                	get_pixel_img(cub->texture.wall_we, tex_x, (int)tex_y));
+		}
+		else
+		{
+			if (cub->ray.diry < 0)
+				put_pixel(cub, screen_x, screen_y,
+                	get_pixel_img(cub->texture.wall_so, tex_x, (int)tex_y));
+       		else
+            	put_pixel(cub, screen_x, screen_y,
+                	get_pixel_img(cub->texture.wall_no, tex_x, (int)tex_y));
+		}
         screen_y++;
     }
 }

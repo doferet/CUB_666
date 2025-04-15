@@ -6,37 +6,37 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:05:24 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/14 18:07:26 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/15 16:23:48 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static bool	is_valid_pos_wall_collision(t_cub *cub, double x, double y)
+static bool	is_wall_collision(t_cub *cub, double x, double y)
 {
-	if (cub->map.map[(int)y][(int)x] == '0')
+	if (cub->map.map[(int)y][(int)x] == '1')
 		return (true);
 	return (false);
 }
 
-static bool	is_valid_pos_in_map(double x, double y)
+// static bool	is_valid_pos_in_map(double x, double y)
+// {
+// 	if (x >= WIDTH)
+// 		return (false);
+// 	if (y >= HEIGHT)
+// 		return (false);
+// 	return (true);
+// }
+static bool	is_valid_pos(t_cub *cub, double x, double y)
 {
-	if (x >= WIDTH)
-		return (false);
-	if (y >= HEIGHT)
+// 	if (is_valid_pos_in_map(x, y))
+// 		return (true);
+	if (is_wall_collision(cub, x, y))
 		return (false);
 	return (true);
 }
-static bool	is_valid_pos(t_cub *cub, double x, double y)
-{
-	if (is_valid_pos_in_map(x, y))
-		return (true);
-	if (is_valid_pos_wall_collision(cub, x, y))
-		return (true);
-	return (false);
-}
 
-static int	validate_move(t_cub *cub, double new_x, double new_y)
+static int	valid_move(t_cub *cub, double new_x, double new_y)
 {
 	int	moved;
 
@@ -61,7 +61,7 @@ static int	move_player_forward(t_cub *cub)
 
 	new_x = cub->player_pos.posx + cub->player_pos.dirx * MOVESPEED;
 	new_y = cub->player_pos.posy + cub->player_pos.diry * MOVESPEED;
-	return (validate_move(cub, new_x, new_y));
+	return (valid_move(cub, new_x, new_y));
 }
 
 static int	move_player_backward(t_cub *cub)
@@ -71,7 +71,7 @@ static int	move_player_backward(t_cub *cub)
 
 	new_x = cub->player_pos.posx - cub->player_pos.dirx * MOVESPEED;
 	new_y = cub->player_pos.posy - cub->player_pos.diry * MOVESPEED;
-	return (validate_move(cub, new_x, new_y));
+	return (valid_move(cub, new_x, new_y));
 }
 
 static int	move_player_left(t_cub *cub)
@@ -81,7 +81,7 @@ static int	move_player_left(t_cub *cub)
 
 	new_x = cub->player_pos.posx + cub->player_pos.diry * MOVESPEED;
 	new_y = cub->player_pos.posy - cub->player_pos.dirx * MOVESPEED;
-	return (validate_move(cub, new_x, new_y));
+	return (valid_move(cub, new_x, new_y));
 }
 
 static int	move_player_right(t_cub *cub)
@@ -91,7 +91,7 @@ static int	move_player_right(t_cub *cub)
 
 	new_x = cub->player_pos.posx - cub->player_pos.diry * MOVESPEED;
 	new_y = cub->player_pos.posy + cub->player_pos.dirx * MOVESPEED;
-	return (validate_move(cub, new_x, new_y));
+	return (valid_move(cub, new_x, new_y));
 }
 
 static int	rotate_left_right(t_cub *cub, double rotspeed)

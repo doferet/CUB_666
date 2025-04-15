@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/15 01:36:52 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/15 16:14:34 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 // MATHS
 # define PI 3.14159265359
 # define FOV 60
-# define MOVESPEED 0.05
-# define ROTSPEED 0.0125
+# define MOVESPEED 0.15
+# define ROTSPEED 0.125
 
 // KEYS
 # define W 119
