@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/14 19:40:23 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/15 01:36:52 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 // TEXTURES
 # define WALL "./textures/wall.xpm"
-# define FLOOR "./textures/floor.xpm"
+# define PISTOL "./textures/jagpistol.xpm"
+# define BAR "./textures/bar.xpm"
+
 # define WALL_SIZE 64
 # define SQUARE_SIZE 60
 # define PLAYER_SIZE 32
@@ -71,6 +73,7 @@ void	put_textures(t_cub *cub);
 
 // PARSING
 void	check_player(t_cub *cub);
+bool	is_player(t_cub *cub, int x, int y);
 char	**ft_double_strjoin(char **file, char *line);
 char	*ft_charjoin(char *str, char c, t_cub *cub);
 bool	is_line_map(char *str);

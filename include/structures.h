@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/14 18:19:37 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/15 01:33:47 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,12 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	t_img		floor;
 	t_img		wall_no;
 	t_img		wall_so;
 	t_img		wall_we;
 	t_img		wall_ea;
+	t_img		jagpistol;
+	t_img	    bar;
 	int			type;
 }				t_texture;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/03/24 10:33:20 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/15 01:37:15 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	destroy_texture(t_cub *cub)
 {
 	if (cub->image.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->image.img);
-	if (cub->texture.floor.img)
-		mlx_destroy_image(cub->mlx_ptr, cub->texture.floor.img);
 	if (cub->texture.wall_ea.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.wall_ea.img);
 	if (cub->texture.wall_no.img)
@@ -26,6 +24,10 @@ void	destroy_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.wall_so.img);
 	if (cub->texture.wall_we.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.wall_we.img);
+	if (cub->texture.jagpistol.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.jagpistol.img);
+	if (cub->texture.bar.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.bar.img);
 }
 
 void	ft_error(t_cub *cub, char *str)

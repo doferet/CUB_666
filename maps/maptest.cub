@@ -1,9 +1,9 @@
 NO ./textures/bluewall.xpm
 SO ./textures/greywall.xpm
 WE ./textures/greywall.xpm
-EA ./textures/cat.xpm
+EA ./textures/bluewall.xpm
 F 113, 113, 113
-C 63, 63, 63
+C 0, 0, 0
 
 111111111111111111111111111111111111111111111111111111
 100000000000000000000000000000000000000000000000000001

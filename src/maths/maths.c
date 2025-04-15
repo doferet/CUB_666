@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/14 19:47:43 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/15 01:58:05 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,90 @@ void texture_loop(t_cub *cub, int screen_x, int screen_y)
     }
 }
 
+void minimap(t_cub *cub)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+
+	i = 0;
+	while (i < cub->map.rows)
+	{
+		j = 0;
+		while (j < cub->map.columns)
+		{
+			y = 0;
+			while (y < 8)
+			{
+				x = 0;
+				while (x < 8)
+				{
+					if (cub->map.map[i][j] == '1')
+						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(47, 0, 255));
+					else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
+						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(146, 146, 146));
+					put_pixel(cub, cub->player_pos.posx * 8 + x, cub->player_pos.posy * 8 + y, rgb(255, 0, 0));
+					x++;
+				}
+				y++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void print_weapon(t_cub *cub)
+{
+	int i;
+	int j;
+	int weapon_x;
+	int weapon_y;
+	int screen_center_x = WIDTH / 2;
+	int screen_center_y = HEIGHT / 2;
+
+	i = 0;
+	while (i < 600)
+	{
+		j = 0;
+		while (j < 600)
+		{
+			weapon_x = j * cub->texture.jagpistol.width / 600;
+			weapon_y = i * cub->texture.jagpistol.height / 600;
+			if ((get_pixel_img(cub->texture.jagpistol, weapon_x, weapon_y) & 0x00FFFFFF) != 0x000000)
+				put_pixel(cub, screen_center_x - 300 + j, screen_center_y - 200 + i, get_pixel_img(cub->texture.jagpistol, weapon_x, weapon_y));
+			j++;
+		}
+		i++;
+	}
+}
+
+void print_bar(t_cub *cub)
+{
+	int i;
+	int j;
+	int bar_x;
+	int bar_y;
+	int screen_center_x = WIDTH / 2;
+	int screen_center_y = HEIGHT / 2 + 450;
+
+	i = 0;
+	while (i < cub->texture.bar.height * 2)
+	{
+		j = 0;
+		while (j < cub->texture.bar.width * 2)
+		{
+			bar_x = j * cub->texture.bar.width / (cub->texture.bar.width * 2);
+			bar_y = i * cub->texture.bar.height / (cub->texture.bar.height * 2);
+			put_pixel(cub, screen_center_x - cub->texture.bar.width + j, screen_center_y - cub->texture.bar.height + i, get_pixel_img(cub->texture.bar, bar_x, bar_y));
+			j++;
+		}
+		i++;
+	}
+}
+
+
 int	raycasting(t_cub *cub)
 {
 	int	x;
@@ -144,6 +228,9 @@ int	raycasting(t_cub *cub)
 		texture_loop(cub, x, cub->ray.start_line);
 		x++;
 	}
+	minimap(cub);
+	print_weapon(cub);
+	print_bar(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
 	mlx_destroy_image(cub->mlx_ptr, cub->image.img);
 	cub->image.img = mlx_new_image(cub->mlx_ptr, WIDTH, HEIGHT);

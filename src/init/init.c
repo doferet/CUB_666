@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/13 16:40:56 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/15 01:41:51 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ void	init_texture_image(t_cub *cub, t_img *image, char *path)
 		ft_error(cub, "Texture path is NULL");
 	image->width = SQUARE_SIZE;
 	image->height = SQUARE_SIZE;
+	image->img = mlx_xpm_file_to_image(cub->mlx_ptr, path, &image->width,
+			&image->height);
+	if (!image->img)
+		ft_error(cub, "Load Image Error");
+	image->addr = mlx_get_data_addr(image->img, &image->bpp, &image->line_len,
+			&image->endian);
+	if (!image->addr)
+		ft_error(cub, "Texture Address Fail");
+}
+
+void	init_texture_bar(t_cub *cub, t_img *image, char *path)
+{
+	if (!path)
+		ft_error(cub, "Texture path is NULL");
+	image->width = 600;
+	image->height = 93;
 	image->img = mlx_xpm_file_to_image(cub->mlx_ptr, path, &image->width,
 			&image->height);
 	if (!image->img)
@@ -50,6 +66,8 @@ void	init_mlx(t_cub *cub)
 	init_texture_image(cub, &cub->texture.wall_no, cub->datafile.no);
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
+	init_texture_image(cub, &cub->texture.jagpistol, PISTOL);
+	init_texture_bar(cub, &cub->texture.bar, BAR);
 }
 
 void	init_maths(t_maths *ray)
