@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/15 01:58:05 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:29:05 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,14 @@ void texture_loop(t_cub *cub, int screen_x, int screen_y)
     double  tex_y;
     double  tex_step;
 
+	
     tex_step = (double)WALL_SIZE / cub->ray.line_height;
 	tex_x = cub->ray.wall_x * WALL_SIZE;
     tex_y = (screen_y - HEIGHT / 2 + cub->ray.line_height / 2) * tex_step;
     while (screen_y < cub->ray.end_line)
     {
         tex_y += tex_step;
-        if (cub->ray.side == 1)
+        if (cub->player_pos.dirx == 0.0 && cub->player_pos.diry >= -1.0 && cub )
             put_pixel(cub, screen_x, screen_y,
                 get_pixel_img(cub->texture.wall_ea, tex_x, (int)tex_y));
         else
@@ -151,7 +152,7 @@ void minimap(t_cub *cub)
 					if (cub->map.map[i][j] == '1')
 						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(47, 0, 255));
 					else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
-						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(146, 146, 146));
+						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(158, 146, 146));
 					put_pixel(cub, cub->player_pos.posx * 8 + x, cub->player_pos.posy * 8 + y, rgb(255, 0, 0));
 					x++;
 				}
@@ -180,7 +181,7 @@ void print_weapon(t_cub *cub)
 		{
 			weapon_x = j * cub->texture.jagpistol.width / 600;
 			weapon_y = i * cub->texture.jagpistol.height / 600;
-			if ((get_pixel_img(cub->texture.jagpistol, weapon_x, weapon_y) & 0x00FFFFFF) != 0x000000)
+			if ((get_pixel_img(cub->texture.jagpistol, weapon_x, weapon_y) & 0x00FFFFFF) != 0)
 				put_pixel(cub, screen_center_x - 300 + j, screen_center_y - 200 + i, get_pixel_img(cub->texture.jagpistol, weapon_x, weapon_y));
 			j++;
 		}
