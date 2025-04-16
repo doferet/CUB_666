@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/15 16:14:34 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:36:06 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 // MATHS
 # define PI 3.14159265359
 # define FOV 60
-# define MOVESPEED 0.15
-# define ROTSPEED 0.125
+# define MOVESPEED 0.015
+# define ROTSPEED 0.0125
 
 // KEYS
 # define W 119
@@ -79,7 +79,6 @@ char	*ft_charjoin(char *str, char c, t_cub *cub);
 bool	is_line_map(char *str);
 void	check_player(t_cub *cub);
 int		parsing(t_cub *cub, int ac, char **av);
-
 void	check_data(char *str, t_cub *cub);
 void	check_wall(t_cub *cub);
 void	check_empty_line(t_cub *cub);
@@ -98,11 +97,13 @@ void	orientation(t_cub *cub);
 void	put_color_floor_ceiling(t_cub *cub);
 void	put_pixel(t_cub *cub, int x, int y, int color);
 int     rgb(int r, int g, int b);
-int	move_player(t_cub *cub);
+int		move_player(t_cub *cub);
 
-//KEY
+//KEY & MOUSE EVENT
 int		key_event(int button, t_cub *cub);
 int		key_release(int button, t_cub *cub);
+int		mouse_event(t_cub *cub);
+int	rotate_player(t_cub *cub, double rotdir);
 
 // ERROR & FREE
 void	ft_error(t_cub *cub, char *str);
