@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/16 16:33:01 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/17 13:16:10 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct s_maths
 	int			move;
 	int			move_mouse_x;
 	int			move_mouse_y;
-	int			mouse_left;
-	int			mouse_right;
 }				t_maths;
 
 typedef struct s_map
@@ -101,7 +99,7 @@ typedef struct s_texture
 	t_img		wall_we;
 	t_img		wall_ea;
 	t_img		jagpistol;
-	t_img	    bar;
+	t_img		bar;
 	int			type;
 }				t_texture;
 
@@ -110,7 +108,7 @@ typedef struct s_cub
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_maths		player_pos;
-	t_maths 	ray;
+	t_maths		ray;
 	t_datafile	datafile;
 	t_map		map;
 	t_texture	texture;
