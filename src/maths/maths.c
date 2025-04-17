@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/15 17:15:26 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/17 11:13:39 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void minimap(t_cub *cub)
 	while (i < cub->map.rows)
 	{
 		j = 0;
-		while (j < cub->map.columns)
+		while (j < (int)ft_strlen(cub->map.map[i]))
 		{
 			y = 0;
 			while (y < 8)

@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/16 12:32:32 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/16 14:24:09 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_texture
 	t_img		wall_we;
 	t_img		wall_ea;
 	t_img		jagpistol;
+	t_img       jagpistolred;
 	t_img	    bar;
 	int			type;
 }				t_texture;

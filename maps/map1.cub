@@ -1,7 +1,7 @@
-SO ./sprites/wall_lab0.xpm
-NO ./sprites/wall_lab1.xpm
-WE ./sprites/wall_lab2.xpm
-EA ./sprites/wall_lab3.xpm
+SO ./textures/bluewall.xpm
+NO ./textures/bluewall.xpm
+EA ./textures/bluewall.xpm
+WE ./textures/bluewall.xpm
 
 F 100,100,0
 C 204,229,255
