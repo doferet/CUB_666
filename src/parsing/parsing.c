@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/17 11:07:58 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:43:25 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,15 @@ void	create_map(t_cub *cub)
 			cub->map.map[j++] = ft_strdup(cub->file[i]);
 	}
 	cub->map.map[j] = NULL;
-	// if (cub->file != NULL)
-	// 	free_matrix(cub->file);
 	i = -1;
 	while (++i < (cub->map.rows - 1))
 	{
 		if (cub->map.map[i] == NULL)
-			ft_error(cub, "Map Error");
+		ft_error(cub, "Map Error");
 		cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
-		if (cub->map.columns < (int)ft_strlen(cub->map.map[i]))
-			cub->map.columns = (int)ft_strlen(cub->map.map[i]);
 	}
 	check_empty_line(cub);
+	free_matrix(cub->file);
 }
 
 void	stock_file_in_array(char *map_file, t_cub *cub)
