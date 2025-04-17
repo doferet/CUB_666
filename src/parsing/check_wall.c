@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:41:13 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 21:15:32 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/17 12:00:15 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static bool	check_begin_end(t_cub *cub, int x, int y, bool start)
 	if (cub->map.map[y][x] == '0' && start == false)
 		ft_error(cub, "Walls are not valid");
 	if (cub->map.map[0][x] == '0')
-		ft_error(cub, "Walls are not valid");
+		ft_error(cub, "Walls are not validtrouvew");
 	if (cub->map.map[y][(int)ft_strlen(cub->map.map[y]) - 1] == '0')
 		ft_error(cub, "Walls are not valid");
 	return (start);

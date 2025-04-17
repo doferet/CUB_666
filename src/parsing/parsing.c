@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/09 01:07:58 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/17 11:07:58 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	create_map(t_cub *cub)
 			cub->map.map[j++] = ft_strdup(cub->file[i]);
 	}
 	cub->map.map[j] = NULL;
+	// if (cub->file != NULL)
+	// 	free_matrix(cub->file);
 	i = -1;
 	while (++i < (cub->map.rows - 1))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/16 16:33:01 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/17 13:59:55 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_texture
 	t_img		wall_we;
 	t_img		wall_ea;
 	t_img		jagpistol;
+	t_img       jagpistolred;
 	t_img	    bar;
 	int			type;
 }				t_texture;
@@ -118,6 +119,7 @@ typedef struct s_cub
 	char		**file;
 	int			start_map;
 	int			end_map;
+	bool		menu;
 }				t_cub;
 
 #endif
