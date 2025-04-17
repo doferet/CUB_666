@@ -28,6 +28,8 @@ SRC = src/main.c \
 	libft/get_next_line/get_next_line.c \
 	libft/get_next_line/get_next_line_utils.c \
 	src/maths/maths.c \
+	src/maths/raycasting.c \
+	src/maths/player_rotate.c \
 	src/maths/textures.c \
 	src/maths/player_move.c \
 	src/maths/render.c \

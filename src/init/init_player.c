@@ -6,12 +6,11 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 05:14:21 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/14 18:54:21 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/17 13:30:09 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 static void	init_pos_north(t_cub *cub)
 {
@@ -44,6 +43,7 @@ static void	init_pos_west(t_cub *cub)
 	cub->player_pos.planx = 0;
 	cub->player_pos.plany = -0.66;
 }
+
 void	init_player_pos(t_cub *cub)
 {
 	if (cub->player_pos.start_orientation == 'N')

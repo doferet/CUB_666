@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/16 14:24:09 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/17 14:04:18 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ typedef struct s_maths
 	int			start_line;
 	int			end_line;
 	double		step;
-	int		move_x;
-	int		move_y;
+	int			move_x;
+	int			move_y;
 	int			rotate;
 	int			move;
-	double		tex_pos;
-	int tex_x;
-	int tex_y;
-	char		test;
+	int			move_mouse_x;
+	int			move_mouse_y;
 }				t_maths;
 
 typedef struct s_map
@@ -102,7 +100,7 @@ typedef struct s_texture
 	t_img		wall_ea;
 	t_img		jagpistol;
 	t_img       jagpistolred;
-	t_img	    bar;
+	t_img		bar;
 	int			type;
 }				t_texture;
 
@@ -111,7 +109,7 @@ typedef struct s_cub
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_maths		player_pos;
-	t_maths 	ray;
+	t_maths		ray;
 	t_datafile	datafile;
 	t_map		map;
 	t_texture	texture;
