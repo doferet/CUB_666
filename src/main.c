@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:55:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/17 14:05:22 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/18 16:06:31 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(cub.mlx_ptr, raycasting, &cub);
 	mlx_hook(cub.win_ptr, KeyPress, KeyPressMask, key_event, &cub);
 	mlx_hook(cub.win_ptr, KeyRelease, KeyReleaseMask, key_release, &cub);
-	mlx_mouse_hide(cub.mlx_ptr, cub.win_ptr);
 	mlx_loop(cub.mlx_ptr);
 	ft_free_all(&cub);
 	return (EXIT_SUCCESS);

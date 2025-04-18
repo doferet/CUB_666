@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 15:02:05 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/14 18:07:45 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/18 15:36:15 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static bool	check_begin_end(t_cub *cub, int x, int y, bool start)
 		start = true;
 	if (is_player(cub, x, y) && start == false)
 		ft_error(cub, "Player is outside the map");
-	if (is_player(cub, x, 0))
-		ft_error(cub, "Player is outside the map");
 	if (is_player(cub, (int)ft_strlen(cub->map.map[y]) - 1, y))
 		ft_error(cub, "Player is outside the map");
 	return (start);
@@ -70,6 +68,12 @@ void	check_player(t_cub *cub)
 	while (x++ < (int)ft_strlen(cub->map.map[cub->map.rows - 1]))
 	{
 		if (is_player(cub, x, cub->map.rows - 1) == true)
+			ft_error(cub, "Player is outside the map");
+	}
+	x = -1;
+	while(++x < (int)ft_strlen(cub->map.map[0]))
+	{
+		if (is_player(cub, x, 0))
 			ft_error(cub, "Player is outside the map");
 	}
 	while (++y < cub->map.rows)

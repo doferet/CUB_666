@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:27:43 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/17 18:43:25 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/18 15:10:28 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	create_map(t_cub *cub)
 		cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
 	}
 	check_empty_line(cub);
-	free_matrix(cub->file);
+	//free_matrix(cub->file);
 }
 
 void	stock_file_in_array(char *map_file, t_cub *cub)

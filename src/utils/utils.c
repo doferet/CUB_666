@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:02:56 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/17 12:42:31 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/18 16:08:09 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ int	key_event(int button, t_cub *cub)
 	if (button == XK_a)
 		cub->player_pos.move_x = -1;
 	if (button == XK_Control_L)
-		mlx_mouse_show(cub->mlx_ptr, cub->win_ptr);
+	{
+		cub->player_pos.inverse = !cub->player_pos.inverse;
+		if (!cub->player_pos.inverse)
+			mlx_mouse_move(cub->mlx_ptr, cub->win_ptr, WIDTH / 2, HEIGHT / 2);
+	}
 	return (0);
 }
 
@@ -81,6 +85,7 @@ int	mouse_event(int x, t_cub *cub)
 		else
 			rotate_left_right(cub, -rotate);
 	}
-	mlx_mouse_move(cub->mlx_ptr, cub->win_ptr, WIDTH / 2, HEIGHT / 2);
+	if (cub->player_pos.inverse)
+		mlx_mouse_move(cub->mlx_ptr, cub->win_ptr, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }

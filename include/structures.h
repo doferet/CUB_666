@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/17 14:04:18 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/18 16:00:25 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_maths
 	int			move;
 	int			move_mouse_x;
 	int			move_mouse_y;
+	bool		inverse;
 }				t_maths;
 
 typedef struct s_map
@@ -118,6 +119,7 @@ typedef struct s_cub
 	int			start_map;
 	int			end_map;
 	bool		menu;
+	
 }				t_cub;
 
 #endif
