@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:55:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/16 12:34:24 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/21 02:07:37 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int ac, char **av)
 	t_cub	cub;
 
 	ft_bzero(&cub, sizeof(t_cub));
-	cub.menu = true;
+	cub.menu = false;
 	if (parsing(&cub, ac, av) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	init_player_pos(&cub);

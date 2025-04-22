@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/17 13:42:14 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/22 02:02:52 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void	init_mlx(t_cub *cub)
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
 	init_texture_image(cub, &cub->texture.jagpistol, PISTOL);
+	init_texture_image(cub, &cub->texture.jagpistolred, PISTOLRED);
+	init_texture_image(cub, &cub->texture.menu, MENU);
 	init_texture_bar(cub, &cub->texture.bar, BAR);
 }

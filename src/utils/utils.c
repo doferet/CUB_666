@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:02:56 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/18 16:08:09 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/22 02:09:09 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	key_event(int button, t_cub *cub)
 		if (!cub->player_pos.inverse)
 			mlx_mouse_move(cub->mlx_ptr, cub->win_ptr, WIDTH / 2, HEIGHT / 2);
 	}
+	if (button == XK_p)
+		cub->menu = !cub->menu;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/18 15:51:38 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/22 03:13:35 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 // TEXTURES
 # define WALL "./textures/wall.xpm"
 # define PISTOL "./textures/jagpistol.xpm"
+# define PISTOLRED "./textures/jagpistolred.xpm"
 # define BAR "./textures/bar.xpm"
+# define MENU "./textures/greywall.xpm"
 
 # define WALL_SIZE 64
 # define WIDTH 1920
@@ -44,6 +46,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
+# include <sys/time.h>
 
 ////////////////////////////PROTOTYPES//////////////////////////////
 // INIT
@@ -54,15 +57,15 @@ void			init_player_pos(t_cub *cub);
 // PARSING
 void			check_player(t_cub *cub);
 bool			is_player(t_cub *cub, int x, int y);
-char			**ft_double_strjoin(char **file, char *line);
 char			*ft_charjoin(char *str, char c, t_cub *cub);
 bool			is_line_map(char *str);
 void			check_player(t_cub *cub);
 int				parsing(t_cub *cub, int ac, char **av);
 void			check_data(char *str, t_cub *cub);
-void			check_wall(t_cub *cub);
+void			check_wall_player(t_cub *cub);
 void			check_empty_line(t_cub *cub);
 void			check_color_floor(char *str, int i, t_cub *cub);
+void			take_info_from_player(t_cub *cub, int x, int y);
 void			check_color_ceiling(char *str, int i, t_cub *cub);
 void			check_color(t_cub *cub);
 void			check_wrong_char_color(char *str, int i, t_cub *cub);
@@ -70,10 +73,13 @@ void			check_texture_no(char *str, int i, t_cub *cub);
 void			check_texture_so(char *str, int i, t_cub *cub);
 void			check_texture_we(char *str, int i, t_cub *cub);
 void			check_texture_ea(char *str, int i, t_cub *cub);
+bool			is_player(t_cub *cub, int x, int y);
+bool			is_player_or_door(t_cub *cub, int x, int y);
 
 // MATHS
 int				raycasting(t_cub *cub);
 void			draw_ray(int x, t_cub *cub);
+int				get_time(void);
 
 // MOVE & ROTATE
 bool			is_wall_collision(t_cub *cub, double x, double y);

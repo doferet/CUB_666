@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/18 16:00:25 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/22 02:58:43 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ typedef struct s_maths
 	int			move_mouse_x;
 	int			move_mouse_y;
 	bool		inverse;
+	int 		tex_x;
+	double 		tex_y;
+	double		tex_step;
 }				t_maths;
 
 typedef struct s_map
@@ -102,8 +105,16 @@ typedef struct s_texture
 	t_img		jagpistol;
 	t_img       jagpistolred;
 	t_img		bar;
+	t_img		menu;
 	int			type;
 }				t_texture;
+
+typedef struct s_file
+{
+	char **file;
+	int index;
+	int capacity;
+}t_file;
 
 typedef struct s_cub
 {
@@ -115,10 +126,11 @@ typedef struct s_cub
 	t_map		map;
 	t_texture	texture;
 	t_img		image;
-	char		**file;
+	t_file		file;
 	int			start_map;
 	int			end_map;
 	bool		menu;
+	int			time;
 	
 }				t_cub;
 

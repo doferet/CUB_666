@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:59:10 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/17 13:01:15 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/21 17:25:30 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	raycasting(t_cub *cub)
 	{
 		draw_ray(x, cub);
 	}
-	minimap(cub);
+	//minimap(cub);
 	print_weapon(cub);
 	print_bar(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
