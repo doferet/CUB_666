@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:02:56 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/22 02:09:09 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 17:06:29 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	mouse_event(int x, t_cub *cub)
 		else
 			rotate_left_right(cub, -rotate);
 	}
-	if (cub->player_pos.inverse)
+	if (!cub->player_pos.inverse)
 		mlx_mouse_move(cub->mlx_ptr, cub->win_ptr, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }

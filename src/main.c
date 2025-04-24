@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:55:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 03:07:17 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 17:02:13 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	menu(t_cub *cub)
 {
 	int	i;
 	int	j;
-	int tex_x;
-	int tex_y;
+	int	tex_x;
+	int	tex_y;
 
 	i = 0;
 	while (i < HEIGHT)
@@ -54,7 +54,7 @@ int	loop_handler(t_cub *cub)
 	return (0);
 }
 
-int get_time(void)
+int	get_time(void)
 {
 	struct timeval	tv;
 
@@ -80,4 +80,3 @@ int	main(int ac, char **av)
 	ft_free_all(&cub);
 	return (0);
 }
-

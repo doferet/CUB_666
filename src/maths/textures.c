@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:12:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 04:03:18 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 16:52:43 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
 				get_pixel_img(cub->texture.wall_no, cub->ray.tex_x,
 					(int)cub->ray.tex_y));
 	}
+	if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
+		put_pixel(cub, screen_x, screen_y, get_pixel_img(cub->texture.door,
+				cub->ray.tex_x, (int)cub->ray.tex_y));
 }
 
 void	texture_loop(t_cub *cub, int screen_x, int screen_y)
@@ -76,7 +79,7 @@ void	minimap(t_cub *cub)
 					if (cub->map.map[i][j] == '1')
 						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(47, 0, 255));
 					else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
-						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(158, 146,
+						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(158, 146, 
 								146));
 					put_pixel(cub, cub->player_pos.posx * 8 + x,
 						cub->player_pos.posy * 8 + y, rgb(255, 0, 0));
