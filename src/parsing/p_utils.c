@@ -6,39 +6,11 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:48 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/02 12:28:17 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/22 01:14:46 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-char	**ft_double_strjoin(char **file, char *line)
-{
-	int		i;
-	size_t	len;
-	char	**new_file;
-
-	if (!file || !line)
-		return (NULL);
-	len = 0;
-	i = 0;
-	while (file[len])
-		len++;
-	len++;
-	new_file = malloc(sizeof(char *) * (len + 1));
-	if (!new_file)
-		return (NULL);
-	i = 0;
-	while (file[i])
-	{
-		new_file[i] = ft_strdup(file[i]);
-		i++;
-	}
-	new_file[i] = ft_strdup(line);
-	new_file[i + 1] = NULL;
-	free_matrix(file);
-	return (new_file);
-}
 
 char	*ft_charjoin(char *str, char c, t_cub *cub)
 {
@@ -115,12 +87,12 @@ void	check_empty_line(t_cub *cub)
 	int	i;
 
 	i = -1;
-	while (cub->file[++i])
+	while (cub->file.file[++i])
 	{
-		if (!is_line_map(cub->file[i]) && cub->start_map <= i
+		if (!is_line_map(cub->file.file[i]) && cub->start_map <= i
 			&& cub->end_map >= i)
 			ft_error(cub, "Empty or wrong line in map");
-		if (cub->end_map < i && cub->file[i][0] != '\n')
+		if (cub->end_map < i && cub->file.file[i][0] != '\n')
 			ft_error(cub, "Empty or wrong line in map");
 	}
 }

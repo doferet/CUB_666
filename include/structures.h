@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/17 13:59:55 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 17:04:49 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ typedef struct s_maths
 	int			move;
 	int			move_mouse_x;
 	int			move_mouse_y;
-	int			mouse_left;
-	int			mouse_right;
+	bool		inverse;
+	int 		tex_x;
+	double 		tex_y;
+	double		tex_step;
 }				t_maths;
 
 typedef struct s_map
@@ -102,24 +104,39 @@ typedef struct s_texture
 	t_img		wall_ea;
 	t_img		jagpistol;
 	t_img       jagpistolred;
-	t_img	    bar;
+	t_img		bar;
+	t_img		menu;
+	t_img		door;
+	t_img		door_open;
+	t_img		space;
+	t_img		helmet;
 	int			type;
 }				t_texture;
+
+typedef struct s_file
+{
+	char **file;
+	int index;
+	int capacity;
+}t_file;
 
 typedef struct s_cub
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_maths		player_pos;
-	t_maths 	ray;
+	t_maths		ray;
 	t_datafile	datafile;
 	t_map		map;
 	t_texture	texture;
 	t_img		image;
-	char		**file;
+	t_file		file;
 	int			start_map;
 	int			end_map;
 	bool		menu;
+	int			saved_time;
+	bool		lock_time;
+	
 }				t_cub;
 
 #endif

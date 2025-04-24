@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/15 01:41:51 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:02:20 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	init_texture_image(t_cub *cub, t_img *image, char *path)
 {
 	if (!path)
 		ft_error(cub, "Texture path is NULL");
-	image->width = SQUARE_SIZE;
-	image->height = SQUARE_SIZE;
+	image->width = WALL_SIZE;
+	image->height = WALL_SIZE;
 	image->img = mlx_xpm_file_to_image(cub->mlx_ptr, path, &image->width,
 			&image->height);
 	if (!image->img)
@@ -67,29 +67,11 @@ void	init_mlx(t_cub *cub)
 	init_texture_image(cub, &cub->texture.wall_so, cub->datafile.so);
 	init_texture_image(cub, &cub->texture.wall_we, cub->datafile.we);
 	init_texture_image(cub, &cub->texture.jagpistol, PISTOL);
+	init_texture_image(cub, &cub->texture.jagpistolred, PISTOLRED);
+	init_texture_image(cub, &cub->texture.menu, MENU);
+	init_texture_image(cub, &cub->texture.space, SPACE);
+	init_texture_image(cub, &cub->texture.door_open, DOOR_OPEN);
+	init_texture_image(cub, &cub->texture.door, DOOR);
+	init_texture_image(cub, &cub->texture.helmet, HELMET);
 	init_texture_bar(cub, &cub->texture.bar, BAR);
-}
-
-void	init_maths(t_maths *ray)
-{
-	ray->cam_orientation = 0;
-	ray->dirx = 0;
-	ray->diry = 0;
-	ray->mapx = 0;
-	ray->mapy = 0;
-	ray->stepx = 0;
-	ray->stepy = 0;
-	ray->sidex = 0;
-	ray->sidey = 0;
-	ray->deltax = 0;
-	ray->deltay = 0;
-	ray->wall_dist = 0;
-	ray->wall_x = 0;
-	ray->side = 0;
-	ray->line_height = 0;
-	ray->start_line = 0;
-	ray->end_line = 0;
-	ray->move = 0;
-	ray->move_x = 0;
-	ray->move_y = 0;
 }

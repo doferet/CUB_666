@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/15 01:37:15 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:22:46 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,20 @@ void	destroy_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.wall_we.img);
 	if (cub->texture.jagpistol.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.jagpistol.img);
+	if (cub->texture.jagpistolred.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.jagpistolred.img);
 	if (cub->texture.bar.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.bar.img);
+	if (cub->texture.menu.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.menu.img);
+	if (cub->texture.door.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.door.img);
+	if (cub->texture.door_open.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.door_open.img);
+	if (cub->texture.space.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.space.img);
+	if (cub->texture.helmet.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.helmet.img);
 }
 
 void	ft_error(t_cub *cub, char *str)
@@ -90,7 +102,7 @@ void	ft_free_all(t_cub *cub)
 		free_matrix(cub->map.map);
 		cub->map.map = NULL;
 	}
-	if (cub->file != NULL)
-		free_matrix(cub->file);
+	if (cub->file.file != NULL)
+		free_matrix(cub->file.file);
 	free_datafile(cub);
 }

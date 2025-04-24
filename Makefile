@@ -15,9 +15,9 @@ INC = -Iinclude -Ilibft
 
 SRC = src/main.c \
 	src/parsing/parsing.c \
-	src/parsing/check_wall.c \
+	src/parsing/check_wall_player_bonus.c \
 	src/parsing/check_color.c \
-	src/parsing/check_player.c\
+	src/parsing/player_utils.c\
 	src/parsing/p_utils.c \
 	src/parsing/check_datafile.c \
 	src/parsing/check_textures.c \
@@ -28,9 +28,12 @@ SRC = src/main.c \
 	libft/get_next_line/get_next_line.c \
 	libft/get_next_line/get_next_line_utils.c \
 	src/maths/maths.c \
+	src/maths/raycasting.c \
+	src/maths/player_rotate.c \
 	src/maths/textures.c \
 	src/maths/player_move.c \
 	src/maths/render.c \
+	src/maths/textures_utils.c \
 
 OBJ_DIR = build
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

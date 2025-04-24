@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/16 16:36:06 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:22:19 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,23 @@
 // TEXTURES
 # define WALL "./textures/wall.xpm"
 # define PISTOL "./textures/jagpistol.xpm"
+# define PISTOLRED "./textures/jagpistolred.xpm"
 # define BAR "./textures/bar.xpm"
+# define MENU "./textures/greywall.xpm"
+# define DOOR "./textures/door.xpm"
+# define DOOR_OPEN "./textures/wall.xpm"
+# define SPACE "./textures/space.xpm"
+# define HELMET "./textures/wall.xpm"
 
 # define WALL_SIZE 64
-# define SQUARE_SIZE 60
-# define PLAYER_SIZE 32
 # define WIDTH 1920
 # define HEIGHT 1080
-# define NORTH 0
-# define SOUTH 1
-# define EAST 2
-# define WEST 3
 
 // MATHS
-# define PI 3.14159265359
-# define FOV 60
-# define MOVESPEED 0.015
-# define ROTSPEED 0.0125
+# define MOVESPEED 0.25
+# define ROTSPEED 0.09
 
 // KEYS
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define UP 65362
-# define LEFT 65361
-# define DOWN 65364
-# define RIGHT 65363
-# define ESC 65307
-# define KEYPRESS 2
 # define DST_N 17
 
 ////////////////////////////INCLUDES//////////////////////////////
@@ -62,55 +50,70 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
+# include <sys/time.h>
 
 ////////////////////////////PROTOTYPES//////////////////////////////
 // INIT
-void	init_mlx(t_cub *cub);
-void	init_texture_image(t_cub *cub, t_img *image, char *path);
-void	init_player_pos(t_cub *cub);
-void	put_img(t_img dst, t_img src, int x, int y);
-void	put_textures(t_cub *cub);
+void			init_mlx(t_cub *cub);
+void			init_texture_image(t_cub *cub, t_img *image, char *path);
+void			init_player_pos(t_cub *cub);
 
 // PARSING
-void	check_player(t_cub *cub);
-bool	is_player(t_cub *cub, int x, int y);
-char	**ft_double_strjoin(char **file, char *line);
-char	*ft_charjoin(char *str, char c, t_cub *cub);
-bool	is_line_map(char *str);
-void	check_player(t_cub *cub);
-int		parsing(t_cub *cub, int ac, char **av);
-void	check_data(char *str, t_cub *cub);
-void	check_wall(t_cub *cub);
-void	check_empty_line(t_cub *cub);
-void	check_color_floor(char *str, int i, t_cub *cub);
-void	check_color_ceiling(char *str, int i, t_cub *cub);
-void	check_color(t_cub *cub);
-void	check_wrong_char_color(char *str, int i, t_cub *cub);
-void	check_texture_no(char *str, int i, t_cub *cub);
-void	check_texture_so(char *str, int i, t_cub *cub);
-void	check_texture_we(char *str, int i, t_cub *cub);
-void	check_texture_ea(char *str, int i, t_cub *cub);
+void			check_player(t_cub *cub);
+bool			is_player(t_cub *cub, int x, int y);
+char			*ft_charjoin(char *str, char c, t_cub *cub);
+bool			is_line_map(char *str);
+void			check_player(t_cub *cub);
+int				parsing(t_cub *cub, int ac, char **av);
+void			check_data(char *str, t_cub *cub);
+void			check_wall_player(t_cub *cub);
+void			check_empty_line(t_cub *cub);
+void			check_color_floor(char *str, int i, t_cub *cub);
+void			take_info_from_player(t_cub *cub, int x, int y);
+void			check_color_ceiling(char *str, int i, t_cub *cub);
+void			check_color(t_cub *cub);
+void			check_wrong_char_color(char *str, int i, t_cub *cub);
+void			check_texture_no(char *str, int i, t_cub *cub);
+void			check_texture_so(char *str, int i, t_cub *cub);
+void			check_texture_we(char *str, int i, t_cub *cub);
+void			check_texture_ea(char *str, int i, t_cub *cub);
+bool			is_player(t_cub *cub, int x, int y);
+bool			is_player_or_door(t_cub *cub, int x, int y);
 
 // MATHS
-int		raycasting(t_cub *cub);
-void	orientation(t_cub *cub);
-void	put_color_floor_ceiling(t_cub *cub);
-void	put_pixel(t_cub *cub, int x, int y, int color);
-int     rgb(int r, int g, int b);
-int		move_player(t_cub *cub);
+int				raycasting(t_cub *cub);
+void			draw_ray(int x, t_cub *cub);
+int				get_time(void);
+
+// MOVE & ROTATE
+bool			is_wall_collision(t_cub *cub, double x, double y);
+bool			is_valid_pos(t_cub *cub, double x, double y);
+int				valid_move(t_cub *cub, double new_x, double new_y);
+int				move_player(t_cub *cub);
+int				rotate_player(t_cub *cub, double rotdir);
+int				rotate_left_right(t_cub *cub, double rotspeed);
+
+// TEXTURES
+void			put_color_floor_ceiling(t_cub *cub);
+void			put_pixel(t_cub *cub, int x, int y, int color);
+unsigned int	get_pixel_img(t_img img, int x, int y);
+int				rgb(int r, int g, int b);
+void			print_bar(t_cub *cub);
+void			minimap(t_cub *cub);
+void			print_weapon(t_cub *cub);
+void			texture_loop(t_cub *cub, int screen_x, int screen_y);
 
 //KEY & MOUSE EVENT
-int		key_event(int button, t_cub *cub);
-int		key_release(int button, t_cub *cub);
-int		mouse_event(t_cub *cub);
-int	rotate_player(t_cub *cub, double rotdir);
+int				key_event(int button, t_cub *cub);
+int				key_release(int button, t_cub *cub);
+int				mouse_event(int x, t_cub *cub);
 
 // ERROR & FREE
-void	ft_error(t_cub *cub, char *str);
-void	free_matrix(char **matrix);
-void	ft_free_all(t_cub *cub);
+void			ft_error(t_cub *cub, char *str);
+void			free_matrix(char **matrix);
+void			ft_free_all(t_cub *cub);
 
 // DEBUG
-void	print_tab(char **tab);
+void			print_tab(char **tab);
 
 #endif
