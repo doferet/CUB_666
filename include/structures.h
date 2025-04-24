@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/22 02:58:43 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:02:26 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ typedef struct s_texture
 	t_img       jagpistolred;
 	t_img		bar;
 	t_img		menu;
+	t_img		door;
+	t_img		door_open;
+	t_img		space;
+	t_img		helmet;
 	int			type;
 }				t_texture;
 
@@ -130,7 +134,8 @@ typedef struct s_cub
 	int			start_map;
 	int			end_map;
 	bool		menu;
-	int			time;
+	int			saved_time;
+	bool		lock_time;
 	
 }				t_cub;
 

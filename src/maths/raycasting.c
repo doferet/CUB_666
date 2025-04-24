@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:59:10 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/21 17:25:30 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 04:06:00 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ int	raycasting(t_cub *cub)
 	x = -1;
 	y = 0;
 	put_color_floor_ceiling(cub);
+	if (cub->lock_time == false)
+	{
+		cub->saved_time = get_time();
+		cub->lock_time = true;
+	}
 	while (++x < WIDTH)
 	{
 		draw_ray(x, cub);
 	}
-	//minimap(cub);
+	minimap(cub);
 	print_weapon(cub);
 	print_bar(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);

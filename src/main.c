@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:55:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/22 03:01:22 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:07:17 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,11 @@ int	main(int ac, char **av)
 	t_cub	cub;
 
 	ft_bzero(&cub, sizeof(t_cub));
-	cub.menu = true;
+	cub.menu = false;
 	if (parsing(&cub, ac, av) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	init_player_pos(&cub);
 	init_mlx(&cub);
-	cub.time = get_time();
 	mlx_loop_hook(cub.mlx_ptr, loop_handler, &cub);
 	mlx_hook(cub.win_ptr, KeyPress, KeyPressMask, key_event, &cub);
 	mlx_hook(cub.win_ptr, KeyRelease, KeyReleaseMask, key_release, &cub);

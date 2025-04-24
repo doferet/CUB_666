@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/22 03:13:35 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:22:19 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@
 # define PISTOLRED "./textures/jagpistolred.xpm"
 # define BAR "./textures/bar.xpm"
 # define MENU "./textures/greywall.xpm"
+# define DOOR "./textures/door.xpm"
+# define DOOR_OPEN "./textures/wall.xpm"
+# define SPACE "./textures/space.xpm"
+# define HELMET "./textures/wall.xpm"
 
 # define WALL_SIZE 64
 # define WIDTH 1920
 # define HEIGHT 1080
 
 // MATHS
-# define MOVESPEED 0.015
-# define ROTSPEED 0.0125
+# define MOVESPEED 0.25
+# define ROTSPEED 0.09
 
 // KEYS
 # define DST_N 17
