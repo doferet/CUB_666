@@ -34,6 +34,7 @@ SRC = src/main.c \
 	src/maths/player_move.c \
 	src/maths/render.c \
 	src/maths/textures_utils.c \
+	src/maths/textures_bonus.c \
 
 OBJ_DIR = build
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

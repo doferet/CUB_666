@@ -3,42 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:12:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 16:52:43 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/27 04:09:59 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+void	print_doors(t_cub *cub, int screen_x, int screen_y)
+{
+	int	tex_door;
+	int	tex;
+
+	tex_door = get_pixel_img(cub->texture.door, cub->ray.tex_x,
+			(int)cub->ray.tex_y);
+	tex = get_pixel_img(cub->texture.door1, cub->ray.tex_x,
+			(int)cub->ray.tex_y);
+	if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
+	{
+		if (!cub->open_door)
+			put_pixel(cub, screen_x, screen_y, tex_door);
+		else if ((tex & 0x00FFFFFF) != 0
+			&& get_time() - cub->saved_time > 1500)
+		{
+			put_pixel(cub, screen_x, screen_y, tex);
+		}
+	}
+}
+
 void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
 {
-	if (cub->ray.side == 0)
+	if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == '1')
 	{
-		if (cub->ray.dirx < 0)
-			put_pixel(cub, screen_x, screen_y,
-				get_pixel_img(cub->texture.wall_ea, cub->ray.tex_x,
-					(int)cub->ray.tex_y));
+		if (cub->ray.side == 0)
+		{
+			if (cub->ray.dirx < 0)
+				put_pixel(cub, screen_x, screen_y,
+					get_pixel_img(cub->texture.wall_ea, cub->ray.tex_x,
+						(int)cub->ray.tex_y));
+			else
+				put_pixel(cub, screen_x, screen_y,
+					get_pixel_img(cub->texture.wall_we, cub->ray.tex_x,
+						(int)cub->ray.tex_y));
+		}
 		else
-			put_pixel(cub, screen_x, screen_y,
-				get_pixel_img(cub->texture.wall_we, cub->ray.tex_x,
-					(int)cub->ray.tex_y));
+		{
+			if (cub->ray.diry < 0)
+				put_pixel(cub, screen_x, screen_y,
+					get_pixel_img(cub->texture.wall_so, cub->ray.tex_x,
+						(int)cub->ray.tex_y));
+			else
+				put_pixel(cub, screen_x, screen_y,
+					get_pixel_img(cub->texture.wall_no, cub->ray.tex_x,
+						(int)cub->ray.tex_y));
+		}
 	}
-	else
-	{
-		if (cub->ray.diry < 0)
-			put_pixel(cub, screen_x, screen_y,
-				get_pixel_img(cub->texture.wall_so, cub->ray.tex_x,
-					(int)cub->ray.tex_y));
-		else
-			put_pixel(cub, screen_x, screen_y,
-				get_pixel_img(cub->texture.wall_no, cub->ray.tex_x,
-					(int)cub->ray.tex_y));
-	}
-	if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
-		put_pixel(cub, screen_x, screen_y, get_pixel_img(cub->texture.door,
-				cub->ray.tex_x, (int)cub->ray.tex_y));
 }
 
 void	texture_loop(t_cub *cub, int screen_x, int screen_y)
@@ -53,104 +74,7 @@ void	texture_loop(t_cub *cub, int screen_x, int screen_y)
 	{
 		cub->ray.tex_y += tex_step;
 		put_oriented_walls(cub, screen_x, screen_y);
+		print_doors(cub, screen_x, screen_y);
 		screen_y++;
-	}
-}
-
-void	minimap(t_cub *cub)
-{
-	int	i;
-	int	j;
-	int	x;
-	int	y;
-
-	i = -1;
-	while (++i < cub->map.rows)
-	{
-		j = -1;
-		while (++j < (int)ft_strlen(cub->map.map[i]))
-		{
-			y = -1;
-			while (++y < 8)
-			{
-				x = -1;
-				while (++x < 8)
-				{
-					if (cub->map.map[i][j] == '1')
-						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(47, 0, 255));
-					else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
-						put_pixel(cub, j * 8 + x, i * 8 + y, rgb(158, 146, 
-								146));
-					put_pixel(cub, cub->player_pos.posx * 8 + x,
-						cub->player_pos.posy * 8 + y, rgb(255, 0, 0));
-				}
-			}
-		}
-	}
-}
-
-void animated_weapon(t_cub *cub, int i, int j, t_img img)
-{
-	int weapon_x;
-	int weapon_y;
-
-	while (i < 600)
-	{
-		j = 0;
-		while (j < 600)
-		{
-			weapon_x = j * cub->texture.jagpistol.width / 600;
-			weapon_y = i * cub->texture.jagpistol.height / 600;
-			
-			if ((get_pixel_img(cub->texture.jagpistol, weapon_x,
-						weapon_y) & 0x00FFFFFF) != 0)
-			{
-					put_pixel(cub, WIDTH / 2 - 300 + j, HEIGHT / 2 - 200
-						+ i, get_pixel_img(img, weapon_x, weapon_y));
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	print_weapon(t_cub *cub)
-{
-	int actual_time;
-
-	actual_time = get_time();
-	if (actual_time - cub->saved_time > 750 && cub->lock_time == true)
-	{
-		animated_weapon(cub, 0, 0, cub->texture.jagpistolred);
-		if (actual_time - cub->saved_time > 1500)
-			cub->lock_time = false;
-	}
-	else 
-	{
-		animated_weapon(cub, 0, 0, cub->texture.jagpistol);
-	}
-}
-
-void	print_bar(t_cub *cub)
-{
-	int	i;
-	int	j;
-	int	bar_x;
-	int	bar_y;
-
-	i = 0;
-	while (i < cub->texture.bar.height * 2)
-	{
-		j = 0;
-		while (j < cub->texture.bar.width * 2)
-		{
-			bar_x = j * cub->texture.bar.width / (cub->texture.bar.width * 2);
-			bar_y = i * cub->texture.bar.height / (cub->texture.bar.height * 2);
-			put_pixel(cub, WIDTH / 2 - cub->texture.bar.width + j,
-				HEIGHT / 2 + 450 - cub->texture.bar.height + i,
-				get_pixel_img(cub->texture.bar, bar_x, bar_y));
-			j++;
-		}
-		i++;
 	}
 }

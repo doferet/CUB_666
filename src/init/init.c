@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 16:58:40 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/27 01:05:38 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	init_textures(t_cub *cub)
 	init_texture_image(cub, &cub->texture.jagpistolred, PISTOLRED);
 	init_texture_image(cub, &cub->texture.menu, MENU);
 	init_texture_image(cub, &cub->texture.space, SPACE);
-	init_texture_image(cub, &cub->texture.door_open, DOOR_OPEN);
 	init_texture_image(cub, &cub->texture.door, DOOR);
+	init_texture_image(cub, &cub->texture.door1, DOOR1);
 	init_texture_image(cub, &cub->texture.helmet, HELMET);
 	init_texture_bar(cub, &cub->texture.bar, BAR);
 }

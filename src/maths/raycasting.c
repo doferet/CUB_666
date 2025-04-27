@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:59:10 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 17:03:56 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/27 03:25:06 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_bonus(t_cub *cub)
 {
-	minimap(cub);
+	//minimap(cub);
 	print_weapon(cub);
 	print_bar(cub);
 }
@@ -31,6 +31,11 @@ int	raycasting(t_cub *cub)
 	{
 		cub->saved_time = get_time();
 		cub->lock_time = true;
+	}
+	if (cub->lock_door == false)
+	{
+		cub->saved_door = get_time();
+		cub->lock_door = true;
 	}
 	while (++x < WIDTH)
 	{

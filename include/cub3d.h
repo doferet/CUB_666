@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/24 03:22:19 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/27 01:05:21 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define BAR "./textures/bar.xpm"
 # define MENU "./textures/greywall.xpm"
 # define DOOR "./textures/door.xpm"
-# define DOOR_OPEN "./textures/wall.xpm"
+# define DOOR1 "./textures/door1.xpm"
 # define SPACE "./textures/space.xpm"
 # define HELMET "./textures/wall.xpm"
 
@@ -36,6 +36,10 @@
 
 // KEYS
 # define DST_N 17
+
+// MINIMAP
+# define MINIMAP_SIZE 5
+# define MINIMAP_BLOCKSIZE 15
 
 ////////////////////////////INCLUDES//////////////////////////////
 

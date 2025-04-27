@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 17:05:01 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/27 00:56:48 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ static void	dda_algo(t_cub *cub)
 			cub->ray.mapy += cub->ray.stepy;
 			cub->ray.side = 1;
 		}
-		if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == '1'
-			|| cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
+		if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == '1')
 			hit = 1;
+		else if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
+		{
+			hit = 1;
+		}
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:02:56 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 17:06:29 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/27 04:08:19 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ void	print_tab(char **tab)
 	{
 		printf("%s\n", tab[i]);
 		i++;
+	}
+}
+
+void	detection_front_player(t_cub *cub)
+{
+	int	front_x;
+	int	front_y;
+
+	front_x = (int)(cub->player_pos.posx + cub->player_pos.dirx);
+	front_y = (int)(cub->player_pos.posy + cub->player_pos.diry);
+	if (cub->map.map[front_y][front_x] == 'D')
+	{
+		cub->open_door = true;
+		cub->map.map[front_y][front_x] = 'P';
+	}
+	else if (cub->map.map[front_y][front_x] == 'P')
+	{
+		cub->map.map[front_y][front_x] = 'D';
+		cub->close_door = true;
 	}
 }
 
@@ -50,6 +69,8 @@ int	key_event(int button, t_cub *cub)
 	}
 	if (button == XK_p)
 		cub->menu = !cub->menu;
+	if (button == XK_e)
+		detection_front_player(cub);
 	return (0);
 }
 

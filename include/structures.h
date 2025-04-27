@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/24 03:02:26 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/27 03:24:45 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_map
 {
 	char		**map;
 	int			rows;
-	int			columns;
 	int			player;
 }				t_map;
 
@@ -107,7 +106,7 @@ typedef struct s_texture
 	t_img		bar;
 	t_img		menu;
 	t_img		door;
-	t_img		door_open;
+	t_img		door1;
 	t_img		space;
 	t_img		helmet;
 	int			type;
@@ -119,6 +118,7 @@ typedef struct s_file
 	int index;
 	int capacity;
 }t_file;
+
 
 typedef struct s_cub
 {
@@ -136,6 +136,10 @@ typedef struct s_cub
 	bool		menu;
 	int			saved_time;
 	bool		lock_time;
+	int 		saved_door;
+	bool 		lock_door;
+	bool		close_door;
+	bool 		open_door;
 	
 }				t_cub;
 
