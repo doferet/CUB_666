@@ -14,7 +14,7 @@
 
 void	print_bonus(t_cub *cub)
 {
-	//minimap(cub);
+	minimap(cub);
 	print_weapon(cub);
 	print_bar(cub);
 }
@@ -31,11 +31,6 @@ int	raycasting(t_cub *cub)
 	{
 		cub->saved_time = get_time();
 		cub->lock_time = true;
-	}
-	if (cub->lock_door == false)
-	{
-		cub->saved_door = get_time();
-		cub->lock_door = true;
 	}
 	while (++x < WIDTH)
 	{

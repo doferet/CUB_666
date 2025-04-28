@@ -61,6 +61,8 @@ void	create_map(t_cub *cub)
 	{
 		if (cub->map.map[i] == NULL)
 			ft_error(cub, "Map Error");
+		if (cub->map.cols < (int)ft_strlen(cub->map.map[i]))
+			cub->map.cols = (int)ft_strlen(cub->map.map[i]);
 		cub->map.map[i][ft_strlen(cub->map.map[i]) - 1] = 0;
 	}
 	check_empty_line(cub);

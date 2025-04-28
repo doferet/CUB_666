@@ -74,7 +74,7 @@ static void	dda_algo(t_cub *cub)
 		}
 		if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == '1')
 			hit = 1;
-		else if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
+		if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
 		{
 			hit = 1;
 		}
@@ -102,6 +102,7 @@ static void	height_of_line(t_cub *cub)
 			* cub->ray.dirx;
 	cub->ray.wall_x -= floor(cub->ray.wall_x);
 }
+
 
 void	draw_ray(int x, t_cub *cub)
 {

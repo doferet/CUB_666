@@ -17,12 +17,12 @@ static void	init_pos_north(t_cub *cub)
 	cub->player_pos.dirx = 0.0;
 	cub->player_pos.diry = -1.0;
 	cub->player_pos.planx = 0.66;
-	cub->player_pos.plany = 0;
+	cub->player_pos.plany = 0.0;
 }
 
 static void	init_pos_south(t_cub *cub)
 {
-	cub->player_pos.dirx = 0;
+	cub->player_pos.dirx = 0.0;
 	cub->player_pos.diry = 1.0;
 	cub->player_pos.planx = -0.66;
 	cub->player_pos.plany = 0.0;
@@ -30,17 +30,17 @@ static void	init_pos_south(t_cub *cub)
 
 static void	init_pos_east(t_cub *cub)
 {
-	cub->player_pos.dirx = 1;
-	cub->player_pos.diry = 0;
-	cub->player_pos.planx = 0;
+	cub->player_pos.dirx = 1.0;
+	cub->player_pos.diry = 0.0;
+	cub->player_pos.planx = 0.0;
 	cub->player_pos.plany = 0.66;
 }
 
 static void	init_pos_west(t_cub *cub)
 {
-	cub->player_pos.dirx = -1;
-	cub->player_pos.diry = 0;
-	cub->player_pos.planx = 0;
+	cub->player_pos.dirx = -1.0;
+	cub->player_pos.diry = 0.0;
+	cub->player_pos.planx = 0.0;
 	cub->player_pos.plany = -0.66;
 }
 

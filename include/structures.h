@@ -57,6 +57,7 @@ typedef struct s_map
 {
 	char		**map;
 	int			rows;
+	int			cols;
 	int			player;
 }				t_map;
 
@@ -136,11 +137,6 @@ typedef struct s_cub
 	bool		menu;
 	int			saved_time;
 	bool		lock_time;
-	int 		saved_door;
-	bool 		lock_door;
-	bool		close_door;
-	bool 		open_door;
-	
 }				t_cub;
 
 #endif

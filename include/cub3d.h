@@ -83,6 +83,7 @@ void			check_texture_we(char *str, int i, t_cub *cub);
 void			check_texture_ea(char *str, int i, t_cub *cub);
 bool			is_player(t_cub *cub, int x, int y);
 bool			is_player_or_door(t_cub *cub, int x, int y);
+void	        print_doors(t_cub *cub, int screen_x, int screen_y);
 
 // MATHS
 int				raycasting(t_cub *cub);

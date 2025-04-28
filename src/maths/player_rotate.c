@@ -14,7 +14,7 @@
 
 bool	is_wall_collision(t_cub *cub, double x, double y)
 {
-	if (cub->map.map[(int)y][(int)x] == '1')
+	if (cub->map.map[(int)y][(int)x] == '1' || cub->map.map[(int)y][(int)x] == 'D')
 		return (true);
 	return (false);
 }

@@ -12,6 +12,42 @@
 
 #include "../../include/cub3d.h"
 
+void minimap(t_cub *cub)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+	int scale;
+
+	scale = fmin(WIDTH / cub->map.cols / 8, HEIGHT / cub->map.rows / 8);
+	i = 0;
+	while (i < cub->map.rows)
+	{
+		j = 0;
+		while (j < (int)ft_strlen(cub->map.map[i]))
+		{
+			y = 0;
+			while (y < scale)
+			{
+				x = 0;
+				while (x < scale)
+				{
+					if (cub->map.map[i][j] == '1')
+						put_pixel(cub, j * scale + x, i * scale + y, rgb(111, 122, 193));
+					else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
+						put_pixel(cub, j * scale + x, i * scale + y, rgb(95, 105, 165));
+					put_pixel(cub, cub->player_pos.posx * scale + x, cub->player_pos.posy * scale + y, rgb(255, 0, 0));
+					x++;
+				}
+				y++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	animated_weapon(t_cub *cub, int i, int j, t_img img)
 {
 	int	weapon_x;
@@ -41,7 +77,7 @@ void	print_weapon(t_cub *cub)
 	int	actual_time;
 
 	actual_time = get_time();
-	if (actual_time - cub->saved_time > 750 && cub->lock_time == true)
+	if (actual_time - cub->saved_time > 750)
 	{
 		animated_weapon(cub, 0, 0, cub->texture.jagpistolred);
 		if (actual_time - cub->saved_time > 1500)

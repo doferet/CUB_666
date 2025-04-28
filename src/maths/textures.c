@@ -15,21 +15,13 @@
 void	print_doors(t_cub *cub, int screen_x, int screen_y)
 {
 	int	tex_door;
-	int	tex;
 
 	tex_door = get_pixel_img(cub->texture.door, cub->ray.tex_x,
 			(int)cub->ray.tex_y);
-	tex = get_pixel_img(cub->texture.door1, cub->ray.tex_x,
-			(int)cub->ray.tex_y);
 	if (cub->map.map[cub->ray.mapy][cub->ray.mapx] == 'D')
 	{
-		if (!cub->open_door)
+		if ((tex_door & 0x00FFFFFF) != 0)
 			put_pixel(cub, screen_x, screen_y, tex_door);
-		else if ((tex & 0x00FFFFFF) != 0
-			&& get_time() - cub->saved_time > 1500)
-		{
-			put_pixel(cub, screen_x, screen_y, tex);
-		}
 	}
 }
 

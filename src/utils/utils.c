@@ -35,13 +35,13 @@ void	detection_front_player(t_cub *cub)
 	front_y = (int)(cub->player_pos.posy + cub->player_pos.diry);
 	if (cub->map.map[front_y][front_x] == 'D')
 	{
-		cub->open_door = true;
+		//cub->open_door = true;
 		cub->map.map[front_y][front_x] = 'P';
 	}
 	else if (cub->map.map[front_y][front_x] == 'P')
 	{
 		cub->map.map[front_y][front_x] = 'D';
-		cub->close_door = true;
+		//cub->close_door = true;
 	}
 }
 
