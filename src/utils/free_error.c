@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/27 01:06:09 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/29 11:55:25 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ void	destroy_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.menu.img);
 	if (cub->texture.door.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.door.img);
-	if (cub->texture.door1.img)
-		mlx_destroy_image(cub->mlx_ptr, cub->texture.door1.img);
-	if (cub->texture.space.img)
-		mlx_destroy_image(cub->mlx_ptr, cub->texture.space.img);
-	if (cub->texture.helmet.img)
-		mlx_destroy_image(cub->mlx_ptr, cub->texture.helmet.img);
 }
 
 void	ft_error(t_cub *cub, char *str)

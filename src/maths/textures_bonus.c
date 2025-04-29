@@ -3,48 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   textures_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 01:15:16 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/27 14:12:13 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/29 11:53:18 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void minimap(t_cub *cub)
+static void	minimap_color(int i, int j, int k, t_cub *cub)
 {
-	int i;
-	int j;
-	int x;
-	int y;
-	int scale;
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < k)
+	{
+		x = -1;
+		while (++x < k)
+		{
+			if (cub->map.map[i][j] == '1')
+				put_pixel(cub, j * k + x, i * k + y, rgb(111, 122, 193));
+			else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
+				put_pixel(cub, j * k + x, i * k + y, rgb(95, 105, 165));
+			put_pixel(cub, cub->player_pos.posx * k + x,
+				cub->player_pos.posy * k + y, rgb(255, 0, 0));
+		}
+	}
+}
+
+void	minimap(t_cub *cub)
+{
+	int	i;
+	int	j;
+	int	scale;
 
 	scale = fmin(WIDTH / cub->map.cols / 8, HEIGHT / cub->map.rows / 8);
-	i = 0;
-	while (i < cub->map.rows)
+	i = -1;
+	while (++i < cub->map.rows)
 	{
-		j = 0;
-		while (j < (int)ft_strlen(cub->map.map[i]))
+		j = -1;
+		while (++j < (int)ft_strlen(cub->map.map[i]))
 		{
-			y = 0;
-			while (y < scale)
-			{
-				x = 0;
-				while (x < scale)
-				{
-					if (cub->map.map[i][j] == '1')
-						put_pixel(cub, j * scale + x, i * scale + y, rgb(111, 122, 193));
-					else if (cub->map.map[i][j] == '0' || is_player(cub, j, i))
-						put_pixel(cub, j * scale + x, i * scale + y, rgb(95, 105, 165));
-					put_pixel(cub, cub->player_pos.posx * scale + x, cub->player_pos.posy * scale + y, rgb(255, 0, 0));
-					x++;
-				}
-				y++;
-			}
-			j++;
+			minimap_color(i, j, scale, cub);
 		}
-		i++;
 	}
 }
 

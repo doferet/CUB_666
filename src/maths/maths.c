@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:53:33 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/27 00:56:48 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/29 12:11:47 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	calcul(int x, t_cub *cub)
+static void	init_ray(int x, t_cub *cub)
 {
 	cub->ray.cam_orientation = 2 * x / (double)WIDTH - 1;
 	cub->ray.dirx = cub->player_pos.dirx + cub->player_pos.planx
@@ -25,7 +25,7 @@ static void	calcul(int x, t_cub *cub)
 	cub->ray.deltay = fabs(1 / cub->ray.diry);
 }
 
-static void	calcul_2(t_cub *cub)
+static void	side_wall(t_cub *cub)
 {
 	if (cub->ray.dirx < 0)
 	{
@@ -103,11 +103,10 @@ static void	height_of_line(t_cub *cub)
 	cub->ray.wall_x -= floor(cub->ray.wall_x);
 }
 
-
 void	draw_ray(int x, t_cub *cub)
 {
-	calcul(x, cub);
-	calcul_2(cub);
+	init_ray(x, cub);
+	side_wall(cub);
 	dda_algo(cub);
 	height_of_line(cub);
 	texture_loop(cub, x, cub->ray.start_line);

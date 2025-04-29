@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:02:56 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/27 04:08:19 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/29 11:41:36 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ void	detection_front_player(t_cub *cub)
 	front_y = (int)(cub->player_pos.posy + cub->player_pos.diry);
 	if (cub->map.map[front_y][front_x] == 'D')
 	{
-		//cub->open_door = true;
 		cub->map.map[front_y][front_x] = 'P';
 	}
 	else if (cub->map.map[front_y][front_x] == 'P')
 	{
 		cub->map.map[front_y][front_x] = 'D';
-		//cub->close_door = true;
 	}
 }
 

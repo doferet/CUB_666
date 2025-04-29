@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 13:32:21 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/24 16:28:32 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/29 11:39:38 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	is_wall_collision(t_cub *cub, double x, double y)
 {
-	if (cub->map.map[(int)y][(int)x] == '1' || cub->map.map[(int)y][(int)x] == 'D')
+	if (cub->map.map[(int)y][(int)x] == '1'
+		|| cub->map.map[(int)y][(int)x] == 'D')
 		return (true);
 	return (false);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/27 01:05:21 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/29 12:04:22 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,13 @@
 # define BAR "./textures/bar.xpm"
 # define MENU "./textures/greywall.xpm"
 # define DOOR "./textures/door.xpm"
-# define DOOR1 "./textures/door1.xpm"
-# define SPACE "./textures/space.xpm"
-# define HELMET "./textures/wall.xpm"
-
-# define WALL_SIZE 64
-# define WIDTH 1920
-# define HEIGHT 1080
 
 // MATHS
 # define MOVESPEED 0.25
 # define ROTSPEED 0.09
+# define WALL_SIZE 64
+# define WIDTH 1920
+# define HEIGHT 1080
 
 // KEYS
 # define DST_N 17
@@ -63,11 +59,9 @@ void			init_texture_image(t_cub *cub, t_img *image, char *path);
 void			init_player_pos(t_cub *cub);
 
 // PARSING
-void			check_player(t_cub *cub);
 bool			is_player(t_cub *cub, int x, int y);
 char			*ft_charjoin(char *str, char c, t_cub *cub);
 bool			is_line_map(char *str);
-void			check_player(t_cub *cub);
 int				parsing(t_cub *cub, int ac, char **av);
 void			check_data(char *str, t_cub *cub);
 void			check_wall_player(t_cub *cub);
@@ -83,7 +77,7 @@ void			check_texture_we(char *str, int i, t_cub *cub);
 void			check_texture_ea(char *str, int i, t_cub *cub);
 bool			is_player(t_cub *cub, int x, int y);
 bool			is_player_or_door(t_cub *cub, int x, int y);
-void	        print_doors(t_cub *cub, int screen_x, int screen_y);
+void			print_doors(t_cub *cub, int screen_x, int screen_y);
 
 // MATHS
 int				raycasting(t_cub *cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/27 03:24:45 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/29 12:02:03 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_maths
 	int			move_mouse_x;
 	int			move_mouse_y;
 	bool		inverse;
-	int 		tex_x;
-	double 		tex_y;
+	int			tex_x;
+	double		tex_y;
 	double		tex_step;
 }				t_maths;
 
@@ -67,15 +67,12 @@ typedef struct s_datafile
 	char		*so;
 	char		*we;
 	char		*ea;
-
 	int			floor_red;
 	int			floor_green;
 	int			floor_blue;
-
 	int			ceiling_red;
 	int			ceiling_green;
 	int			ceiling_blue;
-
 	bool		b_no;
 	bool		b_so;
 	bool		b_we;
@@ -103,23 +100,18 @@ typedef struct s_texture
 	t_img		wall_we;
 	t_img		wall_ea;
 	t_img		jagpistol;
-	t_img       jagpistolred;
+	t_img		jagpistolred;
 	t_img		bar;
 	t_img		menu;
 	t_img		door;
-	t_img		door1;
-	t_img		space;
-	t_img		helmet;
-	int			type;
 }				t_texture;
 
 typedef struct s_file
 {
-	char **file;
-	int index;
-	int capacity;
-}t_file;
-
+	char		**file;
+	int			index;
+	int			capacity;
+}				t_file;
 
 typedef struct s_cub
 {
