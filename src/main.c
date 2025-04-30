@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	t_cub	cub;
 
 	ft_bzero(&cub, sizeof(t_cub));
-	cub.menu = false;
+	cub.menu = true;
 	if (parsing(&cub, ac, av) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	init_player_pos(&cub);

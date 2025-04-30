@@ -52,11 +52,11 @@ SRC_BONUS = src/parsing/check_wall_player_bonus.c \
 	src/maths/maths.c \
 	src/maths/raycasting.c \
 	src/maths/player_rotate.c \
-	src/maths/textures.c \
 	src/maths/player_move.c \
 	src/maths/render.c \
 	src/maths/textures_utils.c \
 	src/maths/textures_bonus.c \
+	src/maths/textures_animation.c \
 	src/main.c \
 	src/parsing/parsing.c \
 

@@ -25,6 +25,33 @@ void	print_doors(t_cub *cub, int screen_x, int screen_y)
 	}
 }
 
+void animation_sides(t_cub *cub, int screen_x, int screen_y)
+{
+	int	actual_time;
+
+	actual_time = get_time();
+	if ((actual_time - cub->anim_time > 500) && (actual_time - cub->anim_time < 1000))
+	{
+		put_pixel(cub, screen_x, screen_y,
+			get_pixel_img(cub->texture.anim2, cub->ray.tex_x,
+				(int)cub->ray.tex_y));
+	}
+	else if (actual_time - cub->anim_time >= 1000)
+	{
+		put_pixel(cub, screen_x, screen_y,
+			get_pixel_img(cub->texture.anim3, cub->ray.tex_x,
+				(int)cub->ray.tex_y));
+		if (actual_time - cub->anim_time > 2000)
+			cub->lock_time_anim = false;
+	}
+	else 
+	{
+		put_pixel(cub, screen_x, screen_y,
+			get_pixel_img(cub->texture.wall_ea, cub->ray.tex_x,
+				(int)cub->ray.tex_y));
+	}
+
+}
 
 void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
 {
@@ -33,9 +60,7 @@ void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
 		if (cub->ray.side == 0)
 		{
 			if (cub->ray.dirx < 0)
-				put_pixel(cub, screen_x, screen_y,
-					get_pixel_img(cub->texture.wall_ea, cub->ray.tex_x,
-						(int)cub->ray.tex_y));
+				animation_sides(cub, screen_x, screen_y);
 			else
 				put_pixel(cub, screen_x, screen_y,
 					get_pixel_img(cub->texture.wall_we, cub->ray.tex_x,

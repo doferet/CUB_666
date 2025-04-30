@@ -20,8 +20,11 @@
 # define PISTOL "./textures/jagpistol.xpm"
 # define PISTOLRED "./textures/jagpistolred.xpm"
 # define BAR "./textures/bar.xpm"
-# define MENU "./textures/greywall.xpm"
+# define MENU "./textures/menu.xpm"
 # define DOOR "./textures/door.xpm"
+# define ANIM2 "./textures/anim2.xpm"
+# define ANIM3 "./textures/anim3.xpm"
+
 
 // MATHS
 # define MOVESPEED 0.25

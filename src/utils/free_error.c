@@ -34,6 +34,10 @@ void	destroy_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.menu.img);
 	if (cub->texture.door.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture.door.img);
+	if (cub->texture.anim2.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.anim2.img);
+	if (cub->texture.anim3.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.anim3.img);
 }
 
 void	ft_error(t_cub *cub, char *str)

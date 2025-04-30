@@ -55,6 +55,8 @@ void	init_textures(t_cub *cub)
 	init_texture_image(cub, &cub->texture.menu, MENU);
 	init_texture_image(cub, &cub->texture.door, DOOR);
 	init_texture_bar(cub, &cub->texture.bar, BAR);
+	init_texture_image(cub, &cub->texture.anim2, ANIM2);
+	init_texture_image(cub, &cub->texture.anim3, ANIM3);
 }
 
 void	init_mlx(t_cub *cub)

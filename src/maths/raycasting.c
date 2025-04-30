@@ -32,6 +32,11 @@ int	raycasting(t_cub *cub)
 		cub->saved_time = get_time();
 		cub->lock_time = true;
 	}
+	if (cub->lock_time_anim == false)
+	{
+		cub->anim_time = get_time();
+		cub->lock_time_anim = true;
+	}
 	while (++x < WIDTH)
 	{
 		draw_ray(x, cub);

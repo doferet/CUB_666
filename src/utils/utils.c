@@ -65,7 +65,7 @@ int	key_event(int button, t_cub *cub)
 		if (!cub->player_pos.inverse)
 			mlx_mouse_move(cub->mlx_ptr, cub->win_ptr, WIDTH / 2, HEIGHT / 2);
 	}
-	if (button == XK_p)
+	if (button == 65293)
 		cub->menu = !cub->menu;
 	if (button == XK_e)
 		detection_front_player(cub);

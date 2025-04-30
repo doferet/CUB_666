@@ -104,6 +104,9 @@ typedef struct s_texture
 	t_img		bar;
 	t_img		menu;
 	t_img		door;
+	t_img       anim1;
+	t_img       anim2;
+	t_img       anim3;
 }				t_texture;
 
 typedef struct s_file
@@ -129,6 +132,8 @@ typedef struct s_cub
 	bool		menu;
 	int			saved_time;
 	bool		lock_time;
+	int			anim_time;
+	bool		lock_time_anim;
 }				t_cub;
 
 #endif

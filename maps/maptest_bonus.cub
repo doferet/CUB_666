@@ -1,9 +1,9 @@
-WE ./textures/anim3.xpm
-NO ./textures/anim1.xpm
-SO ./textures/anim2.xpm
-EA ./textures/space_window.xpm
-F 53,69,83
-C 0,0,0
+WE ./textures/space_window.xpm
+NO ./textures/space_wall.xpm
+SO ./textures/space_window.xpm
+EA ./textures/anim1.xpm
+F 30,39,47
+C 10,13,16
 
 
 1111111111111111111111111111111111111111111111111111111111111111111111
