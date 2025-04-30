@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 01:26:57 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/22 01:38:39 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:09:00 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,25 @@ void	put_pixel_img(t_img img, int x, int y, int color)
 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
 		*(unsigned int *)dst = color;
 	}
+}
+
+void	animation_time(t_cub *cub)
+{
+	if (cub->lock_time == false)
+	{
+		cub->saved_time = get_time();
+		cub->lock_time = true;
+	}
+	if (cub->lock_time_anim == false)
+	{
+		cub->anim_time = get_time();
+		cub->lock_time_anim = true;
+	}
+}
+
+void	print_bonus(t_cub *cub)
+{
+	print_weapon(cub);
+	print_bar(cub);
+	minimap(cub);
 }

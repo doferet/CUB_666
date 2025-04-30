@@ -36,7 +36,6 @@ SRC = src/main.c \
 	src/maths/textures_utils.c \
 	src/maths/textures_bonus.c \
 
-
 SRC_BONUS = src/parsing/check_wall_player_bonus.c \
 	src/parsing/check_color.c \
 	src/parsing/player_utils.c\
@@ -50,7 +49,7 @@ SRC_BONUS = src/parsing/check_wall_player_bonus.c \
 	libft/get_next_line/get_next_line.c \
 	libft/get_next_line/get_next_line_utils.c \
 	src/maths/maths.c \
-	src/maths/raycasting.c \
+	src/maths/raycasting_bonus.c \
 	src/maths/player_rotate.c \
 	src/maths/player_move.c \
 	src/maths/render.c \

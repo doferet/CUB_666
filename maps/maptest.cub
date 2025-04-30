@@ -1,6 +1,6 @@
-WE ./textures/space_window.xpm
-NO ./textures/space_wall.xpm
-SO ./textures/space_window.xpm
+WE ./textures/space_wall.xpm
+NO ./textures/fanim1.xpm
+SO ./textures/space_wall.xpm
 EA ./textures/anim1.xpm
 F 30,39,47
 C 10,13,16

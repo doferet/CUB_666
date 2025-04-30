@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:30 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/29 12:04:22 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:41:20 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 # define DOOR "./textures/door.xpm"
 # define ANIM2 "./textures/anim2.xpm"
 # define ANIM3 "./textures/anim3.xpm"
-
+# define FANIM2 "./textures/fanim2.xpm"
+# define FANIM3 "./textures/fanim3.xpm"
 
 // MATHS
-# define MOVESPEED 0.25
-# define ROTSPEED 0.09
+# define MOVESPEED 0.08
+# define ROTSPEED 0.025
 # define WALL_SIZE 64
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -52,8 +53,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <time.h>
 # include <sys/time.h>
+# include <time.h>
 
 ////////////////////////////PROTOTYPES//////////////////////////////
 // INIT
@@ -104,8 +105,10 @@ void			print_bar(t_cub *cub);
 void			minimap(t_cub *cub);
 void			print_weapon(t_cub *cub);
 void			texture_loop(t_cub *cub, int screen_x, int screen_y);
+void			animation_time(t_cub *cub);
+void			print_bonus(t_cub *cub);
 
-//KEY & MOUSE EVENT
+// KEY & MOUSE EVENT
 int				key_event(int button, t_cub *cub);
 int				key_release(int button, t_cub *cub);
 int				mouse_event(int x, t_cub *cub);

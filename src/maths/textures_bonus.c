@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 01:15:16 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/29 11:53:18 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:18:37 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	animated_weapon(t_cub *cub, int i, int j, t_img img)
 			if ((get_pixel_img(cub->texture.jagpistol, weapon_x,
 						weapon_y) & 0x00FFFFFF) != 0)
 			{
-				put_pixel(cub, WIDTH / 2 - 300 + j, HEIGHT / 2 - 200
+				put_pixel(cub, WIDTH / 2 - 300 + j, HEIGHT / 2 - 250
 					+ i, get_pixel_img(img, weapon_x, weapon_y));
 			}
 			j++;
@@ -108,7 +108,7 @@ void	print_bar(t_cub *cub)
 			bar_x = j * cub->texture.bar.width / (cub->texture.bar.width * 2);
 			bar_y = i * cub->texture.bar.height / (cub->texture.bar.height * 2);
 			put_pixel(cub, WIDTH / 2 - cub->texture.bar.width + j,
-				HEIGHT / 2 + 450 - cub->texture.bar.height + i,
+				HEIGHT / 2 + 400 - cub->texture.bar.height + i,
 				get_pixel_img(cub->texture.bar, bar_x, bar_y));
 			j++;
 		}

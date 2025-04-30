@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:28:46 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/29 12:02:03 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:10:57 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,10 @@ typedef struct s_texture
 	t_img		bar;
 	t_img		menu;
 	t_img		door;
-	t_img       anim1;
-	t_img       anim2;
-	t_img       anim3;
+	t_img		anim2;
+	t_img		anim3;
+	t_img		fanim2;
+	t_img		fanim3;
 }				t_texture;
 
 typedef struct s_file

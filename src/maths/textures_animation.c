@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   textures_animation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:12:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/27 04:09:59 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:04:40 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void	print_doors(t_cub *cub, int screen_x, int screen_y)
 	}
 }
 
-void animation_sides(t_cub *cub, int screen_x, int screen_y)
+void	animation_sides(t_cub *cub, int screen_x, int screen_y)
 {
 	int	actual_time;
 
 	actual_time = get_time();
-	if ((actual_time - cub->anim_time > 500) && (actual_time - cub->anim_time < 1000))
+	if ((actual_time - cub->anim_time > 500)
+		&& (actual_time - cub->anim_time < 1000))
 	{
 		put_pixel(cub, screen_x, screen_y,
 			get_pixel_img(cub->texture.anim2, cub->ray.tex_x,
@@ -44,13 +45,40 @@ void animation_sides(t_cub *cub, int screen_x, int screen_y)
 		if (actual_time - cub->anim_time > 2000)
 			cub->lock_time_anim = false;
 	}
-	else 
+	else
 	{
 		put_pixel(cub, screen_x, screen_y,
 			get_pixel_img(cub->texture.wall_ea, cub->ray.tex_x,
 				(int)cub->ray.tex_y));
 	}
+}
 
+void	animation_front(t_cub *cub, int screen_x, int screen_y)
+{
+	int	actual_time;
+
+	actual_time = get_time();
+	if ((actual_time - cub->anim_time > 500)
+		&& (actual_time - cub->anim_time < 1000))
+	{
+		put_pixel(cub, screen_x, screen_y,
+			get_pixel_img(cub->texture.fanim2, cub->ray.tex_x,
+				(int)cub->ray.tex_y));
+	}
+	else if (actual_time - cub->anim_time >= 1000)
+	{
+		put_pixel(cub, screen_x, screen_y,
+			get_pixel_img(cub->texture.fanim3, cub->ray.tex_x,
+				(int)cub->ray.tex_y));
+		if (actual_time - cub->anim_time > 2000)
+			cub->lock_time_anim = false;
+	}
+	else
+	{
+		put_pixel(cub, screen_x, screen_y,
+			get_pixel_img(cub->texture.wall_no, cub->ray.tex_x,
+				(int)cub->ray.tex_y));
+	}
 }
 
 void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
@@ -73,9 +101,7 @@ void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
 					get_pixel_img(cub->texture.wall_so, cub->ray.tex_x,
 						(int)cub->ray.tex_y));
 			else
-				put_pixel(cub, screen_x, screen_y,
-					get_pixel_img(cub->texture.wall_no, cub->ray.tex_x,
-						(int)cub->ray.tex_y));
+				animation_front(cub, screen_x, screen_y);
 		}
 	}
 }

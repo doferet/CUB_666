@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:12:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/27 04:09:59 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:04:54 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	print_doors(t_cub *cub, int screen_x, int screen_y)
 			put_pixel(cub, screen_x, screen_y, tex_door);
 	}
 }
-
 
 void	put_oriented_walls(t_cub *cub, int screen_x, int screen_y)
 {

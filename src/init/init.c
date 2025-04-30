@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:31:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/29 11:56:40 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:02:29 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,22 @@ void	init_texture_bar(t_cub *cub, t_img *image, char *path)
 		ft_error(cub, "Texture Address Fail");
 }
 
+void	init_texture_helmet(t_cub *cub, t_img *image, char *path)
+{
+	if (!path)
+		ft_error(cub, "Texture path is NULL");
+	image->width = 1920;
+	image->height = 1080;
+	image->img = mlx_xpm_file_to_image(cub->mlx_ptr, path, &image->width,
+			&image->height);
+	if (!image->img)
+		ft_error(cub, "Load Image Error");
+	image->addr = mlx_get_data_addr(image->img, &image->bpp, &image->line_len,
+			&image->endian);
+	if (!image->addr)
+		ft_error(cub, "Texture Address Fail");
+}
+
 void	init_textures(t_cub *cub)
 {
 	init_texture_image(cub, &cub->texture.wall_ea, cub->datafile.ea);
@@ -57,6 +73,8 @@ void	init_textures(t_cub *cub)
 	init_texture_bar(cub, &cub->texture.bar, BAR);
 	init_texture_image(cub, &cub->texture.anim2, ANIM2);
 	init_texture_image(cub, &cub->texture.anim3, ANIM3);
+	init_texture_image(cub, &cub->texture.fanim2, FANIM2);
+	init_texture_image(cub, &cub->texture.fanim3, FANIM3);
 }
 
 void	init_mlx(t_cub *cub)

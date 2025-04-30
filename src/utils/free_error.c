@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:48:46 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/29 11:55:25 by doferet          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:00:33 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ void	ft_free_all(t_cub *cub)
 	if (!cub)
 		return ;
 	destroy_texture(cub);
+	if (cub->texture.fanim2.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.fanim2.img);
+	if (cub->texture.fanim3.img)
+		mlx_destroy_image(cub->mlx_ptr, cub->texture.fanim3.img);
 	if (cub->win_ptr != NULL)
 		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
 	if (cub->mlx_ptr != NULL)

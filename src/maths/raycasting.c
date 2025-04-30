@@ -6,18 +6,11 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:59:10 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/27 03:25:06 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:46:21 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	print_bonus(t_cub *cub)
-{
-	minimap(cub);
-	print_weapon(cub);
-	print_bar(cub);
-}
 
 int	raycasting(t_cub *cub)
 {
@@ -27,28 +20,15 @@ int	raycasting(t_cub *cub)
 	x = -1;
 	y = 0;
 	put_color_floor_ceiling(cub);
-	if (cub->lock_time == false)
-	{
-		cub->saved_time = get_time();
-		cub->lock_time = true;
-	}
-	if (cub->lock_time_anim == false)
-	{
-		cub->anim_time = get_time();
-		cub->lock_time_anim = true;
-	}
 	while (++x < WIDTH)
 	{
 		draw_ray(x, cub);
 	}
-	print_bonus(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.img, 0, 0);
 	mlx_destroy_image(cub->mlx_ptr, cub->image.img);
 	cub->image.img = mlx_new_image(cub->mlx_ptr, WIDTH, HEIGHT);
 	cub->image.addr = mlx_get_data_addr(cub->image.img, &cub->image.bpp,
 			&cub->image.line_len, &cub->image.endian);
 	cub->player_pos.move = move_player(cub);
-	mlx_mouse_get_pos(cub->mlx_ptr, cub->win_ptr, &x, &y);
-	cub->player_pos.move_mouse_y = mouse_event(x, cub);
 	return (0);
 }
