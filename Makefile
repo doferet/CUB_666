@@ -76,10 +76,12 @@ $(NAME): $(OBJ)
 	@echo "Compilation..."
 	@make -sC libft
 	@make -sC mlx
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(INC) -lXext -lX11 -lm 
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(INC) -lXext -lX11 -lm
 	@echo "Cub3D is ready !"
 
 bonus: $(OBJ_BONUS)
+	@make -C libft
+	@make -C mlx
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_BONUS) $(LIBFT) $(MLX) $(INC) -lXext -lX11 -lm
 	@echo "Cub3D bonus is ready !"
 
