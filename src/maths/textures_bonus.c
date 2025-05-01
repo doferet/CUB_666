@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 01:15:16 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/04/30 11:18:37 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/01 13:22:01 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	print_bar(t_cub *cub)
 			bar_x = j * cub->texture.bar.width / (cub->texture.bar.width * 2);
 			bar_y = i * cub->texture.bar.height / (cub->texture.bar.height * 2);
 			put_pixel(cub, WIDTH / 2 - cub->texture.bar.width + j,
-				HEIGHT / 2 + 400 - cub->texture.bar.height + i,
+				HEIGHT / 2 + 450 - cub->texture.bar.height + i,
 				get_pixel_img(cub->texture.bar, bar_x, bar_y));
 			j++;
 		}

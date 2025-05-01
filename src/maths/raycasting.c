@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:59:10 by doferet           #+#    #+#             */
-/*   Updated: 2025/04/30 11:46:21 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/01 13:20:59 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	raycasting(t_cub *cub)
 {
 	int	x;
-	int	y;
 
 	x = -1;
-	y = 0;
 	put_color_floor_ceiling(cub);
 	while (++x < WIDTH)
 	{
